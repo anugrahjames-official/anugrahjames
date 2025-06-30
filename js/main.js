@@ -1,31 +1,26 @@
 // Theme Toggle Functionality
-const themeToggle = document.createElement("button");
-themeToggle.className = "theme-toggle";
-themeToggle.innerHTML = "🌓";
-document.body.appendChild(themeToggle);
+const themeToggle = document.querySelector('.theme-toggle');
+const themeIcon = document.querySelector('.theme-icon');
 
 // Check for saved theme preference or use system preference
-const savedTheme =
-  localStorage.getItem("theme") ||
-  (window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light");
-document.documentElement.setAttribute("data-theme", savedTheme);
+const savedTheme = localStorage.getItem('theme') || 
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', savedTheme);
 updateThemeIcon(savedTheme);
 
 // Toggle theme on button click
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
   updateThemeIcon(newTheme);
 });
 
 // Update theme icon based on current theme
 function updateThemeIcon(theme) {
-  themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+  themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
 // Add smooth scrolling for all anchor links
