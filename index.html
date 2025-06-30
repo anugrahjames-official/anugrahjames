@@ -3,70 +3,188 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Links</title>
+    <title>Anugrah James</title>
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
   </head>
   <body>
     <div class="container">
       <div class="profile">
         <img
-          src="https://via.placeholder.com/150"
+          src="images/profile.png"
           alt="Profile Picture"
           class="profile-img"
         />
-        <h1>Your Name</h1>
-        <p class="bio">Your short bio goes here</p>
+        <h1>Anugrah James</h1>
+        <p class="bio">Founder & Software Engineer @College Concierge</p>
 
         <div class="social-links">
           <!-- Add your social media icons here -->
-          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-patreon"></i></a>
+          <!-- LinkedIn (opens in app on mobile) -->
+          <a
+            href="https://www.linkedin.com/in/anugrah-james"
+            class="social-icon"
+            title="LinkedIn"
+            data-app-url="linkedin://profile/anugrah-james"
+            data-fallback-url="https://www.linkedin.com/in/anugrah-james"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <!-- GitHub (opens in app on mobile) -->
+          <a
+            href="https://github.com/anugrahjames-official"
+            class="social-icon"
+            title="GitHub"
+            data-app-url="github://user?username=anugrahjames-official"
+            data-fallback-url="https://github.com/anugrahjames-official"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <!-- Instagram (opens in app on mobile) -->
+          <a
+            href="https://www.instagram.com/anugrahjames_official"
+            class="social-icon"
+            title="Instagram"
+            data-app-url="instagram://user?username=anugrahjames_official"
+            data-fallback-url="https://www.instagram.com/anugrahjames_official"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <!-- X (formerly Twitter) (opens in app on mobile) -->
+          <a
+            href="https://x.com/AnugrahJames_AJ"
+            class="social-icon"
+            title="X"
+            data-app-url="twitter://user?screen_name=AnugrahJames_AJ"
+            data-fallback-url="https://x.com/AnugrahJames_AJ"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-x-twitter"></i
+          ></a>
+          <!-- WhatsApp (opens in app on mobile) -->
+          <a
+            href="https://wa.me/918547915933"
+            class="social-icon"
+            title="WhatsApp"
+            data-app-url="whatsapp://send?phone=918547915933"
+            data-fallback-url="https://wa.me/918547915933"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <!-- Patreon (opens in app on mobile) -->
+          <a
+            href="https://www.patreon.com/c/AnugrahJames"
+            class="social-icon"
+            title="Patreon"
+            data-app-url="patreon://c/AnugrahJames"
+            data-fallback-url="https://www.patreon.com/c/AnugrahJames"
+            onclick="return openInApp(this);"
+            target="_blank"
+            ><i class="fab fa-patreon"></i
+          ></a>
         </div>
       </div>
 
       <div class="links">
         <!-- Add your links here -->
-        <a href="#" class="link-card">
-          <i class="fas fa-envelope"></i>
-          <span>Email Me</span>
-          <i class="fas fa-chevron-right"></i>
+        <a
+          href="https://github.com/College-Concierge"
+          class="link-card"
+          target="_blank"
+        >
+          <i class="fas fa-graduation-cap"></i>
+          <div class="project-details">
+            <span class="project-title">College Concierge</span>
+            <span class="project-description"
+              >Open Source Ed-Tech Platform</span
+            >
+          </div>
+          <i class="fas fa-external-link-alt"></i>
         </a>
 
-        <a href="#" class="link-card">
+        <a
+          href="https://github.com/anugrahjames-official"
+          class="link-card"
+          data-app-url="github://user?username=anugrahjames-official"
+          data-fallback-url="https://github.com/anugrahjames-official"
+          onclick="return openInApp(this);"
+          target="_blank"
+        >
           <i class="fab fa-github"></i>
           <span>GitHub Profile</span>
           <i class="fas fa-chevron-right"></i>
         </a>
 
-        <a href="#" class="link-card">
+        <a href="mailto:anugrahjames2006@gmail.com" class="link-card">
+          <i class="fas fa-envelope"></i>
+          <span>anugrahjames2006@gmail.com</span>
+          <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <a
+          href="https://www.patreon.com/c/AnugrahJames"
+          class="link-card"
+          target="_blank"
+        >
           <i class="fab fa-patreon"></i>
           <span>Support on Patreon</span>
           <i class="fas fa-chevron-right"></i>
         </a>
 
-        <a href="#" class="link-card">
-          <i class="fas fa-code"></i>
-          <span>My Projects</span>
-          <i class="fas fa-chevron-right"></i>
-        </a>
-
-        <a href="#" class="link-card">
-          <i class="fas fa-blog"></i>
-          <span>Blog</span>
+        <a
+          href="https://wa.me/918547915933"
+          class="link-card"
+          data-app-url="whatsapp://send?phone=918547915933"
+          data-fallback-url="https://wa.me/918547915933"
+          onclick="return openInApp(this);"
+          target="_blank"
+        >
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp Me</span>
           <i class="fas fa-chevron-right"></i>
         </a>
       </div>
 
       <footer>
-        <p>© 2025 Your Name. All rights reserved.</p>
-      </footer>
+        <p> 2025 Anugrah James. All rights reserved.</p>
+      </div>
+      
+      <!-- Share Button -->
+      <div class="share-container">
+        <button class="share-button" id="shareButton">
+          <i class="fas fa-share-nodes"></i>
+          <span>Share</span>
+        </button>
+        <div class="share-dropdown" id="shareDropdown">
+          <a href="#" class="share-option" data-platform="copy">
+            <i class="fas fa-link"></i> Copy Link
+          </a>
+          <a href="#" class="share-option" data-platform="whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="#" class="share-option" data-platform="twitter">
+            <i class="fab fa-x-twitter"></i> X (Twitter)
+          </a>
+          <a href="#" class="share-option" data-platform="linkedin">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="#" class="share-option" data-platform="telegram">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+        </div>
+      </div>
+      
+      <!-- Toast Notification -->
+      <div id="toast" class="toast">
+        <span id="toastMessage">Link copied to clipboard!</span>
+      </div>
     </div>
 
     <script src="js/main.js"></script>
