@@ -214,6 +214,10 @@ footer {
   bottom: 20px;
   right: 20px;
   z-index: 100;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: none;
 }
 
 .share-button {
@@ -230,6 +234,8 @@ footer {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
 }
 
 .share-button:hover {
@@ -250,7 +256,9 @@ footer {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  /* Ensure dropdown stays above other elements */
+  z-index: 1000;
 }
 
 .share-dropdown.show {
