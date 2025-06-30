@@ -72,22 +72,16 @@ function shareToPlatform(platform) {
   switch(platform) {
     case 'whatsapp':
       shareUrl = `https://wa.me/?text=${text}%20${url}`;
+      window.open(shareUrl, '_blank', 'noopener,noreferrer');
       break;
     case 'twitter':
       shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-      break;
-    case 'linkedin':
-      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-      break;
-    case 'telegram':
-      shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+      window.open(shareUrl, '_blank', 'noopener,noreferrer');
       break;
     case 'copy':
       copyToClipboard();
-      return;
+      break;
   }
-
-  window.open(shareUrl, '_blank');
 }
 
 // Initialize share button
