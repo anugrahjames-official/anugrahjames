@@ -65,7 +65,7 @@ function copyToClipboard() {
 
 function shareToPlatform(platform) {
   const url = encodeURIComponent(window.location.href);
-  const customMessage = 'Anugrah James, Founder & Software Engineer @College Concierge\n\n';
+  const customMessage = 'Anugrah James, Founder & Software Engineer of College Concierge\n\n';
   const text = encodeURIComponent(customMessage);
   let shareUrl = '';
 
