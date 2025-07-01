@@ -130,18 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Add keyframe animation for card entrance
-const style = document.createElement("style");
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
+// Animation keyframes are now defined in the CSS file
