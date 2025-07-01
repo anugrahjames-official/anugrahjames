@@ -97,27 +97,41 @@ function shareToPlatform(platform) {
 document.addEventListener("DOMContentLoaded", () => {
   const shareButton = document.getElementById("shareButton");
   const shareDropdown = document.getElementById("shareDropdown");
+  let isDropdownVisible = false;
 
   // Toggle dropdown on button click
-  shareButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    shareDropdown.classList.toggle("show");
-  });
+  const handleShareClick = (e) => {
+    e.stopImmediatePropagation();
+    isDropdownVisible = !isDropdownVisible;
+    shareDropdown.classList.toggle("show", isDropdownVisible);
+  };
 
   // Close dropdown when clicking outside
-  document.addEventListener("click", () => {
-    shareDropdown.classList.remove("show");
-  });
+  const handleDocumentClick = () => {
+    if (isDropdownVisible) {
+      isDropdownVisible = false;
+      shareDropdown.classList.remove("show");
+    }
+  };
 
   // Handle share option clicks
-  document.querySelectorAll(".share-option").forEach((option) => {
-    option.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const platform = option.getAttribute("data-platform");
-      shareToPlatform(platform);
-      shareDropdown.classList.remove("show");
-    });
+  const handleOptionClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const platform = e.currentTarget.getAttribute("data-platform");
+    shareToPlatform(platform);
+    isDropdownVisible = false;
+    shareDropdown.classList.remove("show");
+  };
+
+  // Add event listeners with passive: true for better performance
+  shareButton.addEventListener("click", handleShareClick, { passive: false });
+  document.addEventListener("click", handleDocumentClick, { passive: true });
+  
+  // Cache the share options to prevent requerying the DOM
+  const shareOptions = document.querySelectorAll(".share-option");
+  shareOptions.forEach((option) => {
+    option.addEventListener("click", handleOptionClick, { passive: false });
   });
 
   // Add animation class to cards on load
