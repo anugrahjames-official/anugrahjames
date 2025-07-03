@@ -87,6 +87,10 @@ function shareToPlatform(platform) {
       shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
+    case "telegram":
+      shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+      window.open(shareUrl, "_blank", "noopener,noreferrer");
+      break;
     case "copy":
       copyToClipboard();
       break;
