@@ -106,7 +106,7 @@ function shareToPlatform(platform) {
 
     case "telegram":
       // For Telegram, we only need to include the URL once
-      const telegramText = "Anugrah James - Founder & Software Engineer of College Concierge";
+      const telegramText = "Connect with Anugrah James - Founder & Software Engineer of College Concierge";
       shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(telegramText)}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
