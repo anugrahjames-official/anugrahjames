@@ -59,7 +59,8 @@ function showToast(message) {
 function copyToClipboard() {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
-  const title = "Anugrah James, Founder & Software Engineer of College Concierge";
+  const title =
+    "Anugrah James, Founder & Software Engineer of College Concierge";
   const description = "Connect with Anugrah through these links";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   const customMessage = `${title} - ${description} ${currentUrl}`;
@@ -78,7 +79,8 @@ function copyToClipboard() {
 function shareToPlatform(platform) {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
-  const title = "Anugrah James - Founder & Software Engineer of College Concierge";
+  const title =
+    "Anugrah James - Founder & Software Engineer of College Concierge";
   const description = "Connect with Anugrah through these links";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   let shareUrl = "";
@@ -87,30 +89,34 @@ function shareToPlatform(platform) {
   // Format text for different platforms
   const formatText = (platform) => {
     const platformFormats = {
-      whatsapp: `🔗 *${title}*\n\n${description}\n\n${currentUrl}`,
-      telegram: `🔗 *${title}*\n\n${description}\n\n${currentUrl}`,
+      whatsapp: `🔗 ${title}\n\n${description}\n\n${currentUrl}`,
+      telegram: `🔗 ${title}\n\n${description}\n\n${currentUrl}`,
       twitter: `🔗 ${title} - ${description}\n\n${currentUrl}\n\n#AnugrahJames #CollegeConcierge #SoftwareEngineer`,
-      default: `${title} - ${description} ${currentUrl}`
+      default: `${title} - ${description} ${currentUrl}`,
     };
     return platformFormats[platform] || platformFormats.default;
   };
 
   switch (platform) {
     case "whatsapp":
-      shareText = formatText('whatsapp');
+      shareText = formatText("whatsapp");
       shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
 
     case "telegram":
-      shareText = formatText('telegram');
-      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(shareText)}`;
+      shareText = formatText("telegram");
+      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(
+        shareText
+      )}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
 
     case "twitter":
-      shareText = formatText('twitter');
-      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      shareText = formatText("twitter");
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        shareText
+      )}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
 
@@ -126,7 +132,8 @@ function shareToPlatform(platform) {
       };
 
       if (navigator.share) {
-        navigator.share(shareData)
+        navigator
+          .share(shareData)
           .then(() => showToast("Link shared successfully!"))
           .catch((err) => console.error("Error sharing:", err));
       } else {
@@ -143,7 +150,7 @@ function shareToPlatform(platform) {
       item_id: "share_" + platform,
     });
   }
-  
+
   // Close the dropdown after selection
   const shareDropdown = document.getElementById("shareDropdown");
   if (shareDropdown) {
@@ -190,13 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
+
   // Close modal when clicking the close button
   const closeModalBtn = document.querySelector(".close-modal");
   if (closeModalBtn) {
     closeModalBtn.addEventListener("click", closeQRCodeModal);
   }
-  
+
   // Close modal when clicking outside the modal content
   const modal = document.getElementById("qrcodeModal");
   if (modal) {
@@ -206,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
+
   // Close modal with Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
@@ -249,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add event listeners with passive: true for better performance
   shareButton.addEventListener("click", handleShareClick, { passive: false });
   document.addEventListener("click", handleDocumentClick, { passive: true });
-  
+
   // Cache the share options to prevent requerying the DOM
   const shareOptions = document.querySelectorAll(".share-option");
   shareOptions.forEach((option) => {
