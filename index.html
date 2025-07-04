@@ -231,12 +231,30 @@
           <a href="#" class="share-option" data-platform="telegram">
             <i class="fab fa-telegram"></i> Telegram
           </a>
+          <a href="#" class="share-option" data-platform="qrcode">
+            <i class="fas fa-qrcode"></i> QR Code
+          </a>
           <a href="#" class="share-option" data-platform="twitter">
             <i class="fab fa-x-twitter"></i> X (Twitter)
           </a>
         </div>
       </div>
       
+      <!-- QR Code Modal -->
+      <div id="qrcodeModal" class="qrcode-modal">
+        <div class="qrcode-modal-content">
+          <span class="close-modal">&times;</span>
+          <h3>Scan to Connect</h3>
+          <div class="qrcode-image-container">
+            <img src="images/qr_code.png" alt="QR Code" class="qrcode-image" />
+          </div>
+          <p class="qrcode-text">Scan this QR code to Connect from another Device</p>
+          <button class="download-qr" id="downloadQR">
+            <i class="fas fa-download"></i> Save QR Code
+          </button>
+        </div>
+      </div>
+
       <!-- Toast Notification -->
       <div id="toast" class="toast">
         <span id="toastMessage">Link copied to clipboard!</span>

@@ -57,9 +57,13 @@ function showToast(message) {
 }
 
 function copyToClipboard() {
-  const customMessage =
-    "Anugrah James, Founder & Software Engineer of College Concierge\n" +
-    window.location.href;
+  const currentUrl = window.location.href;
+  const encodedUrl = encodeURIComponent(currentUrl);
+  const title = "Anugrah James, Founder & Software Engineer of College Concierge";
+  const description = "Connect with me through my links - Founder & Software Engineer of College Concierge";
+  const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
+  const customMessage = `${title} - ${description} ${currentUrl}`;
+
   navigator.clipboard
     .writeText(customMessage)
     .then(() => {
@@ -72,30 +76,144 @@ function copyToClipboard() {
 }
 
 function shareToPlatform(platform) {
-  const url = encodeURIComponent(window.location.href);
-  const customMessage =
-    "Anugrah James, Founder & Software Engineer of College Concierge\n\n";
-  const text = encodeURIComponent(customMessage);
+  const currentUrl = window.location.href;
+  const encodedUrl = encodeURIComponent(currentUrl);
+  const title = "Anugrah James - Founder & Software Engineer of College Concierge";
+  const description = "Connect with me through my links - Founder & Software Engineer of College Concierge";
+  const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   let shareUrl = "";
+  let shareText = "";
+
+  // Format text for different platforms
+  const formatText = (platform) => {
+    const platformFormats = {
+      whatsapp: `🔗 *${title}*\n\n${description}\n\n${currentUrl}`,
+      telegram: `🔗 *${title}*\n\n${description}\n\n${currentUrl}`,
+      twitter: `🔗 ${title} - ${description}\n\n${currentUrl}\n\n#AnugrahJames #CollegeConcierge #SoftwareEngineer`,
+      default: `${title} - ${description} ${currentUrl}`
+    };
+    return platformFormats[platform] || platformFormats.default;
+  };
 
   switch (platform) {
     case "whatsapp":
-      shareUrl = `https://wa.me/?text=${text}%20${url}`;
+      shareText = formatText('whatsapp');
+      shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
-    case "twitter":
-      shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-      window.open(shareUrl, "_blank", "noopener,noreferrer");
-      break;
+
     case "telegram":
-      shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+      shareText = formatText('telegram');
+      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(shareText)}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
+
+    case "twitter":
+      shareText = formatText('twitter');
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      window.open(shareUrl, "_blank", "noopener,noreferrer");
+      break;
+
+    case "qrcode":
+      showQRCodeModal();
+      return; // Don't track as a share event
+
     case "copy":
-      copyToClipboard();
+      const shareData = {
+        title: title,
+        text: description,
+        url: currentUrl,
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(() => showToast("Link shared successfully!"))
+          .catch((err) => console.error("Error sharing:", err));
+      } else {
+        copyToClipboard();
+      }
       break;
   }
+
+  // Track share event
+  if (window.gtag) {
+    gtag("event", "share", {
+      method: platform,
+      content_type: "link",
+      item_id: "share_" + platform,
+    });
+  }
+  
+  // Close the dropdown after selection
+  const shareDropdown = document.getElementById("shareDropdown");
+  if (shareDropdown) {
+    shareDropdown.classList.remove("show");
+  }
 }
+
+// QR Code Modal Functions
+function showQRCodeModal() {
+  const modal = document.getElementById("qrcodeModal");
+  if (modal) {
+    modal.style.display = "flex";
+    // Trigger reflow to enable the fade-in animation
+    void modal.offsetWidth;
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+  }
+}
+
+function closeQRCodeModal() {
+  const modal = document.getElementById("qrcodeModal");
+  if (modal) {
+    modal.classList.remove("show");
+    // Wait for the fade-out animation to complete before hiding
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.style.overflow = ""; // Re-enable scrolling
+    }, 300);
+  }
+}
+
+// Initialize download QR code button
+document.addEventListener("DOMContentLoaded", () => {
+  const downloadBtn = document.getElementById("downloadQR");
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+      const qrImage = document.querySelector(".qrcode-image");
+      if (qrImage) {
+        const link = document.createElement("a");
+        link.download = "anugrahjames-qrcode.png";
+        link.href = qrImage.src;
+        link.click();
+        showToast("QR Code downloaded!");
+      }
+    });
+  }
+  
+  // Close modal when clicking the close button
+  const closeModalBtn = document.querySelector(".close-modal");
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeQRCodeModal);
+  }
+  
+  // Close modal when clicking outside the modal content
+  const modal = document.getElementById("qrcodeModal");
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeQRCodeModal();
+      }
+    });
+  }
+  
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeQRCodeModal();
+    }
+  });
+});
 
 // Initialize share button
 document.addEventListener("DOMContentLoaded", () => {
