@@ -43,6 +43,93 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
+// QR Code Modal
+const qrModal = document.createElement('div');
+qrModal.id = 'qrModal';
+qrModal.className = 'modal';
+qrModal.innerHTML = `
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Scan QR Code</h3>
+    <div id="qrcode"></div>
+    <p>Scan this QR code to open this page on another device</p>
+  </div>
+`;
+document.body.appendChild(qrModal);
+
+// Initialize QR Code modal
+const modal = document.getElementById('qrModal');
+const closeBtn = document.querySelector('#qrModal .close');
+
+closeBtn.onclick = function() {
+  modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+
+// QR Code library loading
+const loadQRCodeLibrary = () => {
+  return new Promise((resolve, reject) => {
+    if (window.QRCode) {
+      console.log('QRCode library already loaded');
+      return resolve();
+    }
+    
+    // Try loading from unpkg first
+    const qrScript = document.createElement('script');
+    qrScript.src = 'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js';
+    qrScript.integrity = 'sha384-9a1N8E8zqRU+J3r8WX5X5K5n5l5V5fZ5V5b5v5v5v5v5v5v5v5v5v5v5v5v5v5';
+    qrScript.crossOrigin = 'anonymous';
+    
+    qrScript.onload = () => {
+      console.log('QRCode library loaded from unpkg');
+      if (window.QRCode) {
+        resolve();
+      } else {
+        reject(new Error('QRCode library loaded but not available'));
+      }
+    };
+    
+    qrScript.onerror = (error) => {
+      console.error('Failed to load QRCode library from unpkg:', error);
+      // Fallback to jsdelivr
+      const fallbackScript = document.createElement('script');
+      fallbackScript.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+      fallbackScript.integrity = 'sha384-9a1N8E8zqRU+J3r8WX5X5K5n5l5V5fZ5V5b5v5v5v5v5v5v5v5v5v5v5v5v5v5';
+      fallbackScript.crossOrigin = 'anonymous';
+      
+      fallbackScript.onload = () => {
+        console.log('QRCode library loaded from jsdelivr');
+        if (window.QRCode) {
+          resolve();
+        } else {
+          reject(new Error('QRCode library loaded but not available'));
+        }
+      };
+      
+      fallbackScript.onerror = (fallbackError) => {
+        console.error('Failed to load QRCode library from jsdelivr:', fallbackError);
+        reject(new Error('Failed to load QRCode library'));
+      };
+      
+      document.head.appendChild(fallbackScript);
+    };
+    
+    document.head.appendChild(qrScript);
+  });
+};
+
+// Preload the QR code library when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  loadQRCodeLibrary().catch(error => {
+    console.error('Error preloading QR code library:', error);
+  });
+});
+
 // Share functionality
 function showToast(message) {
   const toast = document.getElementById("toast");
@@ -72,28 +159,103 @@ function copyToClipboard() {
 }
 
 function shareToPlatform(platform) {
-  const url = encodeURIComponent(window.location.href);
-  const customMessage =
-    "Anugrah James, Founder & Software Engineer of College Concierge\n\n";
+  const url = window.location.href;
+  const encodedUrl = encodeURIComponent(url);
+  const customMessage = "Anugrah James, Founder & Software Engineer of College Concierge\n\n";
   const text = encodeURIComponent(customMessage);
   let shareUrl = "";
 
   switch (platform) {
     case "whatsapp":
-      shareUrl = `https://wa.me/?text=${text}%20${url}`;
+      shareUrl = `https://wa.me/?text=${text}%20${encodedUrl}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
     case "twitter":
-      shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+      shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
     case "telegram":
-      shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${text}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
+      break;
+    case "qrcode":
+      generateQRCode(url);
       break;
     case "copy":
       copyToClipboard();
       break;
+  }
+}
+
+async function generateQRCode(url) {
+  const qrElement = document.getElementById('qrcode');
+  const modal = document.getElementById('qrModal');
+  
+  // Show loading state
+  qrElement.innerHTML = '<div class="loading">Generating QR Code...</div>';
+  modal.style.display = 'block';
+  
+  try {
+    // Clear previous QR code
+    qrElement.innerHTML = '';
+    
+    // Try to load the library
+    try {
+      await loadQRCodeLibrary();
+    } catch (error) {
+      console.error('Failed to load QRCode library:', error);
+      throw new Error('Could not load QR code generator. Please check your internet connection.');
+    }
+    
+    // Check if QRCode is available
+    if (typeof QRCode === 'undefined') {
+      console.error('QRCode is not defined after loading');
+      throw new Error('QR code generator is not available');
+    }
+    
+    // Create a new div to hold the QR code
+    const qrContainer = document.createElement('div');
+    qrContainer.id = 'qrcode-container';
+    qrElement.appendChild(qrContainer);
+    
+    // Generate QR code
+    try {
+      new QRCode(qrContainer, {
+        text: url,
+        width: 200,
+        height: 200,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      
+      // Make sure the image is properly displayed
+      setTimeout(() => {
+        const img = qrContainer.querySelector('img');
+        if (img) {
+          img.style.display = 'block';
+          img.style.margin = '0 auto';
+        }
+      }, 100);
+      
+    } catch (genError) {
+      console.error('Error in QR code generation:', genError);
+      throw new Error('Failed to generate QR code');
+    }
+    
+  } catch (error) {
+    console.error('Error in generateQRCode:', error);
+    qrElement.innerHTML = `
+      <div class="error">
+        <p>Failed to generate QR code</p>
+        <p>${error.message || 'Please try again later.'}</p>
+      </div>`;
+    
+    // Hide the modal after a delay
+    setTimeout(() => {
+      modal.style.display = 'none';
+      showToast('Error: ' + (error.message || 'Failed to generate QR code'));
+    }, 3000);
   }
 }
 
