@@ -60,7 +60,7 @@ function copyToClipboard() {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
   const title = "Anugrah James, Founder & Software Engineer of College Concierge";
-  const description = "Connect with me through my links - Founder & Software Engineer of College Concierge";
+  const description = "Connect with Anugrah through these links - Founder & Software Engineer of College Concierge";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   const customMessage = `${title} - ${description} ${currentUrl}`;
 
@@ -79,7 +79,7 @@ function shareToPlatform(platform) {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
   const title = "Anugrah James - Founder & Software Engineer of College Concierge";
-  const description = "Connect with me through my links - Founder & Software Engineer of College Concierge";
+  const description = "Connect with Anugrah through these links - Founder & Software Engineer of College Concierge";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   let shareUrl = "";
   let shareText = "";
