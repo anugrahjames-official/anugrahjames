@@ -61,7 +61,7 @@ function copyToClipboard() {
   const encodedUrl = encodeURIComponent(currentUrl);
   const title =
     "Anugrah James, Founder & Software Engineer of College Concierge";
-  const description = "Connect with Anugrah through these links";
+  const description = "Connect with Anugrah James :";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   const customMessage = `${title} - ${description} ${currentUrl}`;
 
@@ -81,7 +81,7 @@ function shareToPlatform(platform) {
   const encodedUrl = encodeURIComponent(currentUrl);
   const title =
     "Anugrah James - Founder & Software Engineer of College Concierge";
-  const description = "Connect with Anugrah through these links";
+  const description = "Connect with Anugrah James :";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   let shareUrl = "";
   let shareText = "";
@@ -89,9 +89,10 @@ function shareToPlatform(platform) {
   // Format text for different platforms
   const formatText = (platform) => {
     const platformFormats = {
-      whatsapp: `🔗 ${title}\n\n${description}\n\n${currentUrl}`,
-      telegram: `🔗 ${title}\n\n${description}\n\n${currentUrl}`,
-      twitter: `🔗 ${title} - ${description}\n\n${currentUrl}\n\n#AnugrahJames #CollegeConcierge #SoftwareEngineer`,
+      whatsapp: `*${title}*\n\n${description}\n\n${currentUrl}`,
+      telegram: `*${title}*\n\n${description}\n\n${currentUrl}`,
+      twitter: `${title} - ${description}\n\n${currentUrl}\n\n#AnugrahJames #Founder #SoftwareEngineer #CollegeConcierge`,
+      threads: `${title}\n\n${description}\n\n${currentUrl}\n\n#AnugrahJames #Founder #SoftwareEngineer #CollegeConcierge`,
       default: `${title} - ${description} ${currentUrl}`,
     };
     return platformFormats[platform] || platformFormats.default;
@@ -106,14 +107,26 @@ function shareToPlatform(platform) {
 
     case "telegram":
       // For Telegram, we only need to include the URL once
-      const telegramText = "Connect with Anugrah James - Founder & Software Engineer of College Concierge";
-      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(telegramText)}`;
+      const telegramText =
+        "Connect with Anugrah James - Founder & Software Engineer of College Concierge";
+      shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(
+        telegramText
+      )}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
       break;
 
     case "twitter":
       shareText = formatText("twitter");
       shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        shareText
+      )}`;
+      window.open(shareUrl, "_blank", "noopener,noreferrer");
+      break;
+
+    case "threads":
+      shareText = formatText("threads");
+      // Threads uses the same sharing endpoint as Instagram
+      shareUrl = `https://www.threads.net/intent/post?text=${encodeURIComponent(
         shareText
       )}`;
       window.open(shareUrl, "_blank", "noopener,noreferrer");
