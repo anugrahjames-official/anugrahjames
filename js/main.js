@@ -84,7 +84,7 @@ function copyToClipboard() {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
   const title =
-    "Anugrah James, Founder & Software Engineer of College Concierge";
+    "Anugrah James, Founder & CTO of College Concierge";
   const description = "Connect with Anugrah James :";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   const customMessage = `${title} - ${description} ${currentUrl}`;
@@ -104,7 +104,7 @@ function shareToPlatform(platform) {
   const currentUrl = window.location.href;
   const encodedUrl = encodeURIComponent(currentUrl);
   const title =
-    "Anugrah James - Founder & Software Engineer of College Concierge";
+    "Anugrah James - Founder & CTO of College Concierge";
   const description = "Connect with Anugrah James :";
   const imageUrl = "https://anugrahjames.github.io/images/profile.jpg";
   let shareUrl = "";
@@ -132,7 +132,7 @@ function shareToPlatform(platform) {
     case "telegram":
       // For Telegram, we only need to include the URL once
       const telegramText =
-        "Connect with Anugrah James - Founder & Software Engineer of College Concierge";
+        "Connect with Anugrah James - Founder & CTO of College Concierge";
       shareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(
         telegramText
       )}`;
