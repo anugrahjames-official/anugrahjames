@@ -2,19 +2,43 @@
 const themeToggle = document.querySelector(".theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 
-// Check for saved theme preference or use system preference
-const savedTheme =
-  localStorage.getItem("theme") ||
-  (window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light");
-document.documentElement.setAttribute("data-theme", savedTheme);
-updateThemeIcon(savedTheme);
+// Theme management with dark mode as default
+function getInitialTheme() {
+  // First check if user has explicitly set a preference
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    return savedTheme;
+  }
+
+  // If no user preference, check system preference
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  return systemPrefersDark ? "dark" : "dark"; // Default to dark mode regardless of system preference
+}
+
+// Initialize theme
+let currentTheme = getInitialTheme();
+document.documentElement.setAttribute("data-theme", currentTheme);
+updateThemeIcon(currentTheme);
+
+// Listen for system preference changes
+const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+mediaQuery.addEventListener("change", (e) => {
+  // Only update if user hasn't set a preference
+  if (!localStorage.getItem("theme")) {
+    // Even if system changes, we default to dark mode
+    const newTheme = "dark";
+    currentTheme = newTheme;
+    document.documentElement.setAttribute("data-theme", newTheme);
+    updateThemeIcon(newTheme);
+  }
+});
 
 // Toggle theme on button click
 themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
   const newTheme = currentTheme === "dark" ? "light" : "dark";
+  currentTheme = newTheme;
 
   document.documentElement.setAttribute("data-theme", newTheme);
   localStorage.setItem("theme", newTheme);
@@ -32,7 +56,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault();
     const targetId = this.getAttribute("href");
     if (targetId === "#") return;
-
+                                                                                                                                                                                                                                                                                                                                        
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       window.scrollTo({

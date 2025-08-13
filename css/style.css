@@ -21,8 +21,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .qrcode-modal-content {
@@ -77,9 +81,15 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .qrcode-text {
@@ -129,6 +139,18 @@
 
 /* Base Styles & Variables */
 :root {
+  --primary-color: #818cf8;
+  --primary-hover: #6366f1;
+  --text-color: #f3f4f6;
+  --text-light: #9ca3af;
+  --bg-color: #111827;
+  --card-bg: #1f2937;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s ease;
+}
+
+/* Light Mode Variables */
+[data-theme="light"] {
   --primary-color: #6366f1;
   --primary-hover: #4f46e5;
   --text-color: #1f2937;
@@ -137,10 +159,9 @@
   --card-bg: #ffffff;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --transition: all 0.3s ease;
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Default */
 [data-theme="dark"] {
   --primary-color: #818cf8;
   --primary-hover: #6366f1;
