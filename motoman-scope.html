@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTOMAN Proposal | Avora Labs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/avora-labs/icon.png">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Brand Identity: Avora Labs (Dark Premium) */
+            --bg-color: #111827;       /* Very Dark Blue/Gray */
+            --card-bg: #1f2937;        /* Dark Blue/Gray */
+            --text-color: #f3f4f6;     /* Light Gray */
+            --text-muted: #9ca3af;     /* Muted Gray */
+            --accent-color: #818cf8;   /* Indigo */
+            --accent-hover: #6366f1;   /* Darker Indigo */
+            --border-color: #374151;   /* Border Gray */
+            --header-bg: #111827;      /* Match BG */
+            
+            --success-color: #34d399;
+            --error-color: #f87171;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .client-name {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .header-title {
+            text-align: right;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .proposal-meta {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: white;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(255,255,255,0.03);
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            color: var(--text-muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+            background-color: var(--bg-color);
+            border-color: var(--border-color);
+        }
+
+        .mandatory-icon {
+            color: var(--success-color);
+            font-size: 1.1rem;
+        }
+
+        .optional-row {
+            transition: background-color 0.2s;
+        }
+
+        .optional-row:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* Form styling */
+        .submit-section {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            color: white;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button.submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        button.submit-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+        }
+
+        .status-message {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        
+        .status-message.success {
+            background-color: rgba(52, 211, 153, 0.1);
+            color: var(--success-color);
+            display: block;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+        
+        .status-message.error {
+            background-color: rgba(248, 113, 113, 0.1);
+            color: var(--error-color);
+            display: block;
+            border: 1px solid rgba(248, 113, 113, 0.2);
+        }
+
+        /* Responsive Table Wrapper */
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .table-wrapper table {
+            margin-bottom: 0;
+            border: none;
+        }
+
+        .table-wrapper th, .table-wrapper td {
+            white-space: nowrap;
+        }
+        
+        .table-wrapper tr:last-child td {
+             border-bottom: none;
+        }
+
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            .header-title {
+                text-align: left;
+                width: 100%;
+            }
+            h1 { font-size: 1.8rem; }
+            section { padding: 20px; }
+            th, td { font-size: 0.85rem; padding: 10px; }
+            .container { padding: 15px; }
+            header { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <!-- Brand & Logo Section -->
+                <div class="brand-section">
+                    <img src="images/avora-labs/logo_not_transparent.jpg" alt="Avora Labs" class="brand-logo">
+                    <div class="brand-text">
+                        <span class="brand-name">Avora Labs</span>
+                        <span class="client-name">Prepared for MOTOMAN</span>
+                    </div>
+                </div>
+
+                <!-- Proposal Title Section -->
+                <div class="header-title">
+                    <h1>E-Commerce Launch</h1>
+                    <p class="subtitle">Scope of Work & Pricing Proposal</p>
+                    <p class="proposal-meta">Final Draft • Jan 2026</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <p style="text-align: center; margin-bottom: 40px; font-style: italic; color: var(--text-muted);">
+            All prices in INR (₹)<br>
+            Taxes extra if applicable<br>
+            Client may select individual items or bundles
+        </p>
+
+        <form id="proposalForm">
+
+        <!-- 1. WEBSITE PAGES -->
+        <section>
+            <h2>1. WEBSITE PAGES</h2>
+            
+            <h3>1.1 Core Pages</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Home</td><td>Hero, categories, best sellers, trust sections</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Shop / Products</td><td>Category-based product listing with filters</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Product Detail Page (Template)</td><td>Images, content layout, CTA</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Cart</td><td>Order summary, coupon, totals</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Checkout</td><td>Secure checkout flow</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>My Account</td><td>Orders, addresses, login</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>About Motoman</td><td>Brand overview page</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Contact / Support</td><td>WhatsApp, form, email</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Policies Pages (All)</td><td>Privacy, T&C, Shipping, Returns</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>1.2 Optional Pages</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th>Purpose</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>FAQ Page</td><td>Reduce customer queries</td><td><input type="checkbox" name="optional_services" value="FAQ Page"></td></tr>
+                    <tr class="optional-row"><td>Blog / Guides Page</td><td>SEO & education</td><td><input type="checkbox" name="optional_services" value="Blog / Guides Page"></td></tr>
+                    <tr class="optional-row"><td>Installation Guides Page</td><td>PDFs / instructions</td><td><input type="checkbox" name="optional_services" value="Installation Guides Page"></td></tr>
+                    <tr class="optional-row"><td>Product Comparison Page</td><td>Compare features</td><td><input type="checkbox" name="optional_services" value="Product Comparison Page"></td></tr>
+                    <tr class="optional-row"><td>Extended Brand Story</td><td>Emotional branding</td><td><input type="checkbox" name="optional_services" value="Extended Brand Story"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 2. E-COMMERCE FEATURES -->
+        <section>
+            <h2>2. E-COMMERCE FEATURES</h2>
+
+            <h3>2.1 Core Commerce Features</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Product Catalog System</td><td>Categories & subcategories</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Product Variants</td><td>Size, color, model</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Inventory Management</td><td>Stock control</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Order Management</td><td>View, update orders</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Coupon System</td><td>Discounts & offers</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Guest Checkout</td><td>No forced login</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>2.2 Payments & Shipping</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>UPI Payments</td><td>GPay, PhonePe, etc.</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Cards & Net Banking</td><td>Credit & Debit cards</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Cash on Delivery</td><td>Optional payment mode</td><td><input type="checkbox" name="optional_services" value="Cash on Delivery"></td></tr>
+                    <tr><td>Shipping Rules</td><td>Flat / weight-based</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Order Tracking Integration</td><td>Courier tracking link</td><td><input type="checkbox" name="optional_services" value="Order Tracking Integration"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 3. PRODUCT STRUCTURE & DATA -->
+        <section>
+            <h2>3. PRODUCT STRUCTURE & DATA</h2>
+
+            <h3>3.1 Product Information Structure</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Product Element</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Product Name Format</td><td>SEO-friendly naming</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Short Description</td><td>Key benefits summary</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Long Description Layout</td><td>Detailed explanation</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Feature Highlights</td><td>Bullet points</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Technical Specs Table</td><td>Structured specs</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Compatibility Section</td><td>Vehicle models</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Warranty Information</td><td>Trust element</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>3.2 Product Content & Enhancements</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Enhancement</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Product Description Writing</td><td>Per product</td><td><input type="checkbox" name="optional_services" value="Product Description Writing"></td></tr>
+                    <tr class="optional-row"><td>SEO-Optimized Product Copy</td><td>Advanced copy</td><td><input type="checkbox" name="optional_services" value="SEO-Optimized Product Copy"></td></tr>
+                    <tr><td>Product Data Entry</td><td>Per 10 products</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Compatibility Formatting</td><td>Per 10 products</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Installation PDF Setup</td><td>Upload & layout</td><td><input type="checkbox" name="optional_services" value="Installation PDF Setup"></td></tr>
+                    <tr class="optional-row"><td>Demo Video Embed</td><td>Video placement</td><td><input type="checkbox" name="optional_services" value="Demo Video Embed"></td></tr>
+                    <tr class="optional-row"><td>Cross-Sell / Upsell Logic</td><td>Increase order value</td><td><input type="checkbox" name="optional_services" value="Cross-Sell / Upsell Logic"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 4. CONTENT WRITING -->
+        <section>
+            <h2>4. CONTENT WRITING</h2>
+
+            <h3>4.1 Included Content</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Content Type</th>
+                        <th>Scope</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Homepage Copy</td><td>Full conversion copy</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Category Descriptions</td><td>Per category</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>About Brand Story</td><td>Brand narrative</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Checkout Microcopy</td><td>Buttons & messages</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>4.2 Optional Content Services</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Policy Draft Templates</td><td>Non-legal templates</td><td><input type="checkbox" name="optional_services" value="Policy Draft Templates"></td></tr>
+                    <tr class="optional-row"><td>Blog Articles</td><td>Per article</td><td><input type="checkbox" name="optional_services" value="Blog Articles"></td></tr>
+                    <tr class="optional-row"><td>Brand Messaging Guide</td><td>Tone & voice</td><td><input type="checkbox" name="optional_services" value="Brand Messaging Guide"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 5. IMAGES & VISUALS -->
+        <section>
+            <h2>5. IMAGES & VISUALS</h2>
+
+            <h3>5.1 Included Visuals</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Visual Type</th>
+                        <th>Source</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Hero Banners (3)</td><td>Stock / AI</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Category Images (5)</td><td>Stock / AI</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>UI Icons & Graphics</td><td>System icons</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>5.2 Optional Visual Add-Ons</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Visual</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>AI Lifestyle Images</td><td>Brand scenes</td><td><input type="checkbox" name="optional_services" value="AI Lifestyle Images"></td></tr>
+                    <tr class="optional-row"><td>Product Mockups</td><td>Per 10 products</td><td><input type="checkbox" name="optional_services" value="Product Mockups"></td></tr>
+                    <tr class="optional-row"><td>Real Product Shoot Support</td><td>Coordination only</td><td><input type="checkbox" name="optional_services" value="Real Product Shoot Support"></td></tr>
+                    <tr class="optional-row"><td>Video Thumbnails</td><td>Custom designs</td><td><input type="checkbox" name="optional_services" value="Video Thumbnails"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 6. BRANDING & DESIGN SYSTEM -->
+        <section>
+            <h2>6. BRANDING & DESIGN SYSTEM</h2>
+
+            <h3>6.1 Included Branding</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Color Palette</td><td>Derived from logo</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Typography System</td><td>Headings & body</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>UI Design System</td><td>Buttons, cards</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>6.2 Optional Branding Add-Ons</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Add-On</th>
+                        <th>Purpose</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Brand Guidelines PDF</td><td>Future consistency</td><td><input type="checkbox" name="optional_services" value="Brand Guidelines PDF"></td></tr>
+                    <tr class="optional-row"><td>Social Media Kit</td><td>Post templates</td><td><input type="checkbox" name="optional_services" value="Social Media Kit"></td></tr>
+                    <tr class="optional-row"><td>Packaging Design</td><td>Boxes & labels</td><td><input type="checkbox" name="optional_services" value="Packaging Design"></td></tr>
+                    <tr class="optional-row"><td>Marketplace Creatives</td><td>Amazon, Flipkart</td><td><input type="checkbox" name="optional_services" value="Marketplace Creatives"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 7. SEO SETUP -->
+        <section>
+            <h2>7. SEO SETUP</h2>
+
+            <h3>7.1 Included SEO</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>SEO Item</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Meta Titles</td><td>All core pages</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Meta Descriptions</td><td>CTR focused</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>SEO URLs</td><td>Clean structure</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Image Alt Tags</td><td>Accessibility</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Sitemap & Indexing</td><td>Search engines</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>7.2 Optional SEO Services</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Purpose</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Product Schema</td><td>Rich results</td><td><input type="checkbox" name="optional_services" value="Product Schema"></td></tr>
+                    <tr class="optional-row"><td>Keyword Research</td><td>Competitive SEO</td><td><input type="checkbox" name="optional_services" value="Keyword Research"></td></tr>
+                    <tr class="optional-row"><td>Blog SEO Strategy</td><td>Long-term growth</td><td><input type="checkbox" name="optional_services" value="Blog SEO Strategy"></td></tr>
+                    <tr class="optional-row"><td>Monthly SEO Retainer</td><td>Ongoing</td><td><input type="checkbox" name="optional_services" value="Monthly SEO Retainer"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 8. ANALYTICS & TRACKING -->
+        <section>
+            <h2>8. ANALYTICS & TRACKING</h2>
+
+            <h3>Included</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Google Analytics</td><td>Traffic insights</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Meta Pixel</td><td>Ad tracking</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Conversion Events</td><td>Purchase, cart</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>Optional</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Heatmaps</td><td>UX insights</td><td><input type="checkbox" name="optional_services" value="Heatmaps"></td></tr>
+                    <tr class="optional-row"><td>Funnel Analysis</td><td>Drop-off tracking</td><td><input type="checkbox" name="optional_services" value="Funnel Analysis"></td></tr>
+                    <tr class="optional-row"><td>Monthly Reports</td><td>Business insights</td><td><input type="checkbox" name="optional_services" value="Monthly Reports"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 9. ADMIN & TRAINING -->
+        <section>
+            <h2>9. ADMIN & TRAINING</h2>
+
+            <h3>Included</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Admin Training Session</td><td>Product & orders</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>Optional</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Admin Handbook PDF</td><td>Step-by-step guide</td><td><input type="checkbox" name="optional_services" value="Admin Handbook PDF"></td></tr>
+                    <tr class="optional-row"><td>Monthly Support</td><td>Maintenance</td><td><input type="checkbox" name="optional_services" value="Monthly Support"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 10. POST-LAUNCH ADD-ONS -->
+        <section>
+            <h2>10. POST-LAUNCH ADD-ONS</h2>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Purpose</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Abandoned Cart Recovery</td><td>Increase sales</td><td><input type="checkbox" name="optional_services" value="Abandoned Cart Recovery"></td></tr>
+                    <tr class="optional-row"><td>WhatsApp Order Automation</td><td>Faster conversions</td><td><input type="checkbox" name="optional_services" value="WhatsApp Order Automation"></td></tr>
+                    <tr class="optional-row"><td>Email Order Flows</td><td>Trust & retention</td><td><input type="checkbox" name="optional_services" value="Email Order Flows"></td></tr>
+                    <tr class="optional-row"><td>Performance Optimization</td><td>Speed improvements</td><td><input type="checkbox" name="optional_services" value="Performance Optimization"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+        <!-- SUBMISSION FORM -->
+        <div class="submit-section">
+            <h2 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2);">Confirm Selection</h2>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="company">Company / Brand</label>
+                <input type="text" id="company" name="company" value="MOTOMAN" readonly style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);">
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Proposal Acceptance</button>
+            <p id="status" class="status-message"></p>
+        </div>
+
+        </form>
+
+        <footer style="text-align: center; margin-top: 80px; padding: 40px 20px; border-top: 1px solid var(--border-color);">
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+                &copy; 2026 Avora Labs. All Rights Reserved.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // GOOGLE SHEETS INTEGRATION
+        // 1. Create a Google Sheet
+        // 2. Extensions > Apps Script
+        // 3. Paste the code below (Server-side) and Deploy as Web App (Anyone can access)
+        /*
+        function doPost(e) {
+          var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+          var data = JSON.parse(e.postData.contents);
+          sheet.appendRow([new Date(), data.name, data.email, data.company, data.optional_services.join(", ")]);
+          return ContentService.createTextOutput(JSON.stringify({"result":"success"})).setMimeType(ContentService.MimeType.JSON);
+        }
+        */
+
+        const FORMSPREE_URL = 'https://formspree.io/f/mjgknban';
+
+        document.getElementById('proposalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.submit-btn');
+            const status = document.getElementById('status');
+            const formData = new FormData(this);
+            
+            // Collect all checked checkboxes
+            const optionalServices = [];
+            document.querySelectorAll('input[name="optional_services"]:checked').forEach((checkbox) => {
+                optionalServices.push(checkbox.value);
+            });
+
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                company: formData.get('company'),
+                optional_services: optionalServices,
+                _subject: "New Proposal Acceptance: " + formData.get('name')
+            };
+
+            // UI Feedback
+            btn.disabled = true;
+            btn.innerText = "Submitting...";
+            status.style.display = 'none';
+
+            fetch(FORMSPREE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    btn.innerText = "Submitted Successfully";
+                    status.innerText = "Thank you! Your selection has been recorded.";
+                    status.className = "status-message success";
+                    document.getElementById('proposalForm').reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerText = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.innerText = "Oops! There was a problem submitting your form";
+                        }
+                        status.className = "status-message error";
+                        btn.disabled = false;
+                        btn.innerText = "Submit Proposal Acceptance";
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                btn.disabled = false;
+                btn.innerText = "Submit Proposal Acceptance";
+                status.innerText = "Error submitting form. Please check your internet connection.";
+                status.className = "status-message error";
+            });
+        });
+    </script>
+</body>
+</html>
