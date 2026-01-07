@@ -333,7 +333,7 @@
             <div class="header-content">
                 <!-- Brand & Logo Section -->
                 <div class="brand-section">
-                    <img src="images/avora-labs/logo_not_transparent.jpg" alt="Avora Labs" class="brand-logo">
+                    <img src="images/avora-labs/logo_not_transparent_cropped.jpg" alt="Avora Labs" class="brand-logo">
                     <div class="brand-text">
                         <span class="brand-name">Avora Labs</span>
                         <span class="client-name">Prepared for MOTOMAN</span>
@@ -404,6 +404,7 @@
                     <tr class="optional-row"><td>Installation Guides Page</td><td>PDFs / instructions</td><td><input type="checkbox" name="optional_services" value="Installation Guides Page"></td></tr>
                     <tr class="optional-row"><td>Product Comparison Page</td><td>Compare features</td><td><input type="checkbox" name="optional_services" value="Product Comparison Page"></td></tr>
                     <tr class="optional-row"><td>Extended Brand Story</td><td>Emotional branding</td><td><input type="checkbox" name="optional_services" value="Extended Brand Story"></td></tr>
+                    <tr class="optional-row"><td>Order Status Self-Check Page</td><td>Reduce support load</td><td><input type="checkbox" name="optional_services" value="Order Status Self-Check Page"></td></tr>
                 </tbody>
             </table>
 </div>
@@ -431,6 +432,7 @@
                     <tr><td>Order Management</td><td>View, update orders</td><td><span class="mandatory-icon">✅</span></td></tr>
                     <tr><td>Coupon System</td><td>Discounts & offers</td><td><span class="mandatory-icon">✅</span></td></tr>
                     <tr><td>Guest Checkout</td><td>No forced login</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Product Search</td><td>Keyword & SKU search</td><td><span class="mandatory-icon">✅</span></td></tr>
                 </tbody>
             </table>
 </div>
@@ -451,6 +453,25 @@
                     <tr class="optional-row"><td>Cash on Delivery</td><td>Optional payment mode</td><td><input type="checkbox" name="optional_services" value="Cash on Delivery"></td></tr>
                     <tr><td>Shipping Rules</td><td>Flat / weight-based</td><td><span class="mandatory-icon">✅</span></td></tr>
                     <tr class="optional-row"><td>Order Tracking Integration</td><td>Courier tracking link</td><td><input type="checkbox" name="optional_services" value="Order Tracking Integration"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>2.3 Vehicle Compatibility System (Auto-Specific)</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Vehicle Selector</td><td>Brand → Model → Year</td><td><input type="checkbox" name="optional_services" value="Vehicle Selector"></td></tr>
+                    <tr class="optional-row"><td>Compatibility Filter</td><td>Filter products by vehicle</td><td><input type="checkbox" name="optional_services" value="Compatibility Filter"></td></tr>
+                    <tr class="optional-row"><td>Compatibility Warning</td><td>Prevent wrong purchases</td><td><input type="checkbox" name="optional_services" value="Compatibility Warning"></td></tr>
+                    <tr class="optional-row"><td>Saved Vehicles</td><td>Customer account feature</td><td><input type="checkbox" name="optional_services" value="Saved Vehicles"></td></tr>
                 </tbody>
             </table>
 </div>
@@ -633,14 +654,251 @@
                 </tbody>
             </table>
 </div>
+
+            <h3>6.3 MOTION IDENTITY & VISUAL REFINEMENT (OPTIONAL)</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">Makes the site feel <strong>premium, not template-based</strong>.</p>
+            
+            <h4>6.3.1 Motion Identity</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Button Micro-Animations</td><td>Hover & click feedback</td><td><input type="checkbox" name="optional_services" value="Button Micro-Animations"></td></tr>
+                    <tr class="optional-row"><td>Checkout Progress Indicators</td><td>Step-by-step clarity</td><td><input type="checkbox" name="optional_services" value="Checkout Progress Indicators"></td></tr>
+                    <tr class="optional-row"><td>Loading & Success Animations</td><td>Smooth UX feedback</td><td><input type="checkbox" name="optional_services" value="Loading & Success Animations"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>6.3.2 Illustration & Icon Style</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Custom Shipping Icons</td><td>Branded logistics visuals</td><td><input type="checkbox" name="optional_services" value="Custom Shipping Icons"></td></tr>
+                    <tr class="optional-row"><td>Accessory-Specific Illustrations</td><td>Product category visuals</td><td><input type="checkbox" name="optional_services" value="Accessory-Specific Illustrations"></td></tr>
+                    <tr class="optional-row"><td>Empty State Illustrations</td><td>Cart, no orders, etc.</td><td><input type="checkbox" name="optional_services" value="Empty State Illustrations"></td></tr>
+                </tbody>
+            </table>
+            </div>
         </section>
 
 
-        <!-- 7. SEO SETUP -->
+        <!-- 7. ADMIN, CUSTOMER & VENDOR DASHBOARDS -->
         <section>
-            <h2>7. SEO SETUP</h2>
+            <h2>7. ADMIN, CUSTOMER & VENDOR DASHBOARDS</h2>
 
-            <h3>7.1 Included SEO</h3>
+            <h3>7.1 Admin Dashboard (Store Owner)</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Admin Dashboard Setup</td><td>Central control panel</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Product / Order / Inventory Mgmt</td><td>Core controls</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Coupon Management</td><td>Offers & discounts</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Return & Refund Management</td><td>Approval workflow</td><td><input type="checkbox" name="optional_services" value="Return & Refund Management"></td></tr>
+                    <tr class="optional-row"><td>Invoice Generation (GST)</td><td>Auto invoices</td><td><input type="checkbox" name="optional_services" value="Invoice Generation (GST)"></td></tr>
+                    <tr class="optional-row"><td>Banner & Content Control</td><td>Homepage updates</td><td><input type="checkbox" name="optional_services" value="Banner & Content Control"></td></tr>
+                    <tr><td>Admin Training Session</td><td>Live walkthrough</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Admin Handbook PDF</td><td>Step-by-step guide</td><td><input type="checkbox" name="optional_services" value="Admin Handbook PDF"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>7.2 Vendor Dashboard (Marketplace Only)</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Vendor Registration & Approval</td><td>Seller onboarding</td><td><input type="checkbox" name="optional_services" value="Vendor Registration & Approval"></td></tr>
+                    <tr class="optional-row"><td>Vendor Dashboard</td><td>Seller panel</td><td><input type="checkbox" name="optional_services" value="Vendor Dashboard"></td></tr>
+                    <tr class="optional-row"><td>Vendor Product Upload</td><td>Seller listings</td><td><input type="checkbox" name="optional_services" value="Vendor Product Upload"></td></tr>
+                    <tr class="optional-row"><td>Commission & Payout Tracking</td><td>Revenue split</td><td><input type="checkbox" name="optional_services" value="Commission & Payout Tracking"></td></tr>
+                    <tr class="optional-row"><td>Vendor Analytics</td><td>Sales performance</td><td><input type="checkbox" name="optional_services" value="Vendor Analytics"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>7.3 Customer Account Enhancements</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Wishlist</td><td>Save products</td><td><input type="checkbox" name="optional_services" value="Wishlist"></td></tr>
+                    <tr class="optional-row"><td>Reorder Button</td><td>Repeat purchase</td><td><input type="checkbox" name="optional_services" value="Reorder Button"></td></tr>
+                    <tr class="optional-row"><td>Invoice Download</td><td>From account</td><td><input type="checkbox" name="optional_services" value="Invoice Download"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>7.4 INTERNAL METRICS & BUSINESS INTELLIGENCE (DASHBOARD)</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">These metrics help the owner understand <strong>what is selling, what is profitable, and what needs attention</strong>. This is <strong>business control</strong>, not just marketing analytics.</p>
+            
+            <h4>7.4.1 Admin Business Metrics Dashboard</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Total Revenue</td><td>Gross sales over time</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Net Revenue</td><td>Revenue after refunds & discounts</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Profit Estimation</td><td>Revenue minus product cost</td><td><input type="checkbox" name="optional_services" value="Profit Estimation"></td></tr>
+                    <tr><td>Total Orders</td><td>Number of completed orders</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Average Order Value (AOV)</td><td>Avg. cart value</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Best Selling Products</td><td>Top products by sales</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Least Selling Products</td><td>Identify dead stock</td><td><input type="checkbox" name="optional_services" value="Least Selling Products"></td></tr>
+                    <tr class="optional-row"><td>Category-wise Sales</td><td>Performance by category</td><td><input type="checkbox" name="optional_services" value="Category-wise Sales"></td></tr>
+                    <tr class="optional-row"><td>New vs Returning Customers</td><td>Retention insight</td><td><input type="checkbox" name="optional_services" value="New vs Returning Customers"></td></tr>
+                    <tr class="optional-row"><td>Coupon Performance</td><td>Which coupons work</td><td><input type="checkbox" name="optional_services" value="Coupon Performance"></td></tr>
+                    <tr class="optional-row"><td>Refund Rate</td><td>Quality & trust signal</td><td><input type="checkbox" name="optional_services" value="Refund Rate"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>7.4.2 Product Performance Metrics</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Product Views</td><td>Interest tracking</td><td><input type="checkbox" name="optional_services" value="Product Views"></td></tr>
+                    <tr class="optional-row"><td>Conversion Rate per Product</td><td>View → purchase</td><td><input type="checkbox" name="optional_services" value="Conversion Rate per Product"></td></tr>
+                    <tr class="optional-row"><td>Revenue per Product</td><td>Actual earning</td><td><input type="checkbox" name="optional_services" value="Revenue per Product"></td></tr>
+                    <tr class="optional-row"><td>Profit per Product</td><td>Margin clarity</td><td><input type="checkbox" name="optional_services" value="Profit per Product"></td></tr>
+                    <tr class="optional-row"><td>Return Rate per Product</td><td>Identify bad fits</td><td><input type="checkbox" name="optional_services" value="Return Rate per Product"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>7.4.3 Vendor Metrics (Marketplace Only)</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Vendor Sales</td><td>Total seller revenue</td><td><input type="checkbox" name="optional_services" value="Vendor Sales"></td></tr>
+                    <tr class="optional-row"><td>Vendor-wise Best Sellers</td><td>Seller performance</td><td><input type="checkbox" name="optional_services" value="Vendor-wise Best Sellers"></td></tr>
+                    <tr class="optional-row"><td>Commission Earned</td><td>Platform earnings</td><td><input type="checkbox" name="optional_services" value="Commission Earned"></td></tr>
+                    <tr class="optional-row"><td>Vendor Return Rate</td><td>Seller quality</td><td><input type="checkbox" name="optional_services" value="Vendor Return Rate"></td></tr>
+                    <tr class="optional-row"><td>Vendor Payout History</td><td>Payment transparency</td><td><input type="checkbox" name="optional_services" value="Vendor Payout History"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h3>7.5 STOCK MANAGEMENT & INVENTORY ALERT SYSTEM</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">Prevents revenue loss due to stock-outs and overstocking. This is <strong>operational intelligence</strong>.</p>
+
+            <h4>7.5.1 Core Stock Features</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Mandatory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Real-Time Stock Count</td><td>Live inventory</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Low Stock Threshold</td><td>Set minimum stock</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Out-of-Stock Auto Disable</td><td>Prevent overselling</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Variant-Level Stock</td><td>Color/size tracking</td><td><span class="mandatory-icon">✅</span></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>7.5.2 Smart Stock Alerts (Very Important)</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Low Stock Email Alert</td><td>Admin notification</td><td><input type="checkbox" name="optional_services" value="Low Stock Email Alert"></td></tr>
+                    <tr class="optional-row"><td>Vendor Low Stock Alert</td><td>Notify vendor/supplier</td><td><input type="checkbox" name="optional_services" value="Vendor Low Stock Alert"></td></tr>
+                    <tr class="optional-row"><td>Multi-Email Alerts</td><td>Multiple recipients</td><td><input type="checkbox" name="optional_services" value="Multi-Email Alerts"></td></tr>
+                    <tr class="optional-row"><td>Stock-Out Warning Banner</td><td>On admin dashboard</td><td><input type="checkbox" name="optional_services" value="Stock-Out Warning Banner"></td></tr>
+                    <tr class="optional-row"><td>Daily Stock Summary Email</td><td>Inventory snapshot</td><td><input type="checkbox" name="optional_services" value="Daily Stock Summary Email"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>7.5.3 Inventory Intelligence (Advanced)</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Fast-Moving Products</td><td>High velocity items</td><td><input type="checkbox" name="optional_services" value="Fast-Moving Products"></td></tr>
+                    <tr class="optional-row"><td>Slow-Moving Stock</td><td>Overstock risk</td><td><input type="checkbox" name="optional_services" value="Slow-Moving Stock"></td></tr>
+                    <tr class="optional-row"><td>Dead Stock Detection</td><td>No sales threshold</td><td><input type="checkbox" name="optional_services" value="Dead Stock Detection"></td></tr>
+                    <tr class="optional-row"><td>Restock Recommendation</td><td>Based on sales trend</td><td><input type="checkbox" name="optional_services" value="Restock Recommendation"></td></tr>
+                    <tr class="optional-row"><td>Inventory Valuation</td><td>Stock value report</td><td><input type="checkbox" name="optional_services" value="Inventory Valuation"></td></tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+
+        <!-- 8. SEO SETUP -->
+        <section>
+            <h2>8. SEO SETUP</h2>
+
+            <h3>8.1 Included SEO</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
@@ -651,16 +909,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Meta Titles</td><td>All core pages</td><td><span class="mandatory-icon">✅</span></td></tr>
-                    <tr><td>Meta Descriptions</td><td>CTR focused</td><td><span class="mandatory-icon">✅</span></td></tr>
-                    <tr><td>SEO URLs</td><td>Clean structure</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Meta Titles & Descriptions</td><td>Core pages</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>SEO-Friendly URLs</td><td>Clean structure</td><td><span class="mandatory-icon">✅</span></td></tr>
                     <tr><td>Image Alt Tags</td><td>Accessibility</td><td><span class="mandatory-icon">✅</span></td></tr>
-                    <tr><td>Sitemap & Indexing</td><td>Search engines</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Sitemap & Indexing</td><td>Google Search Console</td><td><span class="mandatory-icon">✅</span></td></tr>
                 </tbody>
             </table>
 </div>
 
-            <h3>7.2 Optional SEO Services</h3>
+            <h3>8.2 Optional SEO Services</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
@@ -681,11 +938,11 @@
         </section>
 
 
-        <!-- 8. ANALYTICS & TRACKING -->
+        <!-- 9. ANALYTICS & REPORTING -->
         <section>
-            <h2>8. ANALYTICS & TRACKING</h2>
+            <h2>9. ANALYTICS & REPORTING</h2>
 
-            <h3>Included</h3>
+            <h3>9.1 Core Analytics</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
@@ -696,14 +953,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Google Analytics</td><td>Traffic insights</td><td><span class="mandatory-icon">✅</span></td></tr>
-                    <tr><td>Meta Pixel</td><td>Ad tracking</td><td><span class="mandatory-icon">✅</span></td></tr>
-                    <tr><td>Conversion Events</td><td>Purchase, cart</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Google Analytics (GA4)</td><td>Traffic insights</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Meta Pixel</td><td>Ads tracking</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Conversion Events</td><td>Cart & purchase</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Basic Sales Reports</td><td>Revenue overview</td><td><span class="mandatory-icon">✅</span></td></tr>
                 </tbody>
             </table>
 </div>
 
-            <h3>Optional</h3>
+            <h3>9.2 Advanced Analytics (Optional)</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
@@ -714,36 +972,187 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="optional-row"><td>Heatmaps</td><td>UX insights</td><td><input type="checkbox" name="optional_services" value="Heatmaps"></td></tr>
-                    <tr class="optional-row"><td>Funnel Analysis</td><td>Drop-off tracking</td><td><input type="checkbox" name="optional_services" value="Funnel Analysis"></td></tr>
-                    <tr class="optional-row"><td>Monthly Reports</td><td>Business insights</td><td><input type="checkbox" name="optional_services" value="Monthly Reports"></td></tr>
+                    <tr class="optional-row"><td>Sales Analytics Dashboard</td><td>Daily/monthly view</td><td><input type="checkbox" name="optional_services" value="Sales Analytics Dashboard"></td></tr>
+                    <tr class="optional-row"><td>Product Performance Reports</td><td>Best sellers</td><td><input type="checkbox" name="optional_services" value="Product Performance Reports"></td></tr>
+                    <tr class="optional-row"><td>Heatmaps & Recordings</td><td>UX insights</td><td><input type="checkbox" name="optional_services" value="Heatmaps & Recordings"></td></tr>
+                    <tr class="optional-row"><td>Funnel Analysis</td><td>Checkout drop-offs</td><td><input type="checkbox" name="optional_services" value="Funnel Analysis"></td></tr>
+                    <tr class="optional-row"><td>Business Performance Report</td><td>PDF + call</td><td><input type="checkbox" name="optional_services" value="Business Performance Report"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>9.3 SHIPPING & LOGISTICS ANALYTICS (OPTIONAL / PREMIUM)</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">This makes the platform feel <strong>logistics-first</strong>, not just e-commerce. Extremely useful once order volume grows.</p>
+
+            <h4>9.3.1 Shipping Performance Metrics</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Delivery Success Rate</td><td>% of successful deliveries</td><td><input type="checkbox" name="optional_services" value="Delivery Success Rate"></td></tr>
+                    <tr class="optional-row"><td>Average Delivery Time</td><td>Order to delivery duration</td><td><input type="checkbox" name="optional_services" value="Average Delivery Time"></td></tr>
+                    <tr class="optional-row"><td>Courier Performance Comparison</td><td>Compare courier partners</td><td><input type="checkbox" name="optional_services" value="Courier Performance Comparison"></td></tr>
+                    <tr class="optional-row"><td>Most Shipped Category</td><td>High-volume accessory types</td><td><input type="checkbox" name="optional_services" value="Most Shipped Category"></td></tr>
+                    <tr class="optional-row"><td>Return / RTO Rate</td><td>Failed & returned orders</td><td><input type="checkbox" name="optional_services" value="Return / RTO Rate"></td></tr>
+                    <tr class="optional-row"><td>Delay Frequency</td><td>Late delivery detection</td><td><input type="checkbox" name="optional_services" value="Delay Frequency"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>9.3.2 Shipping Intelligence Reports</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Report</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Courier-wise Failure Report</td><td>Identify bad couriers</td><td><input type="checkbox" name="optional_services" value="Courier-wise Failure Report"></td></tr>
+                    <tr class="optional-row"><td>Region-wise Delivery Performance</td><td>Location insights</td><td><input type="checkbox" name="optional_services" value="Region-wise Delivery Performance"></td></tr>
+                    <tr class="optional-row"><td>RTO Cause Breakdown</td><td>Address, COD, delay</td><td><input type="checkbox" name="optional_services" value="RTO Cause Breakdown"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h3>9.4 FINANCIAL & OPERATIONAL REPORTS</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Report</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Profit & Loss Estimate</td><td>Monthly overview</td><td><input type="checkbox" name="optional_services" value="Profit & Loss Estimate"></td></tr>
+                    <tr class="optional-row"><td>Product Margin Report</td><td>Cost vs selling price</td><td><input type="checkbox" name="optional_services" value="Product Margin Report"></td></tr>
+                    <tr class="optional-row"><td>Refund & Return Report</td><td>Loss analysis</td><td><input type="checkbox" name="optional_services" value="Refund & Return Report"></td></tr>
+                    <tr class="optional-row"><td>Stock Aging Report</td><td>How long stock sits</td><td><input type="checkbox" name="optional_services" value="Stock Aging Report"></td></tr>
+                    <tr class="optional-row"><td>Vendor Settlement Report</td><td>Marketplace clarity</td><td><input type="checkbox" name="optional_services" value="Vendor Settlement Report"></td></tr>
                 </tbody>
             </table>
 </div>
         </section>
 
 
-        <!-- 9. ADMIN & TRAINING -->
+        <!-- 10. HOSTING, CDN, DOMAIN & SERVER -->
         <section>
-            <h2>9. ADMIN & TRAINING</h2>
-
-            <h3>Included</h3>
+            <h2>10. HOSTING, CDN, DOMAIN & SERVER</h2>
             <div class="table-wrapper">
                 <table>
                 <thead>
                     <tr>
                         <th>Service</th>
                         <th>Description</th>
-                        <th>Mandatory</th>
+                        <th>Mandatory / Select</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Admin Training Session</td><td>Product & orders</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Hosting Consultation</td><td>Best hosting choice</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Server Setup & Deployment</td><td>Live environment</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Domain Connection & DNS</td><td>Domain setup</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>SSL Certificate</td><td>Secure HTTPS</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>CDN Setup (Cloudflare)</td><td>Speed & protection</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Cache Rules Configuration</td><td>Performance tuning</td><td><input type="checkbox" name="optional_services" value="Cache Rules Configuration"></td></tr>
+                    <tr class="optional-row"><td>Staging Environment</td><td>Pre-live testing</td><td><input type="checkbox" name="optional_services" value="Staging Environment"></td></tr>
+                    <tr class="optional-row"><td>Automated Backups</td><td>Daily backups</td><td><input type="checkbox" name="optional_services" value="Automated Backups"></td></tr>
                 </tbody>
             </table>
 </div>
+        </section>
 
-            <h3>Optional</h3>
+
+        <!-- 11. SECURITY & RELIABILITY -->
+        <section>
+            <h2>11. SECURITY & RELIABILITY</h2>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Web Application Firewall</td><td>Block malicious traffic</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Secure Headers & Rate Limiting</td><td>Core protection</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Spam & Bot Protection</td><td>Forms & checkout</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Malware Scan Setup</td><td>Periodic scans</td><td><input type="checkbox" name="optional_services" value="Malware Scan Setup"></td></tr>
+                    <tr class="optional-row"><td>Security Audit</td><td>Pre-launch check</td><td><input type="checkbox" name="optional_services" value="Security Audit"></td></tr>
+                    <tr class="optional-row"><td>Accessibility Checks</td><td>Basic WCAG readiness</td><td><input type="checkbox" name="optional_services" value="Accessibility Checks"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 12. PROFESSIONAL BUSINESS EMAILS -->
+        <section>
+            <h2>12. PROFESSIONAL BUSINESS EMAILS</h2>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Mandatory / Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Business Email Setup</td><td>info@motoman…</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>DNS Configuration</td><td>SPF, DKIM, DMARC</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr><td>Order Notification Emails</td><td>Branded system emails</td><td><span class="mandatory-icon">✅</span></td></tr>
+                    <tr class="optional-row"><td>Additional Email Accounts</td><td>sales, support</td><td><input type="checkbox" name="optional_services" value="Additional Email Accounts"></td></tr>
+                    <tr class="optional-row"><td>Email Signature Design</td><td>Professional branding</td><td><input type="checkbox" name="optional_services" value="Email Signature Design"></td></tr>
+                    <tr class="optional-row"><td>Transactional Email Templates</td><td>Order, shipping</td><td><input type="checkbox" name="optional_services" value="Transactional Email Templates"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 13. AFFILIATE PROGRAM (OPTIONAL) -->
+        <section>
+            <h2>13. AFFILIATE PROGRAM (OPTIONAL)</h2>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Affiliate System Setup</td><td>Referral-based sales</td><td><input type="checkbox" name="optional_services" value="Affiliate System Setup"></td></tr>
+                    <tr class="optional-row"><td>Affiliate Registration Page</td><td>Signup & approval</td><td><input type="checkbox" name="optional_services" value="Affiliate Registration Page"></td></tr>
+                    <tr class="optional-row"><td>Affiliate Terms Page</td><td>Rules & compliance</td><td><input type="checkbox" name="optional_services" value="Affiliate Terms Page"></td></tr>
+                    <tr class="optional-row"><td>Commission Rules</td><td>Percentage or fixed</td><td><input type="checkbox" name="optional_services" value="Commission Rules"></td></tr>
+                    <tr class="optional-row"><td>Affiliate Dashboard</td><td>Track clicks & earnings</td><td><input type="checkbox" name="optional_services" value="Affiliate Dashboard"></td></tr>
+                    <tr class="optional-row"><td>Coupon-Based Affiliates</td><td>Influencer codes</td><td><input type="checkbox" name="optional_services" value="Coupon-Based Affiliates"></td></tr>
+                    <tr class="optional-row"><td>Affiliate Payout Tracking</td><td>Earnings reports</td><td><input type="checkbox" name="optional_services" value="Affiliate Payout Tracking"></td></tr>
+                </tbody>
+            </table>
+</div>
+        </section>
+
+
+        <!-- 15. ADDITIONAL OPTIONAL SERVICES -->
+        <section>
+            <h2>15. ADDITIONAL OPTIONAL SERVICES</h2>
+
+            <h3>15.1 Customer Experience & Support</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
@@ -754,34 +1163,172 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="optional-row"><td>Admin Handbook PDF</td><td>Step-by-step guide</td><td><input type="checkbox" name="optional_services" value="Admin Handbook PDF"></td></tr>
-                    <tr class="optional-row"><td>Monthly Support</td><td>Maintenance</td><td><input type="checkbox" name="optional_services" value="Monthly Support"></td></tr>
+                    <tr class="optional-row"><td>Live Chat Integration</td><td>Real-time support</td><td><input type="checkbox" name="optional_services" value="Live Chat Integration"></td></tr>
+                    <tr class="optional-row"><td>WhatsApp Support Inbox</td><td>Centralized chats</td><td><input type="checkbox" name="optional_services" value="WhatsApp Support Inbox"></td></tr>
+                    <tr class="optional-row"><td>Support Ticket System</td><td>Structured queries</td><td><input type="checkbox" name="optional_services" value="Support Ticket System"></td></tr>
                 </tbody>
             </table>
 </div>
-        </section>
 
-
-        <!-- 10. POST-LAUNCH ADD-ONS -->
-        <section>
-            <h2>10. POST-LAUNCH ADD-ONS</h2>
+            <h3>15.2 Marketing & Conversion Tools</h3>
             <div class="table-wrapper">
                 <table>
                 <thead>
                     <tr>
                         <th>Service</th>
-                        <th>Purpose</th>
+                        <th>Description</th>
                         <th>Select</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="optional-row"><td>Abandoned Cart Recovery</td><td>Increase sales</td><td><input type="checkbox" name="optional_services" value="Abandoned Cart Recovery"></td></tr>
-                    <tr class="optional-row"><td>WhatsApp Order Automation</td><td>Faster conversions</td><td><input type="checkbox" name="optional_services" value="WhatsApp Order Automation"></td></tr>
-                    <tr class="optional-row"><td>Email Order Flows</td><td>Trust & retention</td><td><input type="checkbox" name="optional_services" value="Email Order Flows"></td></tr>
-                    <tr class="optional-row"><td>Performance Optimization</td><td>Speed improvements</td><td><input type="checkbox" name="optional_services" value="Performance Optimization"></td></tr>
+                    <tr class="optional-row"><td>Popup Campaigns</td><td>Offers, exit intent</td><td><input type="checkbox" name="optional_services" value="Popup Campaigns"></td></tr>
+                    <tr class="optional-row"><td>First-Time Buyer Offers</td><td>Coupon logic</td><td><input type="checkbox" name="optional_services" value="First-Time Buyer Offers"></td></tr>
+                    <tr class="optional-row"><td>Referral Program</td><td>Customer referrals</td><td><input type="checkbox" name="optional_services" value="Referral Program"></td></tr>
+                    <tr class="optional-row"><td>Loyalty Points System</td><td>Repeat purchases</td><td><input type="checkbox" name="optional_services" value="Loyalty Points System"></td></tr>
+                    <tr class="optional-row"><td>Abandoned Cart (Email)</td><td>Reminder emails</td><td><input type="checkbox" name="optional_services" value="Abandoned Cart (Email)"></td></tr>
+                    <tr class="optional-row"><td>Abandoned Cart (WhatsApp)</td><td>WhatsApp reminders</td><td><input type="checkbox" name="optional_services" value="Abandoned Cart (WhatsApp)"></td></tr>
                 </tbody>
             </table>
 </div>
+
+            <h3>15.3 Social & Influencer Integrations</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Instagram Shop Integration</td><td>Product tagging</td><td><input type="checkbox" name="optional_services" value="Instagram Shop Integration"></td></tr>
+                    <tr class="optional-row"><td>Influencer Landing Pages</td><td>Campaign pages</td><td><input type="checkbox" name="optional_services" value="Influencer Landing Pages"></td></tr>
+                    <tr class="optional-row"><td>UGC / Reviews Gallery</td><td>Social proof</td><td><input type="checkbox" name="optional_services" value="UGC / Reviews Gallery"></td></tr>
+                    <tr class="optional-row"><td>Review Import Setup</td><td>Google / Instagram</td><td><input type="checkbox" name="optional_services" value="Review Import Setup"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>15.4 Legal, Trust & Compliance (Non-Legal)</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Cookie Consent Setup</td><td>Privacy compliance</td><td><input type="checkbox" name="optional_services" value="Cookie Consent Setup"></td></tr>
+                    <tr class="optional-row"><td>Disclaimer / Safety Notices</td><td>Product clarity</td><td><input type="checkbox" name="optional_services" value="Disclaimer / Safety Notices"></td></tr>
+                    <tr class="optional-row"><td>Trust Badges & Certifications</td><td>Visual credibility</td><td><input type="checkbox" name="optional_services" value="Trust Badges & Certifications"></td></tr>
+                    <tr class="optional-row"><td>Invoice Branding</td><td>Professional invoices</td><td><input type="checkbox" name="optional_services" value="Invoice Branding"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>15.5 Performance & Tech Health (Ongoing)</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Monthly Speed Audit</td><td>Prevent slowdowns</td><td><input type="checkbox" name="optional_services" value="Monthly Speed Audit"></td></tr>
+                    <tr class="optional-row"><td>Broken Link Monitoring</td><td>SEO & UX health</td><td><input type="checkbox" name="optional_services" value="Broken Link Monitoring"></td></tr>
+                    <tr class="optional-row"><td>Database Health Check</td><td>Stability</td><td><input type="checkbox" name="optional_services" value="Database Health Check"></td></tr>
+                    <tr class="optional-row"><td>System / Plugin Updates</td><td>Security & fixes</td><td><input type="checkbox" name="optional_services" value="System / Plugin Updates"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>15.6 Data, Exports & Business Intelligence</h3>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Sales CSV Export Automation</td><td>Accounting use</td><td><input type="checkbox" name="optional_services" value="Sales CSV Export Automation"></td></tr>
+                    <tr class="optional-row"><td>GST Report Formatting</td><td>CA-ready files</td><td><input type="checkbox" name="optional_services" value="GST Report Formatting"></td></tr>
+                    <tr class="optional-row"><td>Product Demand Reports</td><td>Restocking insights</td><td><input type="checkbox" name="optional_services" value="Product Demand Reports"></td></tr>
+                    <tr class="optional-row"><td>Custom KPI Dashboard</td><td>Business metrics</td><td><input type="checkbox" name="optional_services" value="Custom KPI Dashboard"></td></tr>
+                    <tr class="optional-row"><td>Predictive Sales Trends</td><td>Forecast demand</td><td><input type="checkbox" name="optional_services" value="Predictive Sales Trends"></td></tr>
+                    <tr class="optional-row"><td>Auto Reorder Suggestions</td><td>Smart restocking</td><td><input type="checkbox" name="optional_services" value="Auto Reorder Suggestions"></td></tr>
+                    <tr class="optional-row"><td>Profit Forecast Dashboard</td><td>Business planning</td><td><input type="checkbox" name="optional_services" value="Profit Forecast Dashboard"></td></tr>
+                </tbody>
+            </table>
+</div>
+
+            <h3>15.8 SHIPPING AUTOMATION & CUSTOMER COMMUNICATION</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; font-style: italic;">Reduces manual support load massively.</p>
+
+            <h4>15.8.1 Delivery Notifications Automation</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Pickup Confirmation</td><td>Order picked up alert</td><td><input type="checkbox" name="optional_services" value="Pickup Confirmation"></td></tr>
+                    <tr class="optional-row"><td>Out-for-Delivery Alert</td><td>Delivery day notification</td><td><input type="checkbox" name="optional_services" value="Out-for-Delivery Alert"></td></tr>
+                    <tr class="optional-row"><td>Delivered Confirmation</td><td>Successful delivery alert</td><td><input type="checkbox" name="optional_services" value="Delivered Confirmation"></td></tr>
+                    <tr class="optional-row"><td>Delay Alerts</td><td>Notify customer of delays</td><td><input type="checkbox" name="optional_services" value="Delay Alerts"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>15.8.2 Return & Exchange Automation</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>Return Request Flow</td><td>Customer-initiated return</td><td><input type="checkbox" name="optional_services" value="Return Request Flow"></td></tr>
+                    <tr class="optional-row"><td>Auto Pickup Scheduling</td><td>Courier pickup</td><td><input type="checkbox" name="optional_services" value="Auto Pickup Scheduling"></td></tr>
+                    <tr class="optional-row"><td>Return Status Tracking</td><td>Transparency for customer</td><td><input type="checkbox" name="optional_services" value="Return Status Tracking"></td></tr>
+                    <tr class="optional-row"><td>Exchange Workflow</td><td>Replace product logic</td><td><input type="checkbox" name="optional_services" value="Exchange Workflow"></td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h4>15.8.3 WhatsApp Shipping Support Bot</h4>
+            <div class="table-wrapper">
+                <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optional-row"><td>“Where is my order?”</td><td>Order tracking reply</td><td><input type="checkbox" name="optional_services" value="“Where is my order?”"></td></tr>
+                    <tr class="optional-row"><td>Delivery ETA Query</td><td>Auto ETA response</td><td><input type="checkbox" name="optional_services" value="Delivery ETA Query"></td></tr>
+                    <tr class="optional-row"><td>Delay Explanation</td><td>Automated updates</td><td><input type="checkbox" name="optional_services" value="Delay Explanation"></td></tr>
+                    <tr class="optional-row"><td>Return Status Query</td><td>Return tracking</td><td><input type="checkbox" name="optional_services" value="Return Status Query"></td></tr>
+                </tbody>
+            </table>
+            </div>
         </section>
 
         <!-- SUBMISSION FORM -->
