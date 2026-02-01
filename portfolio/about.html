@@ -1,0 +1,146 @@
+<!-- 
+  FILE: about.html
+  PURPOSE: Personal introduction and philosophy.
+  
+  KEY CONCEPTS:
+  - Text-Heavy Layout: Optimized for readability.
+  - Spacer Columns: Using empty columns ('col-span-2') to create whitespace without margins.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Anugrah James</title>
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Favicon & Open Graph -->
+    <link rel="icon" type="image/png" href="assets/images/hero_portfolio.png">
+    <meta property="og:image" content="assets/images/hero_portfolio.png">
+</head>
+
+<body>
+
+    <nav class="navbar animate-fade-in delay-100">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Anugrah James</a>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Work</a></li>
+                <li class="nav-item"><a href="capabilities.html">Capabilities</a></li>
+                <li class="nav-item"><a href="about.html" style="color: var(--text-primary)">About</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="container section section-padding">
+            <div class="grid">
+                <!-- Text Column -->
+                <!-- 
+                    TEXT COLUMN:
+                    - Occupies the first 6 columns.
+                    - 'animate-fade-in-up': Animations add polish without Javascript logic.
+                 -->
+                <div class="col-span-6 col-start-1 animate-fade-in-up delay-200">
+                    <h1 class="text-display-lg" style="margin-bottom: var(--space-xl);">
+                        Clarity.<br>System.<br>Impact.
+                    </h1>
+
+                    <p class="text-body-lg">
+                        I am a founder-engineer who builds real systems from first principles. I work across AI,
+                        education technology, and autonomous flight.
+                    </p>
+
+                    <p class="text-body-md">
+                        My work is defined by a refusal to chase hype. I don't build for aesthetics or trends; I build
+                        to solve problems using physics, constraints, and systems thinking.
+                        If it doesn't work in the real world, it doesn't matter.
+                    </p>
+
+                    <p class="text-body-md">
+                        I prefer quiet credibility over loud visibility. I believe in building deeply before talking,
+                        and measuring success by impact, not attention.
+                    </p>
+
+                    <div style="margin-top: var(--space-xl);">
+                        <h3 class="text-heading-sm">Work</h3>
+                        <!-- 
+                            INLINE STYLES: 
+                            Used here for quick, specific overrides. generally classes are better, 
+                            but inline styles are valid for one-off tweaks.
+                        -->
+                        <ul style="list-style: none; margin-top: var(--space-md);">
+                            <li style="margin-bottom: var(--space-lg);">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-primary">College Concierge</strong>
+                                    <span class="text-caption">Founder & CTO</span>
+                                </div>
+                                <p class="text-caption">Building an AI decision engine for students. Prioritizing
+                                    long-term fit over rankings.</p>
+                            </li>
+                            <li style="margin-bottom: var(--space-lg);">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-primary">Autonomous Paraglider Startup R&D</strong>
+                                    <span class="text-caption">Co-Founder</span>
+                                </div>
+                                <p class="text-caption">Developing physics-driven autonomous guidance systems for
+                                    paragliders.</p>
+                            </li>
+                            <li style="margin-bottom: var(--space-lg);">
+                                <div class="flex justify-between items-center">
+                                    <strong class="text-primary">Avora Labs</strong>
+                                    <span class="text-caption">Founder</span>
+                                </div>
+                                <p class="text-caption">Private agency focused on technical execution and product
+                                    strategy.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <!-- Image Column -->
+                <div class="col-span-2"></div> <!-- SPACER: Creates visual gap between text and image -->
+                <!-- 
+                    IMAGE COLUMN:
+                    - Takes up 4 columns.
+                    - Pushed to the right side of the grid.
+                -->
+                <div class="col-span-4 animate-fade-in delay-300">
+                    <div
+                        style="background-color: var(--bg-tertiary); width: 100%; aspect-ratio: 3/4; border-radius: 2px; overflow: hidden;">
+                        <img src="assets/images/anugrah_james.jpg" alt="Anugrah James"
+                            style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <p class="text-caption" style="margin-top: var(--space-sm);">Kannur, India.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="container footer animate-fade-in delay-500">
+        <div class="grid items-center">
+            <div class="col-span-6">
+                <p class="text-caption">&copy; 2026 Anugrah James.</p>
+            </div>
+            <div class="col-span-6 footer-column-right">
+                <div class="footer-links right-aligned">
+                    <a href="https://www.linkedin.com/in/anugrah-james" class="footer-link">LinkedIn</a>
+                    <a href="https://github.com/anugrahjames-official" class="footer-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

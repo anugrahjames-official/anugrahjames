@@ -1,0 +1,146 @@
+/* 
+ * Design System - Variables
+ * Source: design.json
+ * Style Archetype: Editorial Minimalist
+ */
+
+/*  
+ * Design System - Variables
+ * CONCEPT: CSS Custom Properties (Variables)
+ * Storing values (colors, spacing, fonts) in variables makes it easy to maintain consistency 
+ * and implement features like Dark Mode.
+ *
+ * :root selects the highest-level parent (<html>), making these variables global.
+ */
+
+:root {
+   /* =========================================
+     Color System (Light Mode Default)
+     ========================================= */
+
+   /* Backgrounds */
+   --bg-primary: #FBFBF9;
+   /* Warm, paper-like white */
+   --bg-secondary: #F5F5F0;
+   /* Subtle contrast */
+   --bg-tertiary: #EAEAE5;
+   /* Deep depth */
+
+   /* Text */
+   --text-primary: #1A1918;
+   /* Nearly black, softer than #000 */
+   --text-secondary: #57534E;
+   /* Warm grey for body text */
+   --text-tertiary: #A8A29E;
+   /* Low contrast metadata */
+   --text-accent: #2E2E2E;
+   /* Strong accent */
+
+   /* Borders */
+   --border-subtle: #E7E5E4;
+   --border-strong: #D6D3D1;
+
+   /* Action/Interactive */
+   --action-default: #1A1918;
+   --action-hover: #44403C;
+
+   /* =========================================
+     Typography
+     ========================================= */
+
+   /* Font Families */
+   --font-display: 'Instrument Serif', 'Playfair Display', serif;
+   --font-body: 'Inter', 'Geist', sans-serif;
+
+   /* Font Weights */
+   --weight-regular: 400;
+   --weight-medium: 500;
+   --weight-italic: 400i;
+
+   /* Scale (Desktop) */
+   --text-display-xl: 5.5rem;
+   /* 88px */
+   --text-display-lg: 3.5rem;
+   /* 56px */
+   --text-heading-md: 2rem;
+   /* 32px */
+   --text-heading-sm: 1.5rem;
+   /* 24px */
+   --text-body-lg: 1.125rem;
+   /* 18px */
+   --text-body-md: 1rem;
+   /* 16px */
+   --text-caption: 0.875rem;
+   /* 14px */
+
+   /* Line Heights */
+   --lh-tight: 1.1;
+   --lh-snug: 1.2;
+   --lh-normal: 1.5;
+   --lh-relaxed: 1.6;
+
+   /* Letter Spacing */
+   --tracking-tighter: -0.02em;
+   --tracking-tight: -0.01em;
+   --tracking-normal: 0em;
+   --tracking-wide: 0.01em;
+
+   /* =========================================
+     Spacing System (Base unit: 4px)
+     ========================================= */
+   --space-xs: 4px;
+   --space-sm: 8px;
+   --space-md: 16px;
+   --space-lg: 32px;
+   --space-xl: 64px;
+   --space-2xl: 128px;
+   --space-3xl: 256px;
+
+   /* Layout Constraints */
+   --max-width: 1440px;
+   --grid-columns: 12;
+   --grid-gutter: 24px;
+   --page-margin: 40px;
+
+   /* =========================================
+     Motion
+     ========================================= */
+   --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+   --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
+
+   --duration-fast: 300ms;
+   --duration-default: 600ms;
+   --duration-slow: 900ms;
+}
+
+/* =========================================
+   Dark Mode Overrides
+   CONCEPT: Media Query for User Preference
+   Browsers detect if the user's OS is set to Dark Mode.
+   If true, we override the variable values, and the changes propagate everywhere automatically.
+   ========================================= */
+@media (prefers-color-scheme: dark) {
+   :root {
+      /* Backgrounds */
+      --bg-primary: #0C0C0C;
+      /* Deep charcoal, not pure black */
+      --bg-secondary: #141414;
+      --bg-tertiary: #1F1F1F;
+
+      /* Text */
+      --text-primary: #F2F2F2;
+      /* Soft white */
+      --text-secondary: #A1A1AA;
+      /* Cool grey */
+      --text-tertiary: #52525B;
+      --text-accent: #E4E4E7;
+
+      /* Borders */
+      --border-subtle: #27272A;
+      --border-strong: #3F3F46;
+
+      /* Action */
+      --action-default: #FFFFFF;
+      --action-hover: #D4D4D8;
+   }
+}

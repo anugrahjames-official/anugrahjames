@@ -1,0 +1,153 @@
+/* 
+ * Layout System
+ * CONCEPT: The Container
+ * The container centers content on the screen and prevents it from getting too wide on large monitors.
+ * 'max-width' controls the maximum spread.
+ * 'margin: 0 auto' automatically centers the block.
+ */
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+}
+
+/* =========================================
+   Grid System
+   CONCEPT: CSS Grid
+   This creates a 12-column layout (standard in web design).
+   - 'repeat(var(--grid-columns), 1fr)': Creates 12 equal-width columns.
+   - 'gap': Adds space between columns automatically.
+   ========================================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    gap: var(--grid-gutter);
+}
+
+/* 
+   Sub-grids (Column Spans)
+   These classes tell an element how many columns to occupy.
+   Example: .col-span-6 takes up 6/12 columns (50% width).
+*/
+.col-span-12 {
+    grid-column: span 12;
+}
+
+.col-span-10 {
+    grid-column: span 10;
+}
+
+.col-span-8 {
+    grid-column: span 8;
+}
+
+.col-span-6 {
+    grid-column: span 6;
+}
+
+.col-span-4 {
+    grid-column: span 4;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+/* Offsets */
+.col-start-2 {
+    grid-column-start: 2;
+}
+
+.col-start-3 {
+    grid-column-start: 3;
+}
+
+.col-start-4 {
+    grid-column-start: 4;
+}
+
+/* Flex Utilities */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-md {
+    gap: var(--space-md);
+}
+
+.gap-lg {
+    gap: var(--space-lg);
+}
+
+/* =========================================
+   Spacing Utilities (Sections)
+   ========================================= */
+
+.section {
+    margin-bottom: var(--space-3xl);
+}
+
+.section-padding {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+}
+
+/* =========================================
+   Responsive Overrides
+   CONCEPT: Mobile Responsiveness
+   Uses a Media Query to apply different styles only when the screen width is 768px or less (Tablets/Phones).
+   ========================================= */
+
+@media (max-width: 768px) {
+    :root {
+        /* Reduce margins on small screens to save space */
+        --page-margin: 20px;
+        --grid-gutter: 16px;
+    }
+
+    .grid {
+        /* Switch from 12 columns to 1 single column stack on mobile */
+        grid-template-columns: 1fr;
+        /* Stack on mobile */
+        gap: var(--space-lg);
+    }
+
+    /* 
+       Reset column spans on mobile to full width.
+       'grid-column: 1 / -1' forces the item to span from the first line to the last line (full width).
+    */
+    .col-span-12,
+    .col-span-10,
+    .col-span-8,
+    .col-span-6,
+    .col-span-4,
+    .col-span-2 {
+        grid-column: 1 / -1;
+    }
+
+    /* Reset offsets */
+    .col-start-2,
+    .col-start-3,
+    .col-start-4 {
+        grid-column-start: 1;
+    }
+
+    .section {
+        margin-bottom: var(--space-2xl);
+    }
+}

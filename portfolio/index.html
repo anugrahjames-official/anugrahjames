@@ -1,0 +1,176 @@
+<!-- 
+  FILE: index.html
+  PURPOSE: This is the main landing page of the portfolio. 
+  It serves as the entry point for visitors and provides a high-level overview of who I am and what I do.
+  
+  KEY CONCEPTS:
+  - Semantic HTML: Using tags like <header>, <main>, <nav>, <section>, <article> instead of just <div>.
+  - Accessibility: Using ARIA labels, alt text for images, and proper heading hierarchy (h1 -> h2).
+  - External Resources: Linking to CSS files and favicons.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    HEAD SECTION: Contains metadata about the page that isn't visible to the user but important for browsers and search engines.
+    - Meta tags: Character set, viewport (for mobile responsiveness), description.
+    - Link tags: Connects this HTML file to external CSS stylesheets.
+  -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anugrah James | Founder & Engineer</title>
+  <!-- SEO Description: Helps search engines understand what this page is about -->
+  <meta name="description" content="Founder-engineer building real systems from first principles.">
+
+  <!-- CSS IMPORTS: Loading styles in a modular way -->
+  <link rel="stylesheet" href="assets/css/variables.css"> <!-- Defines colors, fonts, spacing -->
+  <link rel="stylesheet" href="assets/css/global.css"> <!-- Resets and basic typography -->
+  <link rel="stylesheet" href="assets/css/layout.css"> <!-- Grid system and spacing -->
+  <link rel="stylesheet" href="assets/css/components.css"> <!-- Buttons, cards, navbar -->
+  <link rel="stylesheet" href="assets/css/animations.css"> <!-- Fade-in effects -->
+
+  <!-- Favicon & Open Graph: Small icon in browser tab & preview image for social media sharing -->
+  <link rel="icon" type="image/png" href="assets/images/hero_portfolio.png">
+  <meta property="og:image" content="assets/images/hero_portfolio.png">
+</head>
+
+<body>
+
+  <!-- 
+    NAVBAR: Navigation bar at the top.
+    - 'animate-fade-in': A custom utility class to make it fade in on load.
+    - 'container': Keeps content centered with a max-width.
+  -->
+  <nav class="navbar animate-fade-in delay-100">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">Anugrah James</a>
+      <ul class="nav-links">
+        <li class="nav-item"><a href="index.html">Work</a></li>
+        <li class="nav-item"><a href="capabilities.html">Capabilities</a></li>
+        <li class="nav-item"><a href="about.html">About</a></li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN: The primary content of the page starts here. Better for accessibility than using a div. -->
+  <main>
+    <!-- 
+      HERO SECTION: The first thing a user sees.
+      - 'grid': Uses CSS Grid layout (defined in layout.css) to align items in columns.
+      - 'col-span-6': Takes up half the width (6 out of 12 columns).
+    -->
+    <section class="container section section-padding">
+      <div class="grid items-center">
+        <div class="col-span-6 animate-fade-in-up delay-200">
+          <h1 class="text-display-xl">
+            Building real systems<br>
+            from first principles.
+          </h1>
+          <p class="text-body-lg" style="margin-top: var(--space-md);">
+            I am a founder-engineer focused on clarity, physics, and constraints.<br>
+            Creating tools that work in the real world, not just in demos.
+          </p>
+        </div>
+
+        <div class="col-span-6 animate-fade-in-up delay-300">
+          <img src="assets/images/hero_portfolio.png" alt="Anugrah James - Founder & Engineer"
+            style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      SELECTED WORK SECTION: Showcases projects.
+      - Uses <article> tags for each project card, which is semantic for distinct pieces of content.
+    -->
+    <section class="container section">
+      <div class="grid">
+        <div class="col-span-12 animate-fade-in delay-400">
+          <h2 class="text-heading-sm" style="margin-bottom: var(--space-xl);">Selected Work</h2>
+        </div>
+
+        <!-- Project 1 -->
+        <article class="col-span-6 card-project animate-fade-in-up delay-400">
+          <a href="project-detail.html">
+            <div class="card-image-wrapper">
+              <img src="assets/images/College_Concierge_Home-Screen.png" alt="College Concierge Workspace"
+                class="card-image">
+            </div>
+            <div class="card-meta">
+              <h3 class="card-title">College Concierge</h3>
+              <span class="card-category">Ed-Tech Platform</span>
+            </div>
+            <p class="text-caption">A holistic college discovery platform powered by the Universal Passion Engine.</p>
+          </a>
+        </article>
+
+        <!-- 
+          PROJECT CARD:
+          - 'card-project': Styling for the card component.
+          - 'card-image-wrapper': Handles image scaling relative to the card.
+        -->
+        <article class="col-span-6 card-project animate-fade-in-up delay-500">
+          <a href="#">
+            <div class="card-image-wrapper">
+              <img src="assets/images/Autonomus_Paraglider.png" alt="Autonomous Glider Flight" class="card-image">
+            </div>
+            <div class="card-meta">
+              <h3 class="card-title">Autonomous Paraglider Startup R&D</h3>
+              <span class="card-category">Physics / R&D</span>
+            </div>
+            <p class="text-caption">Physics-driven autonomous guidance systems for civil and defense applications.</p>
+          </a>
+        </article>
+      </div>
+
+      <div class="grid" style="margin-top: var(--space-xl);">
+        <div class="col-span-12" style="text-align: center;">
+          <a href="projects.html" class="btn-link">View All Projects &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capability Section -->
+    <section class="container section">
+      <div class="grid">
+        <div class="col-span-4 animate-fade-in delay-500">
+          <h2 class="text-heading-sm">Approach</h2>
+        </div>
+        <div class="col-span-8 animate-fade-in delay-500">
+          <p class="text-body-lg" style="margin-bottom: var(--space-lg);">
+            I believe that good engineering is about judgment, not just code.
+            I prioritize systems that reduce uncertainty and improve decision-making.
+            Whether in education or aviation, my goal is to build things that are reliable, scalable, and honest.
+          </p>
+          <div class="flex gap-lg">
+            <div>
+              <h4 class="text-caption" style="margin-bottom: var(--space-xs);">Focus</h4>
+              <p class="text-body-md">System Design, Full-Stack Architecture, Physics-based R&D</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="container footer animate-fade-in delay-500">
+    <div class="grid items-center">
+      <div class="col-span-6">
+        <p class="text-caption">&copy; 2026 Anugrah James.</p>
+      </div>
+      <div class="col-span-6 footer-column-right">
+        <div class="footer-links right-aligned">
+          <a href="https://www.linkedin.com/in/anugrah-james" class="footer-link">LinkedIn</a>
+          <a href="https://github.com/anugrahjames-official" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

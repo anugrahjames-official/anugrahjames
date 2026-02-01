@@ -1,0 +1,128 @@
+/* 
+ * Global Styles & Reset
+ */
+
+/* Import Fonts from Google Fonts (Instrument Serif & Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap');
+
+/* 
+   CONCEPT: CSS Reset
+   Browsers have inconsistent default styles (margins, paddings).
+   This resets everything to 0 for a clean slate.
+   'box-sizing: border-box' ensures padding doesn't add to the element's total width (easier math).
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    /* Base 16px */
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    /* Default to softer text color */
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--lh-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Smooth transitions for theme switching */
+    transition: background-color var(--duration-default) var(--ease-subtle),
+        color var(--duration-default) var(--ease-subtle);
+}
+
+/* 
+   Typography Defaults 
+   Setting headings to use the nice serif font and body text to use the clean sans-serif.
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-weight: var(--weight-regular);
+    line-height: var(--lh-tight);
+    margin-bottom: var(--space-md);
+}
+
+p {
+    margin-bottom: var(--space-md);
+    max-width: 65ch;
+    /* 
+       CONCEPT: Line Length
+       65 characters is considered the optimal line length for readability.
+       Reading lines wider than this causes eye fatigue.
+    */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-subtle);
+}
+
+/* =========================================
+   Utility Classes for Typography
+   ========================================= */
+
+.text-display-xl {
+    font-size: var(--text-display-xl);
+    letter-spacing: var(--tracking-tighter);
+}
+
+.text-display-lg {
+    font-size: var(--text-display-lg);
+    letter-spacing: var(--tracking-tight);
+}
+
+.text-heading-md {
+    font-size: var(--text-heading-md);
+    letter-spacing: var(--tracking-tight);
+}
+
+.text-heading-sm {
+    font-size: var(--text-heading-sm);
+    letter-spacing: var(--tracking-normal);
+}
+
+.text-body-lg {
+    font-size: var(--text-body-lg);
+}
+
+.text-body-md {
+    font-size: var(--text-body-md);
+}
+
+.text-caption {
+    font-size: var(--text-caption);
+    color: var(--text-tertiary);
+}
+
+/* =========================================
+   Accessibility & Polish
+   ========================================= */
+
+/* Custom Selection */
+::selection {
+    background-color: var(--action-default);
+    color: var(--bg-primary);
+}
+
+/* Focus States */
+:focus-visible {
+    outline: 2px solid var(--action-default);
+    outline-offset: 4px;
+    border-radius: 2px;
+}

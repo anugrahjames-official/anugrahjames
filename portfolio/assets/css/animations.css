@@ -1,0 +1,92 @@
+/* 
+ * Animations (CSS Only)
+ * Philosophy: Cinematic, slow, restrained.
+ */
+
+/* =========================================
+   Keyframes
+   CONCEPT: CSS Animations
+   @keyframes define the stages of an animation. 
+   'from' (0%) to 'to' (100%) describes how styles change over time.
+   transform: translateY() is used because it triggers 'hardware acceleration' (GPU), making it smoother than changing 'top' or 'margin'.
+   ========================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   Utility Classes
+   CONCEPT: Separation of Concerns
+   We separate the *definition* of the animation (@keyframes) from the *application* (classes).
+   This lets us reuse 'fadeInUp' on many different elements with different delays.
+   'forwards' makes the element stay in its final state (opacity: 1) after the animation ends.
+   ========================================= */
+
+.animate-fade-in-up {
+    opacity: 0;
+    /* Load hidden */
+    animation: fadeInUp var(--duration-default) var(--ease-cinematic) forwards;
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn var(--duration-slow) var(--ease-cinematic) forwards;
+}
+
+/* Stagger Delays */
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-400 {
+    animation-delay: 400ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
+/* Hover Effects (Micro-interactions) */
+.hover-scale {
+    transition: transform var(--duration-fast) var(--ease-subtle);
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.hover-slide-right {
+    display: inline-block;
+    transition: transform var(--duration-fast) var(--ease-subtle);
+}
+
+.hover-slide-right:hover {
+    transform: translateX(4px);
+}

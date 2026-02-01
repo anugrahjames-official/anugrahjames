@@ -1,0 +1,194 @@
+<!-- 
+  FILE: capabilities.html
+  PURPOSE: Showcases specific skills and methodologies.
+  
+  KEY CONCEPTS:
+  - Responsive Grid: Shows how columns shift sizes (md:col-span-10, lg:col-span-8) for different screen sizes.
+  - Centered Layout: Strategies for centering content in a wide grid.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capabilities | Anugrah James</title>
+    <meta name="description"
+        content="I don’t optimize for tools. I optimize for systems that work under real constraints.">
+
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Favicon & Open Graph -->
+    <link rel="icon" type="image/png" href="assets/images/hero_portfolio.png">
+    <meta property="og:image" content="assets/images/hero_portfolio.png">
+</head>
+
+<body>
+
+    <nav class="navbar animate-fade-in delay-100">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Anugrah James</a>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Work</a></li>
+                <li class="nav-item"><a href="capabilities.html" class="active">Capabilities</a></li>
+                <li class="nav-item"><a href="about.html">About</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Positioning Section -->
+        <section class="container section-padding" style="padding-bottom: var(--space-lg);">
+            <div class="grid justify-center">
+                <!-- 
+                    RESPONSIVE COLUMN SIZING:
+                    - 'col-span-12': Full width on mobile.
+                    - 'md:col-span-10': 10 columns on tablet (medium).
+                    - 'lg:col-span-8': 8 columns on desktop (large), centered.
+                    This technique creates a "reading measure" that is comfortable to the eye.
+                -->
+                <div
+                    class="col-span-12 col-start-1 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-200 text-center">
+                    <h1 class="text-heading-md" style="margin-bottom: var(--space-lg);">
+                        I don’t optimize for tools. I optimize for systems that work under real constraints.
+                    </h1>
+                    <p class="text-body-lg text-secondary">
+                        The work I do spans software, applied AI, and experimental systems. Instead of anchoring on
+                        specific technologies, I focus on capabilities that transfer across domains, tools, and problem
+                        spaces.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wide Image Break 1 -->
+        <section class="container" style="margin-bottom: var(--space-lg);">
+            <div class="grid justify-center">
+                <div class="col-span-12 md:col-span-8 lg:col-span-6 lg:col-start-4 animate-fade-in delay-300">
+                    <div
+                        style="width: 100%; aspect-ratio: 16/9; background-color: var(--bg-tertiary); border-radius: 2px; overflow: hidden;">
+                        <img src="assets/images/skills_system_diagram.png" alt="Abstract System Architecture Diagram"
+                            style="width:100%; height:100%; object-fit:cover; filter: grayscale(20%);">
+                    </div>
+                    <!-- Caption uses 'text-caption' for smaller font size -->
+                    <p class="text-caption" style="margin-top: var(--space-sm); text-align: center;">Mapping complexity
+                        to invariants.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capability Sections -->
+        <section class="container" style="margin-bottom: var(--space-lg);">
+            <div class="grid gap-y-lg">
+
+                <!-- 5.1 Systems Thinking -->
+                <div
+                    class="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-300">
+                    <h2 class="text-heading-sm" style="margin-bottom: var(--space-sm);">Systems Thinking &
+                        First-Principles Engineering</h2>
+                    <p class="text-body-md text-secondary">
+                        I approach problems by breaking them down to fundamentals, constraints, and invariants before
+                        thinking about implementation. This helps avoid fragile solutions and ensures systems behave
+                        predictably outside ideal conditions.
+                    </p>
+                </div>
+
+                <!-- 5.2 AI-Driven Decision Systems -->
+                <div
+                    class="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-400">
+                    <h2 class="text-heading-sm" style="margin-bottom: var(--space-sm);">AI-Driven Decision Systems
+                        (Applied)</h2>
+                    <p class="text-body-md text-secondary">
+                        I design AI systems to support real decision-making, especially where uncertainty is high and
+                        outcomes matter. My focus is on structuring inputs, understanding biases, and balancing model
+                        output with human judgment rather than replacing it.
+                    </p>
+                </div>
+
+                <!-- 5.3 Full-Cycle Product Building -->
+                <div
+                    class="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-500">
+                    <h2 class="text-heading-sm" style="margin-bottom: var(--space-sm);">Full-Cycle Product Building</h2>
+                    <p class="text-body-md text-secondary">
+                        I take ideas from ambiguity to working systems, handling the trade-offs between scope, time,
+                        technical debt, and clarity. This includes early validation, architecture decisions, iteration,
+                        and shipping under imperfect conditions.
+                    </p>
+                </div>
+
+                <!-- Wide Image Break 2 -->
+                <div class="col-span-12 md:col-span-8 lg:col-span-6 lg:col-start-4 animate-fade-in delay-600"
+                    style="margin: var(--space-lg) 0;">
+                    <div
+                        style="width: 100%; aspect-ratio: 16/9; background-color: var(--bg-tertiary); border-radius: 2px; overflow: hidden;">
+                        <img src="assets/images/skills_notebook_sketch.png" alt="Engineering Notebook Sketches"
+                            style="width:100%; height:100%; object-fit:cover; filter: grayscale(20%);">
+                    </div>
+                    <p class="text-caption" style="margin-top: var(--space-sm); text-align: center;">Thinking through
+                        constraints on paper first.</p>
+                </div>
+
+                <!-- 5.4 Experimental R&D and Prototyping -->
+                <div
+                    class="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-600">
+                    <h2 class="text-heading-sm" style="margin-bottom: var(--space-sm);">Experimental R&D and Prototyping
+                    </h2>
+                    <p class="text-body-md text-secondary">
+                        I’m comfortable working in uncertain problem spaces where requirements are incomplete and
+                        failure is part of the process. I use rapid experimentation to test assumptions, learn from
+                        constraints, and refine systems through iteration.
+                    </p>
+                </div>
+
+                <!-- 5.5 Technical Review & Advisory -->
+                <div
+                    class="col-span-12 md:col-span-10 md:col-start-2 lg:col-span-8 lg:col-start-3 animate-fade-in-up delay-700">
+                    <h2 class="text-heading-sm" style="margin-bottom: var(--space-sm);">Technical Review & Advisory</h2>
+                    <p class="text-body-md text-secondary">
+                        I review ideas, architectures, and early systems for feasibility and risk, helping founders
+                        identify blind spots before they become expensive mistakes. This work is focused on clarity,
+                        long-term viability, and realistic execution paths.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Closing Note -->
+        <section class="container section-padding" style="padding-top: var(--space-sm); padding-bottom: 0;">
+            <div class="grid justify-center">
+                <div
+                    class="col-span-12 md:col-span-8 lg:col-start-3 lg:col-span-8 animate-fade-in delay-800 text-center">
+                    <p class="text-body-md text-secondary italic">
+                        Tools change quickly. The capabilities above shape how I choose and adapt to them depending on
+                        the problem at hand.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="container footer animate-fade-in delay-500" style="margin-top: var(--space-xl);">
+        <div class="grid items-center">
+            <div class="col-span-6">
+                <p class="text-caption">&copy; 2026 Anugrah James.</p>
+            </div>
+            <div class="col-span-6 footer-column-right">
+                <div class="footer-links right-aligned">
+                    <a href="https://www.linkedin.com/in/anugrah-james" class="footer-link">LinkedIn</a>
+                    <a href="https://github.com/anugrahjames-official" class="footer-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
