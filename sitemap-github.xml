@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/images/anugrah-james-profile.png</image:loc>
+      <image:title>Anugrah James</image:title>
+      <image:caption>Anugrah James</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/images/anugrah-james-qr_code.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/motoman-scope.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/images/avora-labs/anugrah-james-logo_not_transparent_cropped.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/about.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah_james.jpg</image:loc>
+      <image:title>Anugrah James</image:title>
+      <image:caption>Anugrah James</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/capabilities.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-skills_system_diagram.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-skills_notebook_sketch.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/contact.html</loc>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/index.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james.png</image:loc>
+      <image:title>Anugrah James</image:title>
+      <image:caption>Anugrah James</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-College_Concierge_Home-Screen.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-Autonomus_Paraglider.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/project-detail.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-College_Concierge_Home-Screen.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/projects.html</loc>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-College_Concierge_Home-Screen.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-Autonomus_Paraglider.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-idle_animation.gif</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-micro_saas_automation.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/assets/images/anugrah-james-college_concierge_vscode_extension_v2.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anugrahjames-official.github.io/anugrahjames/portfolio/resume.html</loc>
+  </url>
+</urlset>
