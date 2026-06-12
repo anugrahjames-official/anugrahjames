@@ -1,0 +1,1619 @@
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║  DIVINE CATERING — GROWTH INTELLIGENCE REPORT        ║
+  ║  Created by Obsidius Studios · June 2026              ║
+  ║                                                      ║
+  ║  BEFORE SENDING:                                     ║
+  ║  1. Replace 91XXXXXXXXXX with your WhatsApp number   ║
+  ║  2. Deploy: drag this file to vercel.com/new         ║
+  ║     OR run: vercel --prod in the file's folder       ║
+  ║  3. Copy the live URL into your WhatsApp DM          ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Divine Catering · Growth Intelligence Report · Obsidius Studios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           PREMIUM TOKENS (OBSIDIUS V2)
+        ═══════════════════════════════════════ */
+        :root {
+            /* Core Backgrounds */
+            --bg: #020305;
+            --bg-1: #080A0F;
+            --bg-2: #0E121A;
+            
+            /* Typography Colors */
+            --text: #F4F1EB;
+            --text-2: #A1AAB5;
+            --text-3: #5C6978;
+            
+            /* Accents */
+            --amber: #D4A259;
+            --amber-dim: rgba(212, 162, 89, 0.15);
+            --amber-glow: rgba(212, 162, 89, 0.3);
+            
+            --coral: #E35D50;
+            --coral-dim: rgba(227, 93, 80, 0.12);
+            --coral-glow: rgba(227, 93, 80, 0.25);
+            
+            --green: #2CB672;
+            --green-dim: rgba(44, 182, 114, 0.12);
+            --green-glow: rgba(44, 182, 114, 0.25);
+            
+            /* Structural */
+            --bdr: rgba(255, 255, 255, 0.06);
+            --bdr-light: rgba(255, 255, 255, 0.12);
+            --bdr-amber: rgba(212, 162, 89, 0.25);
+            
+            /* Effects */
+            --glass-bg: rgba(8, 10, 15, 0.6);
+            --blur: blur(24px);
+            --shadow-subtle: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 40px rgba(212, 162, 89, 0.08);
+        }
+
+        /* ═══════════════════════════════════════
+           RESET & BASE
+        ═══════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg);
+        }
+
+        body {
+            background: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 162, 89, 0.03) 0%, transparent 60%),
+                linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::selection {
+            background: var(--amber-dim);
+            color: var(--amber);
+        }
+
+        /* ═══════════════════════════════════════
+           REPORT WRAPPER
+        ═══════════════════════════════════════ */
+        .report {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--bg);
+            border-left: 1px solid var(--bdr);
+            border-right: 1px solid var(--bdr);
+            min-height: 100vh;
+            box-shadow: 0 0 100px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        /* ═══════════════════════════════════════
+           HEADER (Glassmorphic)
+        ═══════════════════════════════════════ */
+        .r-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--bdr);
+        }
+
+        .r-header-inner {
+            height: 56px;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .r-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+        }
+
+        .r-brand-sep {
+            color: var(--text-3);
+            font-weight: 400;
+        }
+
+        .r-brand-type {
+            color: var(--text-2);
+            letter-spacing: 0.2em;
+        }
+
+        .r-header-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            text-align: right;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+        ═══════════════════════════════════════ */
+        .r-hero {
+            padding: 100px 28px 80px;
+            border-bottom: 1px solid var(--bdr);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .r-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--amber));
+            opacity: 0.5;
+        }
+
+        .r-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 32px;
+            display: inline-block;
+            border: 1px solid var(--bdr-amber);
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: var(--amber-dim);
+            box-shadow: 0 0 16px rgba(212, 162, 89, 0.1);
+        }
+
+        .r-hero-name {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(56px, 12vw, 88px);
+            font-weight: 400;
+            line-height: 0.95;
+            color: var(--text);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .r-hero-tagline {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--text-2);
+            margin-bottom: 16px;
+        }
+
+        .r-hero-loc {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ═══════════════════════════════════════
+           SECTION SHELL
+        ═══════════════════════════════════════ */
+        .r-section {
+            padding: 64px 28px;
+            border-bottom: 1px solid var(--bdr);
+            position: relative;
+        }
+
+        .r-section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0.9;
+        }
+
+        .r-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--bdr-amber), transparent);
+        }
+
+        .r-section-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .r-section-sub {
+            font-size: 14px;
+            color: var(--text-2);
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 90%;
+        }
+
+        /* ═══════════════════════════════════════
+           01 — SCORE
+        ═══════════════════════════════════════ */
+        .score-wrap {
+            text-align: center;
+        }
+
+        .score-dial-outer {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0 20px;
+            position: relative;
+        }
+
+        .score-dial-outer::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .score-dial {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            z-index: 1;
+        }
+
+        .score-svg {
+            width: 220px;
+            height: 220px;
+            transform: rotate(-90deg);
+            display: block;
+            filter: drop-shadow(0 0 12px var(--amber-glow));
+        }
+
+        .score-track {
+            fill: none;
+            stroke: var(--bg-2);
+            stroke-width: 4;
+        }
+
+        .score-arc {
+            fill: none;
+            stroke: var(--amber);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 628.3;
+            stroke-dashoffset: 628.3;
+            transition: stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .score-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 72px;
+            color: var(--text);
+            line-height: 0.9;
+            display: block;
+        }
+
+        .score-denom {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        .score-caption {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-2);
+            margin-bottom: 24px;
+        }
+
+        .score-alert {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--coral);
+            background: var(--coral-dim);
+            border: 1px solid rgba(227, 93, 80, 0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-bottom: 48px;
+        }
+
+        .score-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .sb-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sb-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-2);
+            font-weight: 500;
+        }
+
+        .sb-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-3);
+        }
+
+        .sb-track {
+            height: 4px;
+            background: var(--bg-2);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sb-fill {
+            height: 100%;
+            border-radius: 2px;
+            width: 0;
+            transition: width 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .sb-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        .sb-amber {
+            background: var(--amber);
+            box-shadow: 0 0 10px var(--amber-glow);
+        }
+
+        .sb-coral {
+            background: var(--coral);
+            box-shadow: 0 0 10px var(--coral-glow);
+        }
+
+        /* ═══════════════════════════════════════
+           02 — INSTAGRAM
+        ═══════════════════════════════════════ */
+        .ig-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .ig-card {
+            background: var(--bg-1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 24px 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ig-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--bdr-light);
+        }
+
+        .ig-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .ig-card:hover::before {
+            opacity: 1;
+        }
+
+        .ig-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .ig-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-2);
+        }
+
+        .ig-insight {
+            background: var(--bg-1);
+            border: 1px solid var(--bdr-amber);
+            border-left: 3px solid var(--amber);
+            border-radius: 8px;
+            padding: 20px 24px;
+            font-size: 14px;
+            color: var(--text-2);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            position: relative;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .ig-insight strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .ig-ratio {
+            background: var(--bg-1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .ig-ratio-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--text-3);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .ig-ratio-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--bdr);
+        }
+
+        .ratio-block {
+            flex: 1;
+        }
+
+        .ratio-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .ratio-sublbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-2);
+        }
+
+        .ratio-arrow {
+            flex: 0 0 40px;
+            text-align: center;
+            color: var(--bdr-light);
+            font-size: 24px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .ig-ratio-note {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════
+           03 — GAPS
+        ═══════════════════════════════════════ */
+        .gaps-hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .gaps-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+        }
+
+        .gaps-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: var(--coral);
+            background: var(--coral-dim);
+            border: 1px solid rgba(227, 93, 80, 0.2);
+            padding: 6px 12px;
+            border-radius: 100px;
+        }
+
+        .gaps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .g-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: var(--bg-1);
+            border: 1px solid var(--bdr);
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .g-item:hover {
+            background: var(--bg-2);
+            transform: translateX(4px);
+        }
+
+        .g-item.g-miss {
+            border-left: 2px solid var(--coral);
+        }
+
+        .g-item.g-part {
+            border-left: 2px solid var(--amber);
+        }
+
+        .g-icon {
+            font-size: 14px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--bg-2);
+            border: 1px solid var(--bdr);
+        }
+
+        .g-item.g-miss .g-icon {
+            color: var(--coral);
+            border-color: rgba(227, 93, 80, 0.3);
+            background: var(--coral-dim);
+        }
+
+        .g-item.g-part .g-icon {
+            color: var(--amber);
+            border-color: rgba(212, 162, 89, 0.3);
+            background: var(--amber-dim);
+        }
+
+        .g-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .g-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .g-desc {
+            font-size: 12px;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        .g-status {
+            flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .gs-miss {
+            background: var(--coral-dim);
+            color: var(--coral);
+            border: 1px solid rgba(227, 93, 80, 0.2);
+        }
+
+        .gs-part {
+            background: var(--amber-dim);
+            color: var(--amber);
+            border: 1px solid rgba(212, 162, 89, 0.2);
+        }
+
+        /* ═══════════════════════════════════════
+           04 — COST & JOURNEY
+        ═══════════════════════════════════════ */
+        .cost-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .cost-card {
+            background: var(--bg-1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        
+        .cost-card:hover {
+            border-color: var(--bdr-light);
+        }
+
+        .cost-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--coral);
+        }
+
+        .cost-card.c-green::before {
+            background: var(--green);
+        }
+        
+        .cost-card.c-green {
+            background: linear-gradient(180deg, var(--green-dim) 0%, transparent 100%);
+        }
+
+        .cost-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        
+        .cost-card.c-green .cost-val {
+            color: var(--green);
+        }
+
+        .cost-lbl {
+            font-size: 12px;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        .cost-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-3);
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════════════════════════════════════
+           05 — COMPETITOR SIGNAL
+        ═══════════════════════════════════════ */
+        .comp-card {
+            position: relative;
+            background: linear-gradient(145deg, var(--coral-dim) 0%, transparent 100%);
+            border: 1px solid rgba(227, 93, 80, 0.2);
+            border-radius: 16px;
+            padding: 36px 32px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(227, 93, 80, 0.05);
+        }
+
+        .comp-signal {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--coral);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .comp-signal::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--coral);
+            animation: pulse 2s infinite;
+        }
+
+        .comp-card p {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 90%;
+        }
+
+        .comp-card p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .comp-card strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .comp-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px dashed rgba(227, 93, 80, 0.2);
+        }
+
+        .comp-stat {
+            text-align: left;
+        }
+
+        .cs-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cs-val.red {
+            color: var(--coral);
+        }
+
+        .cs-val.green {
+            color: var(--green);
+        }
+
+        .cs-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════
+           06 — FEATURES
+        ═══════════════════════════════════════ */
+        .feat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-1);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .feat-item:hover {
+            border-color: var(--bdr-amber);
+            transform: translateY(-2px);
+            background: var(--bg-2);
+        }
+
+        .feat-check {
+            color: var(--green);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feat-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .feat-detail {
+            font-size: 12px;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════
+           CTA
+        ═══════════════════════════════════════ */
+        .r-cta {
+            padding: 100px 28px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .r-cta::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .cta-pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .cta-title {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(40px, 9vw, 56px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-body {
+            font-size: 16px;
+            color: var(--text-2);
+            max-width: 420px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--amber);
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 18px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 162, 89, 0.2);
+        }
+
+        .cta-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-sig {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--bdr);
+        }
+
+        .sig-name {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: 28px;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .sig-co {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--amber);
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        .r-footer {
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--bdr);
+            background: var(--bg-1);
+        }
+
+        .r-footer-l,
+        .r-footer-r {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            line-height: 1.8;
+            text-transform: uppercase;
+        }
+
+        .r-footer-r {
+            text-align: right;
+        }
+
+        .r-footer-notice {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-3);
+            text-align: center;
+            padding: 0 28px 40px;
+            background: var(--bg-1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════════════════════════════════════
+           FADE-IN
+        ═══════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 540px) {
+            .feat-grid, .ig-grid, .cost-grid {
+                grid-template-columns: 1fr;
+            }
+            .comp-stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .r-section {
+                padding: 48px 20px;
+            }
+            .r-hero {
+                padding: 80px 20px 60px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .score-arc {
+                transition: none;
+            }
+
+            .sb-fill {
+                transition: none;
+            }
+            
+            .comp-signal::before {
+                animation: none;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="report">
+
+        <!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+        <header class="r-header">
+            <div class="r-header-inner">
+                <div class="r-brand">
+                    ◆ OBSIDIUS STUDIOS
+                    <span class="r-brand-sep">|</span>
+                    <span class="r-brand-type">INTELLIGENCE</span>
+                </div>
+                <div class="r-header-meta">
+                    REPORT DC-2026<br>JUNE 2026
+                </div>
+            </div>
+        </header>
+
+        <!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+        <section class="r-hero">
+            <div class="r-eyebrow">Growth Intelligence Report</div>
+            <h1 class="r-hero-name">Divine<br>Catering</h1>
+            <p class="r-hero-tagline">"Taste of Tradition"</p>
+            <p class="r-hero-loc">Karuvanchal · Kannur, Kerala &nbsp;·&nbsp; Catering &amp; Events</p>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     01 — DIGITAL PRESENCE SCORE
+══════════════════════════════════════════ -->
+        <section class="r-section score-wrap fade-in" id="score-section">
+            <div class="r-section-label">01 — Digital Presence Score</div>
+            <p style="font-size:13px;color:var(--text-2);line-height:1.6;">
+                How visible, accessible and trustworthy is Divine Catering in the digital world — today?
+            </p>
+
+            <div class="score-dial-outer">
+                <div class="score-dial">
+                    <svg class="score-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="score-track" cx="100" cy="100" r="80" />
+                        <circle class="score-arc" cx="100" cy="100" r="80" />
+                    </svg>
+                    <div class="score-center">
+                        <span class="score-num" id="scoreNum">0</span>
+                        <span class="score-denom">/100</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="score-caption">Overall digital presence score for Divine Catering</p>
+            <div style="text-align:center;margin-bottom:36px;">
+                <span class="score-alert">↓ 38 points below catering industry average (65+)</span>
+            </div>
+
+            <div class="score-bars">
+                <div class="sb-row">
+                    <div class="sb-label">
+                        <span>Brand &amp; Content Quality</span>
+                        <span class="sb-val">18 / 30</span>
+                    </div>
+                    <div class="sb-track">
+                        <div class="sb-fill sb-amber" data-w="60"></div>
+                    </div>
+                </div>
+                <div class="sb-row">
+                    <div class="sb-label">
+                        <span>Online Reach &amp; Discoverability</span>
+                        <span class="sb-val">3 / 30</span>
+                    </div>
+                    <div class="sb-track">
+                        <div class="sb-fill sb-coral" data-w="10"></div>
+                    </div>
+                </div>
+                <div class="sb-row">
+                    <div class="sb-label">
+                        <span>Booking Accessibility</span>
+                        <span class="sb-val">4 / 20</span>
+                    </div>
+                    <div class="sb-track">
+                        <div class="sb-fill sb-coral" data-w="20"></div>
+                    </div>
+                </div>
+                <div class="sb-row">
+                    <div class="sb-label">
+                        <span>Digital Trust Signals</span>
+                        <span class="sb-val">2 / 20</span>
+                    </div>
+                    <div class="sb-track">
+                        <div class="sb-fill sb-coral" data-w="10"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ig-insight"
+                style="margin-top: 36px; border-color: var(--green-a); background: rgba(34, 196, 116, 0.04);">
+                💡 <strong>High Opportunity Score:</strong> Established offline business with almost zero digital
+                infrastructure. That's a stronger opportunity for rapid growth than a business already investing in
+                content but with limited presence.
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     02 — INSTAGRAM INTELLIGENCE
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="r-section-label">02 — Instagram Intelligence</div>
+            <h2 class="r-section-title">What your profile says</h2>
+            <p class="r-section-sub">Performance data extracted directly from @divine___catering — no estimates.</p>
+
+            <div class="ig-grid">
+                <div class="ig-card">
+                    <div class="ig-num">256</div>
+                    <div class="ig-lbl">Followers</div>
+                </div>
+                <div class="ig-card">
+                    <div class="ig-num">38</div>
+                    <div class="ig-lbl">Posts Published</div>
+                </div>
+                <div class="ig-card">
+                    <div class="ig-num">3,587</div>
+                    <div class="ig-lbl">Total Reel Views</div>
+                </div>
+                <div class="ig-card">
+                    <div class="ig-num">11.3</div>
+                    <div class="ig-lbl">Avg. Likes / Post</div>
+                </div>
+            </div>
+
+            <div class="ig-insight">
+                💡 Your strongest reel reached <strong>578 views</strong> — "Near or far, wherever you are. Any size,
+                any space." The quality of the content is clearly there. The audience just isn't growing fast enough to
+                match it.
+            </div>
+
+            <div class="ig-ratio">
+                <div class="ig-ratio-label">FOLLOWING vs FOLLOWERS</div>
+                <div class="ig-ratio-row">
+                    <div>
+                        <div class="ratio-num" style="color:var(--coral);">622</div>
+                        <div class="ratio-sublbl">Accounts Following</div>
+                    </div>
+                    <div class="ratio-arrow">→</div>
+                    <div>
+                        <div class="ratio-num" style="color:var(--text);">256</div>
+                        <div class="ratio-sublbl">Actual Followers</div>
+                    </div>
+                </div>
+                <p class="ig-ratio-note">Following 2.4× more accounts than follow you. This is a clear signal that
+                    growth is being done manually — a ceiling that a proper digital presence removes entirely.</p>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     03 — CUSTOMER ACQUISITION GAPS
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="gaps-hdr">
+                <span class="gaps-lbl">03 — Customer Acquisition Gaps</span>
+                <span class="gaps-badge">6 FOUND</span>
+            </div>
+
+            <div class="gaps-list">
+                <div class="g-item g-miss">
+                    <div class="g-icon">✗</div>
+                    <div class="g-body">
+                        <div class="g-title">Google Business Profile</div>
+                        <div class="g-desc">Not listed on Google Maps or local search results.</div>
+                    </div>
+                    <span class="g-status gs-miss">NOT FOUND</span>
+                </div>
+                <div class="g-item g-miss">
+                    <div class="g-icon">✗</div>
+                    <div class="g-body">
+                        <div class="g-title">Online Booking / Inquiry Form</div>
+                        <div class="g-desc">Every customer who wants to book must call. High friction, missed leads.</div>
+                    </div>
+                    <span class="g-status gs-miss">NOT FOUND</span>
+                </div>
+                <div class="g-item g-miss">
+                    <div class="g-icon">✗</div>
+                    <div class="g-body">
+                        <div class="g-title">Menu &amp; Service Catalog</div>
+                        <div class="g-desc">No online menu, package list or pricing reference anywhere.</div>
+                    </div>
+                    <span class="g-status gs-miss">NOT FOUND</span>
+                </div>
+                <div class="g-item g-miss">
+                    <div class="g-icon">✗</div>
+                    <div class="g-body">
+                        <div class="g-title">Customer Reviews Platform</div>
+                        <div class="g-desc">No Google reviews. No public testimonials page. Trust has to be built from zero each time.</div>
+                    </div>
+                    <span class="g-status gs-miss">NOT FOUND</span>
+                </div>
+                <div class="g-item g-part">
+                    <div class="g-icon">~</div>
+                    <div class="g-body">
+                        <div class="g-title">Social Media Reach</div>
+                        <div class="g-desc">Active on Instagram, but capped at 256 followers in a market of thousands.</div>
+                    </div>
+                    <span class="g-status gs-part">LIMITED</span>
+                </div>
+                <div class="g-item g-miss">
+                    <div class="g-icon">✗</div>
+                    <div class="g-body">
+                        <div class="g-title">Website</div>
+                        <div class="g-desc">No website found for Divine Catering. Zero presence on any search engine.</div>
+                    </div>
+                    <span class="g-status gs-miss">NOT FOUND</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     04 — CUSTOMER JOURNEY ANALYSIS
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="r-section-label">04 — Customer Journey Analysis</div>
+            <h2 class="r-section-title">How customers buy today vs tomorrow</h2>
+            <p class="r-section-sub">Here is the current friction in your booking process versus a modern, scalable
+                approach.</p>
+
+            <div class="journey-box bad">
+                <div class="journey-label">CURRENT JOURNEY (HIGH FRICTION)</div>
+                <div class="journey-flow">
+                    <span class="j-step">Referral</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">Phone Call</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">Booking</span>
+                </div>
+            </div>
+
+            <div class="journey-box good">
+                <div class="journey-label">SUGGESTED JOURNEY (SCALABLE)</div>
+                <div class="journey-flow">
+                    <span class="j-step">Google Search</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">Website</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">WhatsApp</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">Quote Request</span>
+                    <span class="j-arr">→</span>
+                    <span class="j-step">Booking</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     05 — MISSED SEARCHES
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="r-section-label">05 — Missed Searches</div>
+            <h2 class="r-section-title">People are already searching</h2>
+            <p class="r-section-sub">The point isn't exact search volume. The point is that these are active,
+                high-intent customers looking for a caterer right now.</p>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                <div
+                    style="background: var(--bg-1); border: 1px solid var(--bdr); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text);">
+                    🔍 "Wedding Catering Udayagiri"</div>
+                <div
+                    style="background: var(--bg-1); border: 1px solid var(--bdr); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text);">
+                    🔍 "Catering Service Alakode"</div>
+                <div
+                    style="background: var(--bg-1); border: 1px solid var(--bdr); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text);">
+                    🔍 "Event Catering Kannur"</div>
+                <div
+                    style="background: var(--bg-1); border: 1px solid var(--bdr); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text);">
+                    🔍 "Wedding Food Service Kannur"</div>
+                <div
+                    style="background: var(--bg-1); border: 1px solid var(--bdr); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text);">
+                    🔍 "Catering Near Me"</div>
+            </div>
+
+            <div class="cost-grid">
+                <div class="cost-card">
+                    <div class="cost-val">500–1K</div>
+                    <div class="cost-lbl">Monthly Google searches for catering services in Kannur</div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-val">0%</div>
+                    <div class="cost-lbl">Divine Catering's current visibility in those searches</div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-val">10–25</div>
+                    <div class="cost-lbl">Estimated inquiries going to competitors every month</div>
+                </div>
+                <div class="cost-card c-green">
+                    <div class="cost-val">₹25K–<br>₹1.5L</div>
+                    <div class="cost-lbl">Average value of a single catering event. Each missed lead matters.</div>
+                </div>
+            </div>
+            <p class="cost-note">* Actual numbers depend on season and competitor activity. These are directional
+                estimates only.</p>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     06 — COMPETITOR SIGNAL
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="r-section-label">06 — Competitor Signal</div>
+
+            <div class="comp-card">
+                <span class="comp-signal">SIGNAL DETECTED</span>
+                <p>A <strong>competitor operating in the same region already has a digital presence</strong>, making
+                    them discoverable when customers search online.</p>
+                <p><strong>Every time a potential client searches for catering near Karuvanchal</strong>, they find a
+                    competitor's website first. Divine Catering does not appear at all.</p>
+                <div class="comp-stats">
+                    <div class="comp-stat">
+                        <span class="cs-val red">0</span>
+                        <span class="cs-lbl">Divine Catering's Google search rank</span>
+                    </div>
+                    <div class="comp-stat">
+                        <span class="cs-val green">Live</span>
+                        <span class="cs-lbl">Competitor website status</span>
+                    </div>
+                    <div class="comp-stat">
+                        <span class="cs-val red">0</span>
+                        <span class="cs-lbl">Google inquiries currently reaching you</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     07 — RECOMMENDED INFRASTRUCTURE
+══════════════════════════════════════════ -->
+        <section class="r-section fade-in">
+            <div class="r-section-label">07 — Recommended Infrastructure</div>
+            <h2 class="r-section-title">Website + Google Business + Booking System</h2>
+            <p class="r-section-sub">Solving the business problem requires a complete digital infrastructure. This is
+                what we need to build.</p>
+
+            <div class="feat-grid">
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Event Gallery</div>
+                        <div class="feat-detail">Weddings, engagements, church events</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Online Inquiry Form</div>
+                        <div class="feat-detail">24/7 booking requests, no missed calls</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Menu &amp; Services</div>
+                        <div class="feat-detail">Full catalog, customisable packages</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">WhatsApp Integration</div>
+                        <div class="feat-detail">One-tap chat from every page</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Local SEO</div>
+                        <div class="feat-detail">"Catering Karuvanchal" finds you first</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Client Testimonials</div>
+                        <div class="feat-detail">Real reviews, lasting trust</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Wedding Showcase</div>
+                        <div class="feat-detail">Dedicated page for wedding packages</div>
+                    </div>
+                </div>
+                <div class="feat-item">
+                    <span class="feat-check">✓</span>
+                    <div>
+                        <div class="feat-name">Google Maps Listing</div>
+                        <div class="feat-detail">Show up on local search &amp; Maps</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+        <section class="r-cta fade-in">
+            <div class="cta-pre">The Next Step</div>
+            <h2 class="cta-title">Ready to close<br>the gap?</h2>
+            <p class="cta-body">I've built a detailed picture of where Divine Catering stands and what's possible. Let's
+                spend 15 minutes walking through it together.</p>
+            <div>
+                <a href="https://wa.me/918547915933?text=Hi%20Anugrah%2C%20I%20went%20through%20the%20growth%20report%20for%20Divine%20Catering.%20I%27d%20like%20to%20discuss."
+                    class="cta-btn" target="_blank" rel="noopener noreferrer">
+                    📲 &nbsp;Book a 15-Min Strategy Call
+                </a>
+            </div>
+            <p class="cta-sub">Reply on WhatsApp and pick a time that works for you.</p>
+
+            <div class="cta-sig">
+                <div class="sig-name">Anugrah James</div>
+                <div class="sig-co">◆ OBSIDIUS STUDIOS</div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+        <footer class="r-footer">
+            <div class="r-footer-l">DIVINE CATERING<br>GROWTH INTELLIGENCE REPORT</div>
+            <div class="r-footer-r">OBSIDIUS STUDIOS<br>CONFIDENTIAL · JUNE 2026</div>
+        </footer>
+        <p class="r-footer-notice">Prepared exclusively for Divine Catering by Obsidius Studios. Not for public
+            distribution.</p>
+
+    </div><!-- /report -->
+
+    <!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+    <script>
+        (function () {
+            'use strict';
+
+            // ── SCORE CIRCLE ANIMATION ──────────────
+            var arc = document.querySelector('.score-arc');
+            var numEl = document.getElementById('scoreNum');
+            var CIRC = 2 * Math.PI * 80; // 502.65
+            var TARGET = 27;
+            var done = false;
+
+            function animateScore() {
+                if (done) return;
+                done = true;
+                var t0 = performance.now();
+                var dur = 2300;
+                (function tick(now) {
+                    var progress = Math.min((now - t0) / dur, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var current = Math.round(TARGET * eased);
+                    numEl.textContent = current;
+                    if (arc) arc.style.strokeDashoffset = CIRC * (1 - current / 100);
+                    if (progress < 1) requestAnimationFrame(tick);
+                }(t0));
+            }
+
+            // ── BAR ANIMATIONS ──────────────────────
+            function animateBars() {
+                document.querySelectorAll('.sb-fill').forEach(function (el) {
+                    el.style.width = (el.dataset.w || '0') + '%';
+                });
+            }
+
+            // ── SCORE OBSERVER ──────────────────────
+            var scoreSection = document.getElementById('score-section');
+            if (scoreSection && 'IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) {
+                        animateScore();
+                        animateBars();
+                    }
+                }, { threshold: 0.25 }).observe(scoreSection);
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                animateScore();
+                animateBars();
+            }
+
+            // ── FADE-IN OBSERVER ────────────────────
+            if ('IntersectionObserver' in window) {
+                var fadeObs = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) e.target.classList.add('visible');
+                    });
+                }, { threshold: 0.05 });
+                document.querySelectorAll('.fade-in').forEach(function (el) {
+                    fadeObs.observe(el);
+                });
+            } else {
+                document.querySelectorAll('.fade-in').forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }
+        }());
+    </script>
+</body>
+
+</html>
