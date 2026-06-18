@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Intelligence Dashboard | Q Men's Clothing</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        .locked-section {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        .locked-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        .lock-message {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+        }
+        .lock-message i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .lock-message h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .lock-message p {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../../web/public/primary-logo.png" alt="Agency Logo" style="max-height: 40px;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Overview</a></li>
+                <li><a href="#digital-score"><i class='bx bx-radar'></i> Digital Score</a></li>
+                <li><a href="#intelligence"><i class='bx bx-bulb'></i> Intelligence</a></li>
+                <li><a href="#revenue-leaks"><i class='bx bx-error'></i> Revenue Leaks</a></li>
+                <li><a href="#seo-opportunity"><i class='bx bx-search-alt'></i> SEO & Competitors</a></li>
+                <li><a href="#strategy"><i class='bx bx-line-chart'></i> Cost of Inaction</a></li>
+                <li><a href="#commercials"><i class='bx bx-wallet'></i> Growth Investment</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1>Growth Intelligence Dashboard</h1>
+                    <p>Powered by Obsidius Studios | Confidential | June 2026</p>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section-block active">
+                <div class="overview-grid">
+                    <div class="card lead-score-card">
+                        <h3>Lead Score</h3>
+                        <div class="score-display">
+                            <span class="score-number">78</span><span class="score-max">/100</span>
+                        </div>
+                        <p class="status high-value">High-Value Opportunity</p>
+                    </div>
+                    
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-google'></i> Google Rating</h3>
+                        <div class="score-display">
+                            <span class="stat-number">4.8★</span>
+                        </div>
+                        <p>35 Reviews</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-instagram'></i> Instagram Followers</h3>
+                        <div class="score-display">
+                            <span class="stat-number">466</span>
+                        </div>
+                        <p>Growing from account recovery</p>
+                    </div>
+                    
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-globe'></i> Website</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">❌ None</span>
+                        </div>
+                        <p class="danger-text">Critical gap</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-trending-up'></i> Top Reel</h3>
+                        <div class="score-display">
+                            <span class="stat-number">93K+</span>
+                        </div>
+                        <p>Plays | 910 Likes</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Score Section -->
+            <section id="digital-score" class="section-block">
+                <h2>Digital Presence Dashboard</h2>
+                <div class="score-overview">
+                    <h3>Overall Digital Score: <span class="warning-text">41 / 100</span></h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="digitalScoreChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Intelligence Section (SWOT & Social) -->
+            <section id="intelligence" class="section-block locked-section">
+                <div class="lock-message">
+                    <i class='bx bxs-lock-alt'></i>
+                    <h3>Intelligence Locked</h3>
+                    <p>Internal audience data and business intelligence is reserved for the strategy call.</p>
+                </div>
+                <h2>Business & Social Intelligence</h2>
+                <div class="swot-grid">
+                    <div class="card"><div style="height: 15px; width: 50%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 60%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 80%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 75%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 40%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 55%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 80%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                </div>
+                
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Customer & Audience Intelligence</h3>
+                <div class="overview-grid">
+                    <div class="card"><div style="height: 15px; width: 40%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 50%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                </div>
+            </section>
+
+            <!-- Revenue Leaks Section -->
+            <section id="revenue-leaks" class="section-block locked-section">
+                <div class="lock-message" style="border-color: var(--danger);">
+                    <i class='bx bx-error-circle' style="color: var(--danger);"></i>
+                    <h3 class="danger-text">6 Revenue Leaks Detected</h3>
+                    <p>We've quantified your exact monthly revenue loss. Full breakdown revealed during audit.</p>
+                </div>
+                <h2>Revenue Leak Detection</h2>
+                <div class="leaks-list">
+                    <div class="leak-card">
+                        <div style="height: 20px; width: 60%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div>
+                        <div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div>
+                        <div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 20px;"></div>
+                        <div style="height: 40px; width: 100%; background: rgba(239, 68, 68, 0.1); border-radius: 4px;"></div>
+                    </div>
+                    <div class="leak-card">
+                        <div style="height: 20px; width: 70%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div>
+                        <div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div>
+                        <div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 20px;"></div>
+                        <div style="height: 40px; width: 100%; background: rgba(239, 68, 68, 0.1); border-radius: 4px;"></div>
+                    </div>
+                    <div class="leak-card">
+                        <div style="height: 20px; width: 50%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div>
+                        <div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div>
+                        <div style="height: 10px; width: 80%; background: #f1f5f9; margin-bottom: 20px;"></div>
+                        <div style="height: 40px; width: 100%; background: rgba(239, 68, 68, 0.1); border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO & Competitors Section -->
+            <section id="seo-opportunity" class="section-block">
+                <h2>SEO & Local Keywords</h2>
+                <div class="card table-container mb-4">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Search Intent</th>
+                                <th>Competition</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>mens clothing Karuvanchal</td>
+                                <td>Local buyer</td>
+                                <td><span class="badge success">Very Low</span></td>
+                                <td><span class="accent-text">★★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td>branded clothing Karuvanchal</td>
+                                <td>High intent</td>
+                                <td><span class="badge success">None</span></td>
+                                <td><span class="accent-text">★★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td>gents wear Karuvanchal</td>
+                                <td>Local buyer</td>
+                                <td><span class="badge success">Very Low</span></td>
+                                <td><span class="accent-text">★★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td>Levis store Kannur</td>
+                                <td>Brand intent</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="accent-text">★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td>fashion store Kannur</td>
+                                <td>Discovery</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="accent-text">★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td>Onam dress for men Kannur</td>
+                                <td>Seasonal</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="accent-text">★★★★</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 style="margin-top: 3rem;">Competitor Landscape</h2>
+                <div class="card table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Competitor</th>
+                                <th>Reviews</th>
+                                <th>Rating</th>
+                                <th>Digital Presence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight-row">
+                                <td><strong>Q Men's Clothing</strong></td>
+                                <td>35</td>
+                                <td><span class="success-text">⭐ 4.8</span></td>
+                                <td>Maps + Instagram</td>
+                            </tr>
+                            <tr>
+                                <td>Mens and Womens World</td>
+                                <td>11</td>
+                                <td><span class="danger-text">⭐ 3.9</span></td>
+                                <td>Maps only</td>
+                            </tr>
+                            <tr>
+                                <td>MENZO FASHION STORE</td>
+                                <td>4</td>
+                                <td><span class="warning-text">⭐ 4.3</span></td>
+                                <td>Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>The Best Collections</td>
+                                <td>4</td>
+                                <td><span class="success-text">⭐ 4.5</span></td>
+                                <td>Minimal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="insight-box">
+                        <strong>Key Insight:</strong> Q Men's already dominates local reputation. None of the competitors have a real website. First-mover SEO advantage is available right now.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategy Section -->
+            <section id="strategy" class="section-block locked-section" style="min-height: 400px;">
+                <div class="lock-message">
+                    <i class='bx bx-line-chart'></i>
+                    <h3>Strategic Roadmap Locked</h3>
+                    <p>The solution for the revenue leaks is reserved for the Discovery Call.</p>
+                </div>
+            </section>
+
+            <!-- Commercials Section -->
+            <section id="commercials" class="section-block locked-section" style="min-height: 500px;">
+                <div class="lock-message">
+                    <i class='bx bx-wallet'></i>
+                    <h3>Growth Packages Locked</h3>
+                    <p>Investment options and Onam Priority Bonuses are unlocked after we confirm partnership fit.</p>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>Growth Intelligence Report • Q Men's Clothing • Generated June 2026</p>
+                <p class="data-sources">Data Sources: Instagram @qmensclothings (343 posts, 5 reels) | Google Maps (35 reviews, 167 photos) | Justdial Listing | Google Web Results</p>
+            </footer>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
