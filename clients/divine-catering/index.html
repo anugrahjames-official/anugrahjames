@@ -16,7 +16,7 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="logo">
-                <img src="../../images/primary-logo.png" alt="Agency Logo" style="max-height: 40px;">
+                <img src="/images/primary-logo.png" alt="Agency Logo" style="max-height: 40px;">
             </div>
             <ul class="nav-links">
                 <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Overview</a></li>
@@ -227,7 +227,8 @@
                         <p>There are 500–1K monthly Google searches for catering in Kannur. Because Divine Catering has
                             no website and no Google Business Profile, your visibility in those searches is
                             <strong>0%</strong>. Approximately 10–25 inquiries are going directly to competitors every
-                            month.</p>
+                            month.
+                        </p>
                         <div class="impact-box"
                             style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);">
                             <strong class="danger-text"><i class='bx bx-trending-down'></i> Active Revenue
@@ -404,7 +405,8 @@
                         <div class="plan-subtitle">Full Service</div>
                         <h3>Premium</h3>
                         <div style="margin: 1.5rem 0;">
-                            <span style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹48,999</span>
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹48,999</span>
                             <span class="price" style="margin: 0; display: inline;">₹43,999</span>
                         </div>
                         <p class="timeline">25-day delivery</p>
@@ -415,7 +417,7 @@
                             <li>Monthly Analytics Report</li>
                             <li>3 months post-launch SEO</li>
                             <li>Testimonials Page</li>
-                            <li>12-month partnership</li>
+                            <li>3 months support</li>
                         </ul>
                         <button class="btn btn-outline">Explore Premium</button>
                     </div>
@@ -429,7 +431,490 @@
                         are taking on only 2 catering projects before the upcoming wedding season rush. If we start this
                         week to ensure your digital infrastructure is live before the peak season, we will apply a
                         <strong>₹5,000 launch discount</strong> and include the following at <strong>no extra
-                            charge</strong>:</p>
+                            charge</strong>:
+                    </p>
+                    <ul
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; padding: 0; font-size: 1.1rem;">
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> ₹5,000
+                            Priority Discount Applied</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Google
+                            Business Profile Setup</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Digital Menu
+                            Digitization</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> WhatsApp
+                            Automation Setup</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Priority
+                            Delivery Before Season</li>
+                    </ul>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>Growth Intelligence Report • Divine Catering • Generated June 2026</p>
+                <p class="data-sources">Data Sources: Instagram @divine___catering (38 posts) | Local SEO Competitive
+                    Analysis</p>
+            </footer>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section-block');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active from all
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active to clicked
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Intelligence Dashboard | Divine Catering</title>
+    <link rel="stylesheet" href="../qmensclothings/dashboard/style.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images\primary-logo.png" alt="Agency Logo" style="max-height: 40px;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Overview</a></li>
+                <li><a href="#digital-score"><i class='bx bx-radar'></i> Digital Score</a></li>
+                <li><a href="#intelligence"><i class='bx bx-bulb'></i> Intelligence</a></li>
+                <li><a href="#revenue-leaks"><i class='bx bx-error'></i> Revenue Leaks</a></li>
+                <li><a href="#seo-opportunity"><i class='bx bx-search-alt'></i> Local SEO</a></li>
+                <li><a href="#strategy"><i class='bx bx-line-chart'></i> Cost of Inaction</a></li>
+                <li><a href="#commercials"><i class='bx bx-wallet'></i> Growth Investment</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1>Growth Intelligence Dashboard</h1>
+                    <p>Powered by Obsidius Studios | Confidential | June 2026</p>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section-block active">
+                <div class="overview-grid">
+                    <div class="card lead-score-card">
+                        <h3>Lead Score</h3>
+                        <div class="score-display">
+                            <span class="score-number">65</span><span class="score-max">/100</span>
+                        </div>
+                        <p class="status high-value">High-Value Opportunity</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-instagram'></i> Instagram Intelligence</h3>
+                        <div class="score-display">
+                            <span class="stat-number">256</span>
+                        </div>
+                        <p>Followers | 622 Following (Growth ceiling)</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-movie-play'></i> Reel Performance</h3>
+                        <div class="score-display">
+                            <span class="stat-number">3.5K+</span>
+                        </div>
+                        <p>Total Views | Top Reel: 578</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-globe'></i> Website</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">❌ None</span>
+                        </div>
+                        <p class="danger-text">Critical conversion gap</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-trending-up'></i> Avg Event Value</h3>
+                        <div class="score-display">
+                            <span class="stat-number accent-text">₹75K+</span>
+                        </div>
+                        <p>High cost of a missed lead</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Score Section -->
+            <section id="digital-score" class="section-block">
+                <h2>Digital Presence Dashboard</h2>
+                <div class="score-overview">
+                    <h3>Overall Digital Score: <span class="danger-text">27 / 100</span></h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">↓ 38 points below catering industry average
+                        (65+).</p>
+                </div>
+
+                <div class="overview-grid" style="margin-top: 2rem;">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--accent);">Brand & Content Quality</strong>
+                            <strong>18 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 60%; background: var(--accent); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Online Reach & Discoverability</strong>
+                            <strong class="danger-text">3 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 10%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Booking Accessibility</strong>
+                            <strong class="danger-text">4 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 20%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Digital Trust Signals</strong>
+                            <strong class="danger-text">2 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 10%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 1.5rem;">
+                    <strong>💡 High Opportunity Score:</strong> Established offline business with almost zero digital
+                    infrastructure. That's a stronger opportunity for rapid growth than a business already investing in
+                    content but with limited presence.
+                </div>
+            </section>
+
+            <!-- Intelligence Section (SWOT & Social) -->
+            <section id="intelligence" class="section-block">
+                <h2>Business & Social Intelligence</h2>
+                <div class="swot-grid">
+                    <div class="card strength">
+                        <h3 class="success-text"><i class='bx bx-check-shield'></i> Strengths</h3>
+                        <ul>
+                            <li>High quality event photography & reels (3,587 total views)</li>
+                            <li>Real, verifiable local events (weddings, engagements)</li>
+                            <li>Consistent branding ("Taste of tradition")</li>
+                            <li>Active Instagram presence (38 posts, 11.3 avg likes)</li>
+                        </ul>
+                    </div>
+                    <div class="card weakness">
+                        <h3 class="danger-text"><i class='bx bx-x-circle'></i> Weaknesses</h3>
+                        <ul>
+                            <li>Following (622) is 2.4x higher than Followers (256) - indicates manual, unscalable
+                                growth</li>
+                            <li>No website or digital menu</li>
+                            <li>Zero visibility on Google for "catering near me"</li>
+                            <li>No Google reviews or public testimonials page</li>
+                            <li>Forced manual DM/call for every single inquiry</li>
+                        </ul>
+                    </div>
+                    <div class="card opportunity">
+                        <h3 class="accent-text"><i class='bx bx-trending-up'></i> Opportunities</h3>
+                        <ul>
+                            <li>Upcoming Wedding Season (massive demand spike)</li>
+                            <li>Corporate events & holiday parties</li>
+                            <li>First-mover SEO advantage in Karuvanchal & Alakode</li>
+                            <li>WhatsApp Business automation for instant quotes</li>
+                            <li>Digitizing packages to reduce sales friction</li>
+                        </ul>
+                    </div>
+                    <div class="card threat">
+                        <h3 class="warning-text"><i class='bx bx-error-alt'></i> Threats</h3>
+                        <ul>
+                            <li>Competitors with websites stealing high-intent Google traffic</li>
+                            <li>Lost inquiries due to slow manual WhatsApp replies</li>
+                            <li>Relying 100% on Instagram (platform risk)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Customer Journey Analysis</h3>
+                <div class="grid-2-col">
+                    <div class="card"
+                        style="border-left: 4px solid var(--danger); background: rgba(239, 68, 68, 0.05);">
+                        <h4 style="margin-bottom: 1rem; color: var(--danger);"><i class='bx bx-block'></i> Current
+                            Journey (High Friction)</h4>
+                        <div
+                            style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span>Referral</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="danger-text">Phone Call</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span>Booking</span>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">Every customer who wants to book must
+                            call. High friction, leading to missed leads during off-hours.</p>
+                    </div>
+                    <div class="card"
+                        style="border-left: 4px solid var(--success); background: rgba(16, 185, 129, 0.05);">
+                        <h4 style="margin-bottom: 1rem; color: var(--success);"><i class='bx bx-rocket'></i> Suggested
+                            Journey (Scalable)</h4>
+                        <div
+                            style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span>Google Search</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="success-text">Website</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="success-text">WhatsApp Quote</span> <i
+                                class='bx bx-right-arrow-alt text-muted'></i>
+                            <span>Booking</span>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">Captures intent 24/7. Educates the client
+                            with menus and prices *before* they talk to you.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revenue Leaks Section -->
+            <section id="revenue-leaks" class="section-block">
+                <h2>Revenue Leak Detection</h2>
+                <div class="leaks-list">
+                    <div class="leak-card">
+                        <div class="leak-header">
+                            <h3>1. Missing Local Search Traffic</h3>
+                            <span class="badge critical">CRITICAL</span>
+                        </div>
+                        <p>There are 500–1K monthly Google searches for catering in Kannur. Because Divine Catering has
+                            no website and no Google Business Profile, your visibility in those searches is
+                            <strong>0%</strong>. Approximately 10–25 inquiries are going directly to competitors every
+                            month.
+                        </p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);">
+                            <strong class="danger-text"><i class='bx bx-trending-down'></i> Active Revenue
+                                Bleed:</strong> With an average event value of ₹25K–₹1.5L, missing just 2 bookings a
+                            month costs you up to ₹3,00,000.
+                        </div>
+                    </div>
+                    <div class="leak-card">
+                        <div class="leak-header">
+                            <h3>2. No Digital Menu or Packages</h3>
+                            <span class="badge high">HIGH</span>
+                        </div>
+                        <p>Potential clients must DM or call just to see what you offer. In 2026, clients (especially
+                            corporate) expect to browse packages, menus, and prices before talking to sales. Friction
+                            kills conversions.</p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);">
+                            <strong class="danger-text"><i class='bx bx-trending-down'></i> Active Revenue
+                                Bleed:</strong> ~₹50,000 per month in abandoned inquiries from busy planners.
+                        </div>
+                    </div>
+                    <div class="leak-card warning-border">
+                        <div class="leak-header">
+                            <h3>3. Manual WhatsApp Bottleneck</h3>
+                            <span class="badge medium-high">MEDIUM-HIGH</span>
+                        </div>
+                        <p>Every inquiry requires a manual response. Without automated WhatsApp greetings or a link to a
+                            digital brochure/form, inquiries slip through the cracks during busy hours.</p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--warning); background: rgba(245, 158, 11, 0.05);">
+                            <strong class="warning-text"><i class='bx bx-error-circle'></i> Growth Cap:</strong> Your
+                            ability to scale is limited by how fast you can manually reply to Instagram DMs.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO Section -->
+            <section id="seo-opportunity" class="section-block">
+                <h2>Missed Local Searches</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">The point isn't exact search volume. The point
+                    is that these are active, high-intent customers looking for a caterer right now.</p>
+                <div class="card table-container mb-4">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>High-Intent Keyword</th>
+                                <th>Location Context</th>
+                                <th>Competitor Signal</th>
+                                <th>Divine Catering Visibility</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"Wedding Catering Udayagiri"</td>
+                                <td>Hyper-local</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Catering Service Alakode"</td>
+                                <td>Hyper-local</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Event Catering Kannur"</td>
+                                <td>Regional</td>
+                                <td><span class="badge high">Medium</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Wedding Food Service Kannur"</td>
+                                <td>High-Ticket intent</td>
+                                <td><span class="badge high">Medium</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Catering Near Me"</td>
+                                <td>Proximity search</td>
+                                <td><span class="badge warning">Competitor detected</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-box">
+                    <strong>Competitor Signal Detected:</strong> A competitor operating in the same region already has a
+                    digital presence. Every time a potential client searches for catering near Karuvanchal, they find a
+                    competitor's website first.
+                </div>
+            </section>
+
+            <!-- Strategy Section -->
+            <section id="strategy" class="section-block">
+                <div class="strategy-full">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">The Cost of Inaction (Why Now?)</h2>
+                    <div class="opportunity-list grid-2-col">
+                        <div class="opp-item card">
+                            <h4><i class='bx bx-calendar-event success-text'></i> Wedding Season Approaching</h4>
+                            <p>The busiest time of the year for catering is coming up. Planners are researching *right
+                                now*. If your infrastructure isn't live, they will book competitors.</p>
+                        </div>
+                        <div class="opp-item card">
+                            <h4><i class='bx bx-search-alt accent-text'></i> Competitor Digital Gap</h4>
+                            <p>Most local caterers rely purely on word-of-mouth. The first one to build a professional,
+                                search-optimized website will automatically become the "premium" choice in Kannur.</p>
+                        </div>
+                    </div>
+
+                    <div class="closer-box" style="text-align: center; margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent);">The Bottom Line</h3>
+                        <p style="font-size: 1.5rem; font-style: italic; color: var(--text-main);">"You already cook
+                            incredible food and host beautiful events.<br>Let's make sure the people searching for you
+                            can actually book you."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Commercials Section -->
+            <section id="commercials" class="section-block">
+                <h2>Recommended Infrastructure & Investment</h2>
+                <div class="insight-box"
+                    style="margin-bottom: 2rem; border-left-color: var(--success); background: rgba(34, 197, 94, 0.05);">
+                    <strong><i class='bx bx-check-shield success-text'></i> Full System Integration:</strong> Our
+                    packages implement all 6 missing gaps: Event Gallery, Online Inquiry Form, Menu & Services Catalog,
+                    WhatsApp Integration, Local SEO & Maps, and Client Testimonials.
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="plan-subtitle">Quick Start</div>
+                        <h3>Starter</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹24,999</span>
+                            <span class="price" style="margin: 0; display: inline;">₹19,999</span>
+                        </div>
+                        <p class="timeline">10-day delivery</p>
+                        <ul class="features">
+                            <li>5-page website (Home, About, Services, Gallery, Contact)</li>
+                            <li>Mobile-first design</li>
+                            <li>WhatsApp CTA integration</li>
+                            <li>Google Maps embed</li>
+                            <li>Basic on-page SEO</li>
+                            <li>2 revision rounds</li>
+                            <li>1 month support</li>
+                        </ul>
+                        <button class="btn btn-outline">Get Started</button>
+                    </div>
+                    <div class="pricing-card recommended">
+                        <div class="recommended-badge">⭐ Most Popular</div>
+                        <h3>Growth</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹29,999</span>
+                            <span class="price" style="margin: 0; display: inline; color: var(--accent);">₹24,999</span>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">(Pays for
+                                itself with a single small booking)</div>
+                        </div>
+                        <p class="timeline">18-day delivery</p>
+                        <ul class="features">
+                            <li><strong>Everything in Starter</strong></li>
+                            <li>Inquiry & Booking Form Setup</li>
+                            <li>Digital Menu & Packages Page</li>
+                            <li>Event Category Gallery (Weddings, Corporate)</li>
+                            <li>Google Business Profile Setup</li>
+                            <li>WhatsApp Auto-reply config</li>
+                            <li>3 revision rounds</li>
+                            <li>3 months support</li>
+                        </ul>
+                        <button class="btn btn-primary">Select Plan</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="plan-subtitle">Full Service</div>
+                        <h3>Premium</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹48,999</span>
+                            <span class="price" style="margin: 0; display: inline;">₹43,999</span>
+                        </div>
+                        <p class="timeline">25-day delivery</p>
+                        <ul class="features">
+                            <li><strong>Everything in Growth</strong></li>
+                            <li>Custom Admin Dashboard / CMS</li>
+                            <li>Advanced Video/Reels Showcase</li>
+                            <li>Monthly Analytics Report</li>
+                            <li>3 months post-launch SEO</li>
+                            <li>Testimonials Page</li>
+                            <li>3 months support</li>
+                        </ul>
+                        <button class="btn btn-outline">Explore Premium</button>
+                    </div>
+                </div>
+
+                <div class="fast-action-bonus"
+                    style="background: var(--sidebar-bg); border: 2px solid var(--border-light); border-radius: var(--radius); margin-top: 3rem; padding: 2rem;">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem;"><i
+                            class='bx bx-time-five'></i> Fast-Action Bonus: Wedding Season Priority</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;">We
+                        are taking on only 2 catering projects before the upcoming wedding season rush. If we start this
+                        week to ensure your digital infrastructure is live before the peak season, we will apply a
+                        <strong>₹5,000 launch discount</strong> and include the following at <strong>no extra
+                            charge</strong>:
+                    </p>
                     <ul
                         style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; padding: 0; font-size: 1.1rem;">
                         <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> ₹5,000
