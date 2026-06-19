@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Intelligence Dashboard | AFC Alakode</title>
+    <link rel="stylesheet" href="../qmensclothings/dashboard/style.css">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        .ai-generator-panel {
+            background: #fff;
+            border: 1px solid var(--border-light, #e2e8f0);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .ai-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .ai-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .ai-form-group input, .ai-form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light, #e2e8f0);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .ai-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .ai-btn {
+            background: var(--accent, #3b82f6);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .ai-btn:hover {
+            opacity: 0.9;
+        }
+        .ai-btn.secondary {
+            background: #10b981;
+        }
+        .ai-btn.tertiary {
+            background: #8b5cf6;
+        }
+        .ai-output-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 1.5rem;
+            min-height: 200px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: none;
+        }
+        .ai-output-container.active {
+            display: block;
+        }
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .framework-card {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .problem-impact-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: stretch;
+        }
+        .pis-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .pis-problem { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); }
+        .pis-opportunity { background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); }
+        .pis-impact { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); }
+        
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .funnel-arrow {
+            color: var(--danger);
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+        .math-box {
+            background: #fff;
+            border: 2px solid var(--danger);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .math-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+        .math-row:last-child {
+            border-bottom: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--danger);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--danger);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../../web/public/primary-logo.png" alt="Agency Logo" style="max-height: 40px;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Lost Orders Identified</a></li>
+                <li><a href="#digital-score"><i class='bx bx-radar'></i> Digital Scorecard</a></li>
+                <li><a href="#business-intelligence"><i class='bx bx-briefcase'></i> Business Intelligence</a></li>
+                <li><a href="#cost-of-friction"><i class='bx bx-trending-down'></i> Why Customers Drop Off</a></li>
+                <li><a href="#revenue-leak"><i class='bx bx-calculator'></i> Revenue Leak Detection</a></li>
+                <li><a href="#growth-opportunities"><i class='bx bx-line-chart'></i> Growth Opportunities</a></li>
+                <li><a href="#retention"><i class='bx bx-recycle'></i> Repeat Customers</a></li>
+                <li><a href="#seo-discovery"><i class='bx bx-search-alt'></i> Search & Discovery</a></li>
+                <li><a href="#upsells"><i class='bx bx-rocket'></i> AFC-Specific Upsells</a></li>
+                <li><a href="#reputation"><i class='bx bx-star'></i> Reputation & Reviews</a></li>
+                <li><a href="#inaction"><i class='bx bx-alarm'></i> Cost of Inaction</a></li>
+                <li><a href="#recommended-system"><i class='bx bx-check-shield'></i> Revenue Growth System</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1>AFC Growth Audit</h1>
+                    <p>Business Intelligence & Revenue Opportunity Report | Confidential | June 2026</p>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section-block active">
+                <div class="overview-grid">
+                    <div class="card lead-score-card" style="border-left: 4px solid var(--accent);">
+                        <h3>Our Focus</h3>
+                        <div class="score-display">
+                            <span class="score-number" style="font-size: 1.5rem; text-align: left; line-height: 1.2;">Fixing Revenue<br>Leaks</span>
+                        </div>
+                        <p class="status high-value">Turning attention into orders.</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-instagram'></i> Current Reach</h3>
+                        <div class="score-display">
+                            <span class="stat-number">513</span>
+                        </div>
+                        <p>Followers | High Local Engagement</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-time'></i> Ordering Process</h3>
+                        <div class="score-display">
+                            <span class="stat-number warning-text">Manual</span>
+                        </div>
+                        <p class="warning-text">Relying on DM & Calls</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-globe'></i> Google Discovery</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">Invisible</span>
+                        </div>
+                        <p class="danger-text">Missing Search Traffic</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-user-plus'></i> Customer Data</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">Zero</span>
+                        </div>
+                        <p class="danger-text">No retention system</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Scorecard Section -->
+            <section id="digital-score" class="section-block">
+                <h2>Digital Presence Scorecard</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    
+                    <div class="card stat-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 1px solid var(--danger);">
+                        <h3>Overall Digital Score</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text" style="font-size: 3rem;">29</span><span style="font-size: 1.5rem; color: var(--text-muted);">/100</span>
+                        </div>
+                        <p class="danger-text">Critical revenue leaks identified. Severe lack of conversion infrastructure.</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Visibility</h3>
+                            <span style="color: var(--warning); font-weight: bold; font-size: 1.2rem;">45/100</span>
+                        </div>
+                        <div style="width: 100%; background: var(--border-color); height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+                            <div style="width: 45%; background: var(--warning); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Good Instagram engagement, but invisible on Google.</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Trust</h3>
+                            <span style="color: var(--success); font-weight: bold; font-size: 1.2rem;">67/100</span>
+                        </div>
+                        <div style="width: 100%; background: var(--border-color); height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+                            <div style="width: 67%; background: var(--success); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Relying on social proof. Needs structured Google reviews.</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Conversion / UX</h3>
+                            <span style="color: var(--danger); font-weight: bold; font-size: 1.2rem;">5/100</span>
+                        </div>
+                        <div style="width: 100%; background: var(--border-color); height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+                            <div style="width: 5%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Manual WhatsApp ordering creates massive friction.</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>SEO Readiness</h3>
+                            <span style="color: var(--danger); font-weight: bold; font-size: 1.2rem;">0/100</span>
+                        </div>
+                        <div style="width: 100%; background: var(--border-color); height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+                            <div style="width: 0%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">No infrastructure. Missing "mandi near me" intent searches.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business & Social Intelligence Section -->
+            <section id="business-intelligence" class="section-block">
+                <h2>Business & Operational Intelligence</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+                    
+                    <div class="card" style="border-top: 4px solid var(--success);">
+                        <h3 style="color: var(--success);"><i class='bx bx-trending-up'></i> Strengths</h3>
+                        <ul class="features">
+                            <li>Strong local brand authority & engagement</li>
+                            <li>Highly appetizing, visual content (Mandi, Fried Chicken)</li>
+                            <li>High video reach (up to 960+ organic local views)</li>
+                            <li>Clearly stated offering (Home Delivery Available)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--danger);">
+                        <h3 style="color: var(--danger);"><i class='bx bx-trending-down'></i> Weaknesses</h3>
+                        <ul class="features">
+                            <li>No website or frictionless digital menu</li>
+                            <li>Zero visibility on Google for "mandi alakode"</li>
+                            <li>100% reliance on manual WhatsApp chats for orders</li>
+                            <li>No Google reviews or local SEO presence</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary);"><i class='bx bx-bulb'></i> Opportunities</h3>
+                        <ul class="features">
+                            <li>Frictionless Online Ordering to capture impulse buyers</li>
+                            <li>First-mover local SEO advantage in Alakode</li>
+                            <li>WhatsApp Automation for instant order confirmations</li>
+                            <li>Building a customer database for weekend broadcast offers</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--warning);">
+                        <h3 style="color: var(--warning);"><i class='bx bx-error-alt'></i> Threats</h3>
+                        <ul class="features">
+                            <li>High order abandonment due to slow manual WhatsApp replies</li>
+                            <li>Competitors capturing high-intent Google search traffic</li>
+                            <li>Over-reliance on Instagram algorithm for visibility</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Customer Journey Analysis</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem;">
+                        <div style="background: rgba(239, 68, 68, 0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <h4 style="color: var(--danger); margin-bottom: 1rem;"><i class='bx bx-x-circle'></i> Current Journey (High Friction)</h4>
+                            <p style="font-weight: 500; margin-bottom: 1rem; line-height: 1.6;">Instagram Reel → Open Profile → Find Number → Save Number → Open WhatsApp → Ask for Menu → Wait for Reply → Order</p>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);"><em>Analysis: Too many steps. High drop-off rate for hungry, impulse buyers.</em></p>
+                        </div>
+                        <div style="background: rgba(34, 197, 94, 0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.2);">
+                            <h4 style="color: var(--success); margin-bottom: 1rem;"><i class='bx bx-check-circle'></i> Suggested Journey (Scalable)</h4>
+                            <p style="font-weight: 500; margin-bottom: 1rem; line-height: 1.6;">Instagram / Google Search → Digital Menu → Add to Cart → 1-Click WhatsApp Order</p>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);"><em>Analysis: Captures intent instantly. Menu and prices are available 24/7 without manual intervention.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cost of Friction / What Happens If Nothing Changes -->
+            <section id="cost-of-friction" class="section-block">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--danger);">What Happens If Nothing Changes?</h2>
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div class="funnel-step">
+                        <strong>Customer sees appetizing reel</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step">
+                        <strong>Gets hungry</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step">
+                        <strong>Opens profile</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step" style="border-color: var(--danger); background: rgba(239,68,68,0.05);">
+                        <strong class="danger-text">No digital menu available</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step" style="border-color: var(--danger); background: rgba(239,68,68,0.05);">
+                        <strong class="danger-text">Must manually type WhatsApp message</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step" style="border-color: var(--danger); background: rgba(239,68,68,0.05);">
+                        <strong class="danger-text">No immediate response (staff is busy)</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step" style="border-color: var(--warning); background: rgba(245,158,11,0.05);">
+                        <strong class="warning-text">Customer loses patience and leaves</strong>
+                    </div>
+                    <div class="funnel-arrow">↓</div>
+                    <div class="funnel-step" style="background: var(--sidebar-bg); border: 2px solid var(--text-main);">
+                        <strong>Orders from a competitor</strong>
+                    </div>
+
+                    <div class="math-box">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-main);">The Cost of Friction</h3>
+                        <div class="math-row">
+                            <span>1 Lost Order</span>
+                            <strong>= ₹400</strong>
+                        </div>
+                        <div class="math-row">
+                            <span>10 Lost Orders / Week</span>
+                            <strong>= ₹4,000</strong>
+                        </div>
+                        <div class="math-row">
+                            <span>40 Lost Orders / Month</span>
+                            <strong>= ₹16,000</strong>
+                        </div>
+                        <div class="math-row">
+                            <span>192 Lost Orders / Year</span>
+                            <strong>= ₹1,92,000+</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revenue Leak Detection -->
+            <section id="revenue-leak" class="section-block">
+                <h2>Revenue Leak Detection</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Conservative estimation of lost revenue due to manual WhatsApp friction and lack of Google visibility.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                        <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">Estimated Missed Daily Orders</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--text-main);">3</div>
+                        <div style="font-size: 0.8rem; color: var(--danger); margin-top: 0.5rem;">Due to friction & drop-offs</div>
+                    </div>
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                        <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">Average Order Value (₹)</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--text-main);">₹500</div>
+                        <div style="font-size: 0.8rem; color: var(--success); margin-top: 0.5rem;">Mandi & Fried Chicken</div>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.05); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--danger); text-align: center;">
+                        <div style="color: var(--danger); font-size: 0.9rem; margin-bottom: 0.5rem; font-weight: 600;">Monthly Revenue Leak</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--danger);">₹45,000</div>
+                    </div>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 1.5rem; border-radius: 8px; border: 2px solid var(--danger); text-align: center;">
+                        <div style="color: var(--danger); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 700;">Annual Revenue Leak</div>
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--danger);">₹5,40,000</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Growth Opportunities -->
+            <section id="growth-opportunities" class="section-block">
+                <h2>Revenue Growth Opportunities</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Where is AFC losing money today, and how do we capture it?</p>
+                
+                <div class="framework-card">
+                    <h3>Opportunity #1: Frictionless Ordering System</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">Customer must DM, wait for a reply, ask for the menu, ask for prices, place the order, and wait again. Many abandon the process.</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">A "One-click Order Now" system with a full menu, add-ons, checkout, and automated WhatsApp confirmation.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">More completed orders, higher average order value, and significantly less staff time wasted on WhatsApp typing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="framework-card" style="margin-top: 1.5rem;">
+                    <h3>Opportunity #2: Interactive Digital Menu</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">The menu only exists in chats. Customers repeatedly ask: "Menu undo?", "Rate undo?", "Family pack undo?"</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">A live digital menu categorized by items, with high-quality photos, transparent pricing, and combo offers.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">Faster customer decisions, less repetitive customer support workload, and natural upselling via photos.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Discovery -->
+            <section id="seo-discovery" class="section-block">
+                <h2>Search & Discovery Opportunities</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <!-- SEO & Local Keywords -->
+                    <div class="card" style="border-top: 4px solid var(--accent);">
+                        <h3><i class='bx bx-search'></i> SEO & Local Keywords</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">High-intent keywords where AFC has zero visibility currently.</p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--border-light); text-align: left;">
+                                    <th style="padding: 0.5rem 0;">Keyword</th>
+                                    <th style="padding: 0.5rem 0;">Search Intent</th>
+                                    <th style="padding: 0.5rem 0;">Difficulty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 0.8rem 0; font-weight: 500;">"mandi alakode"</td>
+                                    <td style="padding: 0.8rem 0; color: var(--success);">High (Ready to Buy)</td>
+                                    <td style="padding: 0.8rem 0;">Low</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 0.8rem 0; font-weight: 500;">"fried chicken near me alakode"</td>
+                                    <td style="padding: 0.8rem 0; color: var(--success);">High (Impulse)</td>
+                                    <td style="padding: 0.8rem 0;">Low</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 0.8rem 0; font-weight: 500;">"food delivery alakode"</td>
+                                    <td style="padding: 0.8rem 0; color: var(--warning);">Medium (Discovery)</td>
+                                    <td style="padding: 0.8rem 0;">Medium</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.8rem 0; font-weight: 500;">"best restaurants in alakode"</td>
+                                    <td style="padding: 0.8rem 0; color: var(--warning);">Medium (Research)</td>
+                                    <td style="padding: 0.8rem 0;">Medium</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Competitor Landscape -->
+                    <div class="card" style="border-top: 4px solid var(--danger);">
+                        <h3><i class='bx bx-map-alt'></i> Competitor Landscape</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">Local market analysis and first-mover advantage opportunity.</p>
+                        <ul class="features" style="margin-top: 1rem;">
+                            <li style="margin-bottom: 1rem;"><strong><i class='bx bx-store-alt'></i> Local Hotels & Bakeries:</strong> Dominating generic food searches by default simply because they have a Google Business profile.</li>
+                            <li style="margin-bottom: 1rem;"><strong><i class='bx bx-block danger-text'></i> Digital Vacuum:</strong> Almost no local competitor has a fast, mobile-friendly online ordering system.</li>
+                            <li><strong><i class='bx bx-trophy success-text'></i> First-Mover Advantage:</strong> By launching a dedicated ordering website and optimizing local SEO, AFC can instantly capture the #1 spot for all high-intent food delivery searches in the Alakode/Karuvanchal region.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="framework-card">
+                    <h3>Opportunity #3: Google Discovery Engine</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">You are only on Instagram. When hungry customers search Google for "Mandi Alakode" or "Food Delivery Alakode", they don't find AFC.</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">Google Business Optimization, Local SEO targeted pages, and a structured online menu.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">Acquiring new customers daily without spending money on ads. More phone calls, more map visits.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Repeat Customers -->
+            <section id="retention" class="section-block">
+                <h2>Repeat Customer & Marketing Opportunities</h2>
+                
+                <div class="framework-card">
+                    <h3>Opportunity #4: Repeat Customer Engine</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">A customer orders once. They are gone forever. There is no system to follow up and bring them back.</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">A Customer Database that automatically logs names, numbers, and order history for future WhatsApp campaigns.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">Higher repeat order rate, better customer retention, and vastly lower customer acquisition costs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="framework-card" style="margin-top: 1.5rem;">
+                    <h3>Opportunity #5: Smart Promotions System</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">Every promotion must be manually posted to Instagram, hoping the algorithm shows it to your followers.</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">A coupon engine with WhatsApp broadcasts for weekend combo campaigns and festival specials.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">Faster promotion launches and an immediate surge in order volume during typically slow days.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reputation & Reviews -->
+            <section id="reputation" class="section-block">
+                <h2>Reputation & Analytics Opportunities</h2>
+
+                <div class="framework-card">
+                    <h3>Opportunity #6: Review Growth Engine</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">Happy customers eat and leave. There is no system requesting a review to build your public reputation.</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">Automated WhatsApp review requests sent after an order is completed, plus physical QR codes.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">More local trust, better ranking on Google Maps, resulting in more new customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="framework-card" style="margin-top: 1.5rem;">
+                    <h3>Opportunity #7: Owner Intelligence Dashboard</h3>
+                    <div class="problem-impact-solution">
+                        <div class="pis-box pis-problem">
+                            <strong style="color: var(--danger);"><i class='bx bx-error-circle'></i> The Problem</strong>
+                            <p style="margin-top: 0.5rem;">Business runs on guesswork. What's the best-selling item? Peak time? Repeat customer percentage?</p>
+                        </div>
+                        <div class="pis-box pis-opportunity">
+                            <strong style="color: var(--accent);"><i class='bx bx-bulb'></i> The Opportunity</strong>
+                            <p style="margin-top: 0.5rem;">A central dashboard tracking total orders, revenue, top products, customer growth, and campaign performance.</p>
+                        </div>
+                        <div class="pis-box pis-impact">
+                            <strong style="color: var(--success);"><i class='bx bx-trending-up'></i> Expected Impact</strong>
+                            <p style="margin-top: 0.5rem;">Data-driven decision making, better inventory planning, and highly targeted marketing.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AFC-Specific Upsells -->
+            <section id="upsells" class="section-block">
+                <h2>AFC-Specific Revenue Upsells</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">These are specific engines designed to increase order value and frequency.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div class="card" style="border-top: 4px solid var(--accent);">
+                        <h3>Digital Menu System</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.05); border-left: 3px solid var(--danger);">
+                            <strong>Current Problem:</strong> Customer asks "Menu undo?", "Rate undo?", "Family pack undo?"
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.05); border-left: 3px solid var(--success);">
+                            <strong>Solution:</strong> Live interactive menu. Fast ordering.
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--warning);">
+                        <h3>Combo Builder</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.05); border-left: 3px solid var(--danger);">
+                            <strong>Current:</strong> Customer orders one single item.
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.05); border-left: 3px solid var(--success);">
+                            <strong>Solution:</strong> Suggest "Mandi + Pepsi", "Family Combo".<br><br><strong>Impact:</strong> Higher order value.
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--primary);">
+                        <h3>Loyalty Program</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.05); border-left: 3px solid var(--primary);">
+                            <strong>Example:</strong> "Buy 5 Mandis, Get 1 Free" or "Spend ₹3000, Get ₹300 Credit".<br><br>
+                            <em style="font-size: 0.9rem;">Restaurant loyalty programs encourage repeat visits and higher lifetime value.</em>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--success);">
+                        <h3>Birthday Campaigns</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.05); border-left: 3px solid var(--success);">
+                            <strong>Happy Birthday 🎉</strong><br>
+                            "Enjoy 15% Off Today at AFC!"<br><br>
+                            <em style="font-size: 0.9rem;">100% Automatic. Drives guaranteed high-ticket family orders.</em>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid #8b5cf6;">
+                        <h3>Festival Campaign Engine</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(139, 92, 246, 0.05); border-left: 3px solid #8b5cf6;">
+                            <strong>For:</strong> Onam, Eid, Christmas, Ramadan, New Year.<br><br>
+                            <em style="font-size: 0.9rem;">Pre-built promotional blasts to your customer database.</em>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid #f97316;">
+                        <h3>Google Review Engine</h3>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(249, 115, 22, 0.05); border-left: 3px solid #f97316;">
+                            <strong>After order:</strong> "Thank you ❤️ Leave a review and get a free soft drink on your next visit."<br><br>
+                            <em style="font-size: 0.9rem;">Automated local SEO domination.</em>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cost of Inaction & Urgency -->
+            <section id="inaction" class="section-block">
+                <h2 style="text-align: center; color: var(--danger); margin-bottom: 2rem;">The Cost of Inaction</h2>
+                
+                <div style="background: rgba(239, 68, 68, 0.05); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--danger); text-align: center; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; box-shadow: var(--shadow-soft);">
+                    <h3 style="color: var(--danger); margin-bottom: 1.5rem;">If just 2 customers per day abandon ordering because of friction:</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 400px; margin: 0 auto; text-align: left; font-size: 1.2rem; font-weight: 500;">
+                        <div>₹400 average order</div>
+                        <div>× 2 customers/day</div>
+                        <div style="border-top: 1px solid rgba(239, 68, 68, 0.3); padding-top: 1rem;">= ₹800/day</div>
+                        <div style="border-top: 1px solid rgba(239, 68, 68, 0.3); padding-top: 1rem;">= ₹24,000/month</div>
+                        <div style="grid-column: 1 / -1; background: var(--danger); color: white; text-align: center; padding: 1.5rem; border-radius: 8px; font-size: 2rem; font-weight: 800; margin-top: 1rem; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);">
+                            = ₹2.8 Lakhs / year
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="card" style="border-top: 4px solid var(--warning); background: rgba(245, 158, 11, 0.05);">
+                        <h3 style="color: var(--warning);"><i class='bx bx-calendar-event'></i> Revenue-Based Urgency</h3>
+                        <p style="margin-top: 1rem; margin-bottom: 1rem;"><strong>Before Monsoon & Festival Season</strong><br>The next 90 days contain:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--text-muted); line-height: 1.6;">
+                            <li>Monsoon family orders</li>
+                            <li>Weekend dining spikes</li>
+                            <li>Festival traffic</li>
+                            <li>Holiday gatherings</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; font-weight: 500;">Businesses that establish their ordering and retention systems before this demand period are positioned to capture significantly more repeat orders.</p>
+                    </div>
+
+                    <div class="card" style="border-top: 4px solid var(--accent); background: rgba(59, 130, 246, 0.05);">
+                        <h3 style="color: var(--accent);"><i class='bx bx-stopwatch'></i> Capacity Urgency</h3>
+                        <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.6;">We only onboard <strong>2 restaurant growth projects</strong> at a time to ensure proper implementation, menu setup, ordering workflows, and customer retention systems.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revenue Growth System Investment -->
+            <section id="recommended-system" class="section-block">
+                <h2>Revenue Growth System Investment</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 800px; font-weight: 500;">Current Problem → Solution Implemented → Expected Business Outcome → Investment</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card" style="border-top: 4px solid var(--text-muted);">
+                        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; line-height: 1.3;">Essential Order System</h3>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.5rem;">₹19,999 - ₹24,999</div>
+                        <ul class="features" style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                            <li>✅ Mobile-first restaurant website</li>
+                            <li>✅ Interactive food menu</li>
+                            <li>✅ One-click WhatsApp ordering</li>
+                            <li>✅ Google Maps integration</li>
+                            <li>✅ Review showcase</li>
+                            <li>✅ Delivery information</li>
+                            <li>✅ Contact system</li>
+                            <li>✅ Basic Local SEO</li>
+                        </ul>
+                        <div style="padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
+                            <strong style="color: var(--accent);">Business Impact:</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">Easier ordering, More trust, Faster customer decisions, Less WhatsApp back-and-forth.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card recommended">
+                        <div class="recommended-badge">⭐ Growth System</div>
+                        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; line-height: 1.3;">Growth System</h3>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-bottom: 1.5rem;">₹34,999 - ₹44,999</div>
+                        <p style="font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">Everything in Essential +</p>
+                        <ul class="features" style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                            <li>✅ Online food ordering</li>
+                            <li>✅ Combo & upsell engine</li>
+                            <li>✅ Customer database</li>
+                            <li>✅ Google Business optimization</li>
+                            <li>✅ Local SEO pages</li>
+                            <li>✅ Review generation system</li>
+                            <li>✅ Offer management</li>
+                            <li>✅ WhatsApp automation</li>
+                        </ul>
+                        <div style="padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px;">
+                            <strong style="color: var(--accent);">Business Impact:</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">More direct orders, More repeat customers, Larger order values, Better Google visibility.</span>
+                            <p style="font-size: 0.8rem; margin-top: 0.5rem; font-style: italic;">Direct ordering systems increase convenience and help restaurants own customer data.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-card" style="border-top: 4px solid var(--success);">
+                        <h3 style="margin-top: 0.5rem; margin-bottom: 0.5rem; line-height: 1.3;">Revenue Engine ⭐⭐⭐</h3>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--success); margin-bottom: 1.5rem;">₹59,999 - ₹79,999</div>
+                        <p style="font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 0.5rem;">Everything in Growth +</p>
+                        <ul class="features" style="margin-bottom: 1.5rem; font-size: 0.95rem;">
+                            <li>✅ Loyalty rewards system</li>
+                            <li>✅ Customer dashboard</li>
+                            <li>✅ Sales analytics</li>
+                            <li>✅ Festival campaign system</li>
+                            <li>✅ Coupon engine</li>
+                            <li>✅ Automated review requests</li>
+                            <li>✅ Repeat customer campaigns</li>
+                            <li>✅ Monthly growth reports</li>
+                        </ul>
+                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.05); border-radius: 8px;">
+                            <strong style="color: var(--success);">Business Impact:</strong><br>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">Higher retention, More frequent orders, Predictable revenue.</span>
+                            <p style="font-size: 0.8rem; margin-top: 0.5rem; font-style: italic;">Loyalty programs are proven to increase visit frequency and lifetime spending.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="closer-box" style="text-align: center; margin-top: 3rem; background: var(--sidebar-bg); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border-light);">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent);">Next Step: System Selection</h3>
+                    <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-main); line-height: 1.5;">Let's align on the Revenue Growth System that matches your current operational capacity and growth targets.</p>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>Growth Intelligence Report • AFC Alakode • Generated June 2026</p>
+                <p class="data-sources">Prepared exclusively for AFC Alakode Leadership Team</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section-block');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
