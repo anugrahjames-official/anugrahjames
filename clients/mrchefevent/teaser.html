@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Intelligence Dashboard | Mr Chef's Event</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --sidebar-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-main: #09090B;
+            --text-muted: #52525B;
+            --accent: #2563EB;
+            --accent-hover: #1D4ED8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border-light: #E4E4E7;
+            --font: 'Geist Sans', -apple-system, sans-serif;
+            --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-light);
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 3rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2.5rem 4rem;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-block {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+            padding-bottom: 4rem;
+        }
+
+        .section-block.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.75rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .overview-grid, .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .score-display {
+            margin: 1.25rem 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--success);
+            line-height: 1;
+        }
+
+        .score-max {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status.high-value {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .summary-card h3, .swot-grid .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-card ul, .swot-grid .card ul {
+            list-style: none;
+            line-height: 1.6;
+        }
+
+        .summary-card li, .swot-grid .card li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .summary-card li::before, .swot-grid .card li::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        .swot-grid .strength li::before { color: var(--success); }
+        .swot-grid .weakness li::before { color: var(--danger); }
+        .swot-grid .threat li::before { color: var(--warning); }
+
+        .danger-text { color: var(--danger); }
+        .warning-text { color: var(--warning); }
+        .success-text { color: var(--success); }
+        .accent-text { color: var(--accent); }
+
+        /* Leaks */
+        .leaks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .leak-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--danger);
+            border: 1px solid var(--border-light);
+            border-left-width: 5px;
+        }
+
+        .leak-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .leak-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.critical { background: var(--danger); color: white; }
+        .badge.high { background: var(--warning); color: #000; }
+        .badge.medium-high { background: #d97706; color: white; }
+        .badge.success { background: var(--success); color: white; }
+        .badge.warning { background: var(--warning); color: #000; }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+        }
+
+        .data-table th, .data-table td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            background-color: var(--sidebar-bg);
+        }
+
+        /* Commercials */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--accent);
+            background: var(--bg-color);
+            box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.15);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 0.35rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0 2.5rem;
+            color: var(--accent);
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .features li {
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-main);
+        }
+
+        .features li::before {
+            content: '\eb80';
+            font-family: 'boxicons';
+            color: var(--success);
+            font-size: 1.25rem;
+            margin-top: 2px;
+        }
+
+        /* Helpers */
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .impact-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--sidebar-bg);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .impact-box strong { color: var(--text-main); }
+        .warning-border { border-left-color: var(--warning) !important; }
+        .insight-box {
+            padding: 1.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .plan-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .timeline {
+            color: var(--text-muted);
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            margin-top: 2rem;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+        .btn-outline:hover { background: rgba(59, 130, 246, 0.1); }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .opp-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .opp-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .closer-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+        .closer-box h3 { margin-bottom: 1rem; color: var(--accent); }
+        .closer-box p { font-size: 1.25rem; font-style: italic; color: var(--text-main); }
+        
+        .dashboard-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .data-sources {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        /* Locked Sections styles */
+        .locked-section {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+        .locked-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+        .lock-message {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 400px;
+        }
+        .lock-message i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .lock-message h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .lock-message p {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../images/primary-logo.png" alt="Obsidius Studios" style="max-width: 180px; height: auto; display: block;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Overview</a></li>
+                <li><a href="#digital-score"><i class='bx bx-radar'></i> Digital Score</a></li>
+                <li><a href="#intelligence"><i class='bx bx-bulb'></i> Intelligence</a></li>
+                <li><a href="#revenue-leaks"><i class='bx bx-error'></i> Revenue Leaks</a></li>
+                <li><a href="#seo-opportunity"><i class='bx bx-search-alt'></i> Local SEO</a></li>
+                <li><a href="#strategy"><i class='bx bx-line-chart'></i> Cost of Inaction</a></li>
+                <li><a href="#marketing-engine"><i class='bx bx-broadcast'></i> Marketing Engine</a></li>
+                <li><a href="#commercials"><i class='bx bx-wallet'></i> Growth Investment</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1>Growth Intelligence Dashboard</h1>
+                    <p>Powered by Obsidius Studios | Prepared for Mr Chef's Event & Catering | Confidential</p>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section-block active">
+                <div class="overview-grid">
+                    <div class="card lead-score-card">
+                        <h3>Lead Score</h3>
+                        <div class="score-display">
+                            <span class="score-number">78</span><span class="score-max">/100</span>
+                        </div>
+                        <p class="status high-value">Premium Opportunity</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-instagram'></i> Instagram Authority</h3>
+                        <div class="score-display">
+                            <span class="stat-number">10.6K</span>
+                        </div>
+                        <p>Followers | 247 Premium Posts</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-movie-play'></i> Organic Reach</h3>
+                        <div class="score-display">
+                            <span class="stat-number">69.4K</span>
+                        </div>
+                        <p>Top Reel Views | 4.0K+ Likes</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-globe'></i> Website Asset</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">❌ None</span>
+                        </div>
+                        <p class="danger-text">Critical conversion barrier</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-trending-up'></i> Reputation Score</h3>
+                        <div class="score-display">
+                            <span class="stat-number accent-text">5.0 ⭐</span>
+                        </div>
+                        <p>44 verified Google reviews</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Score Section -->
+            <section id="digital-score" class="section-block">
+                <h2>Digital Presence Dashboard</h2>
+                <div class="score-overview">
+                    <h3>Overall Digital Score: <span class="danger-text">32 / 100</span></h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">↓ Massive gap between your actual premium service and your digital accessibility.</p>
+                </div>
+
+                <div class="overview-grid" style="margin-top: 2rem;">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--accent);">Brand & Content Quality</strong>
+                            <strong>27 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 90%; background: var(--accent); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Online Reach (Search)</strong>
+                            <strong class="danger-text">2 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 6%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Booking Accessibility</strong>
+                            <strong class="danger-text">1 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 5%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Digital Trust Signals</strong>
+                            <strong class="danger-text">2 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 10%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 1.5rem;">
+                    <strong>💡 High Opportunity Score:</strong> You already have the hardest parts figured out: a 5.0 reputation, 10.6K followers, and premium quality content. All you are missing is the digital infrastructure to convert those eyeballs into high-ticket bookings seamlessly.
+                </div>
+            </section>
+
+            <!-- Intelligence Section (SWOT & Social) -->
+            <section id="intelligence" class="section-block locked-section">
+                <div class="lock-message">
+                    <i class='bx bxs-lock-alt'></i>
+                    <h3>Intelligence Locked</h3>
+                    <p>Internal audience data and business intelligence is reserved for the strategy call.</p>
+                </div>
+                <h2>Business & Social Intelligence</h2>
+                <div class="swot-grid">
+                    <div class="card"><div style="height: 15px; width: 50%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 60%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 80%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 75%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 40%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                    <div class="card"><div style="height: 15px; width: 55%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div><div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 80%; background: #f1f5f9; margin-bottom: 8px;"></div><div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 8px;"></div></div>
+                </div>
+            </section>
+
+            <!-- Revenue Leaks Section -->
+            <section id="revenue-leaks" class="section-block locked-section">
+                <div class="lock-message" style="border-color: var(--danger);">
+                    <i class='bx bx-error-circle' style="color: var(--danger);"></i>
+                    <h3 class="danger-text">3 Revenue Leaks Detected</h3>
+                    <p>We've quantified your exact monthly revenue loss. Full breakdown revealed during audit.</p>
+                </div>
+                <h2>Revenue Leak Detection</h2>
+                <div class="leaks-list">
+                    <div class="leak-card">
+                        <div style="height: 20px; width: 60%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div>
+                        <div style="height: 10px; width: 100%; background: #f1f5f9; margin-bottom: 8px;"></div>
+                        <div style="height: 10px; width: 90%; background: #f1f5f9; margin-bottom: 20px;"></div>
+                        <div style="height: 40px; width: 100%; background: rgba(239, 68, 68, 0.1); border-radius: 4px;"></div>
+                    </div>
+                    <div class="leak-card">
+                        <div style="height: 20px; width: 70%; background: #e2e8f0; margin-bottom: 15px; border-radius: 4px;"></div>
+                        <div style="height: 10px; width: 95%; background: #f1f5f9; margin-bottom: 8px;"></div>
+                        <div style="height: 10px; width: 85%; background: #f1f5f9; margin-bottom: 20px;"></div>
+                        <div style="height: 40px; width: 100%; background: rgba(239, 68, 68, 0.1); border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategy Section -->
+            <section id="strategy" class="section-block locked-section" style="min-height: 400px;">
+                <div class="lock-message">
+                    <i class='bx bx-line-chart'></i>
+                    <h3>Strategic Roadmap Locked</h3>
+                    <p>The solution for the revenue leaks is reserved for the Discovery Call.</p>
+                </div>
+            </section>
+
+            <!-- Marketing Engine Section -->
+            <section id="marketing-engine" class="section-block locked-section" style="min-height: 400px;">
+                <div class="lock-message">
+                    <i class='bx bx-broadcast'></i>
+                    <h3>Marketing Engine Locked</h3>
+                    <p>The system for turning every wedding into an automated marketing engine is revealed during the Discovery Call.</p>
+                </div>
+            </section>
+
+            <!-- Commercials Section -->
+            <section id="commercials" class="section-block locked-section" style="min-height: 500px;">
+                <div class="lock-message">
+                    <i class='bx bx-wallet'></i>
+                    <h3>Growth Packages Locked</h3>
+                    <p>Investment options and Wedding Season Priority Bonuses are unlocked after we confirm partnership fit.</p>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>Growth Intelligence Report • Mr Chef's Event • Generated June 2026</p>
+                <p class="data-sources">Data Sources: Instagram @mrchefevent (247 posts) | 44 Google Reviews | Local SEO Competitive Analysis</p>
+            </footer>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section-block');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active from all
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active to clicked
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

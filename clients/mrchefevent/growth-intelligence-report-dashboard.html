@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Intelligence Dashboard | Mr Chef's Event</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --sidebar-bg: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-main: #09090B;
+            --text-muted: #52525B;
+            --accent: #2563EB;
+            --accent-hover: #1D4ED8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border-light: #E4E4E7;
+            --font: 'Geist Sans', -apple-system, sans-serif;
+            --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-light);
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 3rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .nav-links a i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2.5rem 4rem;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .section-block {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+            padding-bottom: 4rem;
+        }
+
+        .section-block.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.75rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .overview-grid,
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .score-display {
+            margin: 1.25rem 0;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--success);
+            line-height: 1;
+        }
+
+        .score-max {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status.high-value {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .summary-card h3,
+        .swot-grid .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-card ul,
+        .swot-grid .card ul {
+            list-style: none;
+            line-height: 1.6;
+        }
+
+        .summary-card li,
+        .swot-grid .card li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .summary-card li::before,
+        .swot-grid .card li::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        .swot-grid .strength li::before {
+            color: var(--success);
+        }
+
+        .swot-grid .weakness li::before {
+            color: var(--danger);
+        }
+
+        .swot-grid .threat li::before {
+            color: var(--warning);
+        }
+
+        .danger-text {
+            color: var(--danger);
+        }
+
+        .warning-text {
+            color: var(--warning);
+        }
+
+        .success-text {
+            color: var(--success);
+        }
+
+        .accent-text {
+            color: var(--accent);
+        }
+
+        /* Leaks */
+        .leaks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .leak-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--danger);
+            border: 1px solid var(--border-light);
+            border-left-width: 5px;
+        }
+
+        .leak-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .leak-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.critical {
+            background: var(--danger);
+            color: white;
+        }
+
+        .badge.high {
+            background: var(--warning);
+            color: #000;
+        }
+
+        .badge.medium-high {
+            background: #d97706;
+            color: white;
+        }
+
+        .badge.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .badge.warning {
+            background: var(--warning);
+            color: #000;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            background-color: var(--sidebar-bg);
+        }
+
+        /* Commercials */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--accent);
+            background: var(--bg-color);
+            box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.15);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 0.35rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0 2.5rem;
+            color: var(--accent);
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .features li {
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-main);
+        }
+
+        .features li::before {
+            content: '\eb80';
+            font-family: 'boxicons';
+            color: var(--success);
+            font-size: 1.25rem;
+            margin-top: 2px;
+        }
+
+        /* Helpers */
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .impact-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--sidebar-bg);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .impact-box strong {
+            color: var(--text-main);
+        }
+
+        .warning-border {
+            border-left-color: var(--warning) !important;
+        }
+
+        .insight-box {
+            padding: 1.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .plan-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline {
+            color: var(--text-muted);
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            margin-top: 2rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .opp-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .opp-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .closer-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .closer-box h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .closer-box p {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        .dashboard-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .data-sources {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../../images/primary-logo.png" alt="Obsidius Studios" style="max-width: 180px; height: auto; display: block;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class='bx bx-grid-alt'></i> Overview</a></li>
+                <li><a href="#digital-score"><i class='bx bx-radar'></i> Digital Score</a></li>
+                <li><a href="#intelligence"><i class='bx bx-bulb'></i> Intelligence</a></li>
+                <li><a href="#revenue-leaks"><i class='bx bx-error'></i> Revenue Leaks</a></li>
+                <li><a href="#seo-opportunity"><i class='bx bx-search-alt'></i> Local SEO</a></li>
+                <li><a href="#strategy"><i class='bx bx-line-chart'></i> Cost of Inaction</a></li>
+                <li><a href="#marketing-engine"><i class='bx bx-broadcast'></i> Marketing Engine</a></li>
+                <li><a href="#commercials"><i class='bx bx-wallet'></i> Growth Investment</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1>Growth Intelligence Dashboard</h1>
+                    <p>Powered by Obsidius Studios | Prepared for Mr Chef's Event & Catering | Confidential</p>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="section-block active">
+                <div class="overview-grid">
+                    <div class="card lead-score-card">
+                        <h3>Lead Score</h3>
+                        <div class="score-display">
+                            <span class="score-number">78</span><span class="score-max">/100</span>
+                        </div>
+                        <p class="status high-value">Premium Opportunity</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bxl-instagram'></i> Instagram Authority</h3>
+                        <div class="score-display">
+                            <span class="stat-number">10.6K</span>
+                        </div>
+                        <p>Followers | 247 Premium Posts</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-movie-play'></i> Organic Reach</h3>
+                        <div class="score-display">
+                            <span class="stat-number">69.4K</span>
+                        </div>
+                        <p>Top Reel Views | 4.0K+ Likes</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-globe'></i> Website Asset</h3>
+                        <div class="score-display">
+                            <span class="stat-number danger-text">❌ None</span>
+                        </div>
+                        <p class="danger-text">Critical conversion barrier</p>
+                    </div>
+
+                    <div class="card stat-card">
+                        <h3><i class='bx bx-trending-up'></i> Reputation Score</h3>
+                        <div class="score-display">
+                            <span class="stat-number accent-text">5.0 ⭐</span>
+                        </div>
+                        <p>44 verified Google reviews</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Score Section -->
+            <section id="digital-score" class="section-block">
+                <h2>Digital Presence Dashboard</h2>
+                <div class="score-overview">
+                    <h3>Overall Digital Score: <span class="danger-text">32 / 100</span></h3>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">↓ Massive gap between your actual premium
+                        service and your digital accessibility.</p>
+                </div>
+
+                <div class="overview-grid" style="margin-top: 2rem;">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--accent);">Brand & Content Quality</strong>
+                            <strong>27 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 90%; background: var(--accent); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">Cinematic reels,
+                            excellent presentation.</p>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Online Reach (Search)</strong>
+                            <strong class="danger-text">2 / 30</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 6%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">Invisible for
+                            "wedding catering kerala".</p>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Booking Accessibility</strong>
+                            <strong class="danger-text">1 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 5%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">No digital menu,
+                            packages, or automated flow.</p>
+                    </div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: var(--danger);">Digital Trust Signals</strong>
+                            <strong class="danger-text">2 / 20</strong>
+                        </div>
+                        <div style="width: 100%; background: var(--border-light); height: 8px; border-radius: 4px;">
+                            <div style="width: 10%; background: var(--danger); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">Great reviews, but
+                            not leveraged on a website.</p>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 1.5rem;">
+                    <strong>💡 High Opportunity Score:</strong> You already have the hardest parts figured out: a 5.0
+                    reputation, 10.6K followers, and premium quality content. All you are missing is the digital
+                    infrastructure to convert those eyeballs into high-ticket bookings seamlessly.
+                </div>
+            </section>
+
+            <!-- Intelligence Section (SWOT & Social) -->
+            <section id="intelligence" class="section-block">
+                <h2>Business & Social Intelligence</h2>
+                <div class="swot-grid">
+                    <div class="card strength">
+                        <h3 class="success-text"><i class='bx bx-check-shield'></i> Strengths</h3>
+                        <ul>
+                            <li>Exceptional event photography & cinematic reels</li>
+                            <li>Verified 5.0 rating on Google (44 genuine reviews)</li>
+                            <li>Premium positioning: "Your Event Our Passion"</li>
+                            <li>Massive organic Instagram reach (10.6K followers)</li>
+                        </ul>
+                    </div>
+                    <div class="card weakness">
+                        <h3 class="danger-text"><i class='bx bx-x-circle'></i> Weaknesses</h3>
+                        <ul>
+                            <li>No professional website to anchor the brand</li>
+                            <li>No digital menu or package brochures</li>
+                            <li>Zero visibility on Google for high-intent searches</li>
+                            <li>Forced manual DM/WhatsApp for every single inquiry</li>
+                        </ul>
+                    </div>
+                    <div class="card opportunity">
+                        <h3 class="accent-text"><i class='bx bx-trending-up'></i> Opportunities</h3>
+                        <ul>
+                            <li>Capturing high-intent Google traffic for Kerala weddings</li>
+                            <li>Showcasing the 5.0 rating on a conversion-focused landing page</li>
+                            <li>WhatsApp Business automation for instant premium quotes</li>
+                            <li>Dominating the Karuvanchal & Kannur local SEO</li>
+                        </ul>
+                    </div>
+                    <div class="card threat">
+                        <h3 class="warning-text"><i class='bx bx-error-alt'></i> Threats</h3>
+                        <ul>
+                            <li>High-ticket clients bypassing you for caterers with professional websites</li>
+                            <li>Lost inquiries due to manual WhatsApp bottlenecks during busy hours</li>
+                            <li>Instagram algorithm changes tanking organic reach</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Customer Journey Analysis</h3>
+                <div class="grid-2-col">
+                    <div class="card"
+                        style="border-left: 4px solid var(--danger); background: rgba(239, 68, 68, 0.05);">
+                        <h4 style="margin-bottom: 1rem; color: var(--danger);"><i class='bx bx-block'></i> Current
+                            Journey (High Friction)</h4>
+                        <div
+                            style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span>Sees Reel</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="danger-text">Calls/DMs for Menu</span> <i
+                                class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="danger-text">Waits for Reply</span> <i
+                                class='bx bx-right-arrow-alt text-muted'></i>
+                            <span>Maybe Books</span>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">High-end clients (especially corporate
+                            and luxury weddings) expect to see packages and professional presentation before talking to
+                            sales. Friction kills conversions.</p>
+                    </div>
+                    <div class="card"
+                        style="border-left: 4px solid var(--success); background: rgba(16, 185, 129, 0.05);">
+                        <h4 style="margin-bottom: 1rem; color: var(--success);"><i class='bx bx-rocket'></i> Suggested
+                            Journey (Scalable & Premium)</h4>
+                        <div
+                            style="font-size: 1.1rem; font-weight: 500; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span>Google / Instagram</span> <i class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="success-text">Premium Website</span> <i
+                                class='bx bx-right-arrow-alt text-muted'></i>
+                            <span class="success-text">Views Packages</span> <i
+                                class='bx bx-right-arrow-alt text-muted'></i>
+                            <span>Automated WhatsApp Booking</span>
+                        </div>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">Captures intent 24/7. Educates the client
+                            with menus and prices *before* they talk to you, positioning you as a premium service
+                            provider.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revenue Leaks Section -->
+            <section id="revenue-leaks" class="section-block">
+                <h2>Revenue Leak Detection</h2>
+                <div class="leaks-list">
+                    <div class="leak-card">
+                        <div class="leak-header">
+                            <h3>1. Missing Local Search Traffic</h3>
+                            <span class="badge critical">CRITICAL</span>
+                        </div>
+                        <p>There are hundreds of monthly Google searches for "wedding catering kerala" and "best
+                            caterers in kannur". Because Mr Chef has no website, your visibility in those searches is
+                            <strong>0%</strong>. You are completely invisible to active buyers searching on Google right
+                            now.</p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);">
+                            <strong class="danger-text"><i class='bx bx-trending-down'></i> Active Revenue
+                                Bleed:</strong> Missing just 2 premium wedding bookings a month due to zero Google
+                            presence costs you lakhs in lost revenue.
+                        </div>
+                    </div>
+                    <div class="leak-card">
+                        <div class="leak-header">
+                            <h3>2. No Digital Menu or Professional Packages</h3>
+                            <span class="badge high">HIGH</span>
+                        </div>
+                        <p>Potential clients must DM or call just to see what you offer. In 2026, premium clients expect
+                            to browse beautifully designed packages, menus, and prices before talking to sales. A lack
+                            of digital infrastructure hurts your "premium" positioning.</p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05);">
+                            <strong class="danger-text"><i class='bx bx-trending-down'></i> Active Revenue
+                                Bleed:</strong> High drop-off rate from busy event planners and brides who want
+                            immediate access to menus.
+                        </div>
+                    </div>
+                    <div class="leak-card warning-border">
+                        <div class="leak-header">
+                            <h3>3. Manual WhatsApp Bottleneck</h3>
+                            <span class="badge medium-high">MEDIUM-HIGH</span>
+                        </div>
+                        <p>Every inquiry requires a manual response. Without automated WhatsApp greetings or a link to a
+                            digital brochure/form, inquiries slip through the cracks during busy event hours.</p>
+                        <div class="impact-box"
+                            style="border-left-color: var(--warning); background: rgba(245, 158, 11, 0.05);">
+                            <strong class="warning-text"><i class='bx bx-error-circle'></i> Growth Cap:</strong> Your
+                            ability to scale is limited by how fast you can manually reply to Instagram DMs and calls
+                            while managing an event.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEO Section -->
+            <section id="seo-opportunity" class="section-block">
+                <h2>Missed Local Searches</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">These are active, high-intent customers
+                    looking for a premium caterer right now. Without a website, they are going to your competitors.</p>
+                <div class="card table-container mb-4">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>High-Intent Keyword</th>
+                                <th>Location Context</th>
+                                <th>Competitor Signal</th>
+                                <th>Mr Chef Visibility</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>"Wedding Catering Kerala"</td>
+                                <td>High-Ticket intent</td>
+                                <td><span class="badge high">High</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Catering Service Karuvanchal"</td>
+                                <td>Hyper-local</td>
+                                <td><span class="badge warning">Low</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Best Caterers in Kannur"</td>
+                                <td>Regional</td>
+                                <td><span class="badge high">Medium</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Event Management Kannur"</td>
+                                <td>Corporate/Events</td>
+                                <td><span class="badge high">High</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                            <tr>
+                                <td>"Premium Buffet Catering Near Me"</td>
+                                <td>Proximity search</td>
+                                <td><span class="badge warning">Competitor detected</span></td>
+                                <td><span class="danger-text">0% (Not Found)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insight-box">
+                    <strong>Competitor Signal Detected:</strong> Competitors with far less Instagram engagement are
+                    stealing Google traffic because they have professional websites indexed on search engines.
+                </div>
+            </section>
+
+            <!-- Strategy Section -->
+            <section id="strategy" class="section-block">
+                <div class="strategy-full">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">The Cost of Inaction (Why Now?)</h2>
+                    <div class="opportunity-list grid-2-col">
+                        <div class="opp-item card">
+                            <h4><i class='bx bx-calendar-event success-text'></i> Wedding Season Approaching</h4>
+                            <p>The busiest time of the year for catering is coming up. Planners are researching *right
+                                now*. If your premium infrastructure isn't live, they will book competitors who look
+                                more professional online.</p>
+                        </div>
+                        <div class="opp-item card">
+                            <h4><i class='bx bx-search-alt accent-text'></i> You Already Have The Assets</h4>
+                            <p>You have incredible photos, 10K+ followers, and 5.0 star reviews. Most businesses pay
+                                lakhs to get this. All you need is the "conversion engine" (a website) to turn those
+                                assets into direct bookings.</p>
+                        </div>
+                    </div>
+
+                    <div class="closer-box" style="text-align: center; margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent);">The Bottom Line</h3>
+                        <p style="font-size: 1.5rem; font-style: italic; color: var(--text-main);">"You already deliver
+                            premium hospitality and cinematic events.<br>Let's make sure the people searching for a
+                            premium caterer can actually book you."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketing Engine Section -->
+            <section id="marketing-engine" class="section-block">
+                <div class="strategy-full">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">The Growth Flywheel: Every Event a Marketing Engine</h2>
+                    
+                    <div class="opportunity-list grid-2-col" style="margin-bottom: 3rem;">
+                        <div class="opp-item card" style="border-top: 4px solid var(--accent);">
+                            <h4><i class='bx bx-search-alt accent-text'></i> 1. Digital Trust & Discovery</h4>
+                            <p><strong>Outcome:</strong> More people discover Mr Chef online and become inquiries.</p>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;"><strong>Includes:</strong> Premium website, Local SEO, Google optimization, WhatsApp conversion, Service pages, Gallery, Testimonials, Faster inquiry process.</p>
+                            <div class="impact-box" style="margin-top: 1rem; border-left: 3px solid var(--accent);">
+                                <strong class="accent-text">Result:</strong> People searching for catering services find Mr Chef first, not competitors. Not just another completed order.
+                            </div>
+                        </div>
+                        
+                        <div class="opp-item card" style="border-top: 4px solid var(--success);">
+                            <h4><i class='bx bx-party success-text'></i> 2. Digital Wedding Experience</h4>
+                            <p><strong>Outcome:</strong> Every wedding markets Mr Chef automatically.</p>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Instead of sending guests only a printed card, each customer receives a beautiful digital celebration page for their guests.</p>
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-muted);">
+                                <li>Couple story, Photos & Videos</li>
+                                <li>Venue directions & RSVP</li>
+                                <li>Event timeline & Live updates</li>
+                                <li>Gallery after the wedding</li>
+                            </ul>
+                            <div class="impact-box" style="margin-top: 1rem; border-left: 3px solid var(--success); background: rgba(16,185,129,0.05);">
+                                <strong class="success-text">The Hook:</strong> Every page carries subtle Mr Chef branding. One wedding with 500 guests means <strong>hundreds of people interact with the Mr Chef brand</strong> before, during, and after the event.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight-box" style="margin-bottom: 2rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem; color: var(--success);"><i class='bx bx-sync'></i> Automated Brand Growth</h4>
+                        <p style="color: var(--text-main);">Every completed wedding automatically creates future business. Post-event workflows include: Review requests, Gallery sharing, Testimonial collection, Referral links, Social media content, and Repeat customer follow-ups.</p>
+                    </div>
+
+                    <div class="closer-box" style="text-align: center;">
+                        <h3 style="margin-bottom: 1rem; color: var(--accent);">Our True Goal</h3>
+                        <p style="font-size: 1.25rem; font-style: italic; color: var(--text-main);">"We're not here to sell you a website or software. We're here to help Mr Chef become the hospitality brand people remember long after the wedding is over. Every event should create the next customer."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Commercials Section -->
+            <section id="commercials" class="section-block">
+                <h2>Recommended Infrastructure & Investment</h2>
+                <div class="insight-box"
+                    style="margin-bottom: 2rem; border-left-color: var(--success); background: rgba(34, 197, 94, 0.05);">
+                    <strong><i class='bx bx-check-shield success-text'></i> Full System Integration:</strong> Our
+                    packages implement all missing gaps: Premium Event Gallery, Online Inquiry Form, Digital Menu &
+                    Packages, WhatsApp Automation, and Local SEO.
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="plan-subtitle">Quick Start</div>
+                        <h3>Starter</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹18,999</span>
+                            <span class="price" style="margin: 0; display: inline;">₹13,999</span>
+                        </div>
+                        <p class="timeline">10-day delivery</p>
+                        <ul class="features">
+                            <li>5-page Premium Website (Home, About, Services, Gallery, Contact)</li>
+                            <li>Mobile-first design for Instagram traffic</li>
+                            <li>WhatsApp direct integration</li>
+                            <li>Google Maps embed</li>
+                            <li>Basic on-page SEO</li>
+                            <li>2 revision rounds</li>
+                            <li>1 month support</li>
+                        </ul>
+                        <button class="btn btn-outline">Get Started</button>
+                    </div>
+                    <div class="pricing-card recommended">
+                        <div class="recommended-badge">⭐ Most Popular</div>
+                        <h3>Growth</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹23,999</span>
+                            <span class="price" style="margin: 0; display: inline; color: var(--accent);">₹18,999</span>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">(Pays for
+                                itself with a single booking)</div>
+                        </div>
+                        <p class="timeline">18-day delivery</p>
+                        <ul class="features">
+                            <li><strong>Everything in Starter</strong></li>
+                            <li>Automated Inquiry & Booking Form</li>
+                            <li>Digital Menu & Packages Page</li>
+                            <li>Cinematic Event Gallery (Weddings, Receptions)</li>
+                            <li>Google Business Profile SEO Optimization</li>
+                            <li>Digital Wedding Celebration Pages (Built for your clients)</li>
+                            <li>3 revision rounds</li>
+                            <li>3 months support</li>
+                        </ul>
+                        <button class="btn btn-primary">Select Plan</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="plan-subtitle">Full Service</div>
+                        <h3>Premium</h3>
+                        <div style="margin: 1.5rem 0;">
+                            <span
+                                style="text-decoration: line-through; font-size: 1.2rem; color: var(--text-muted); margin-right: 0.5rem;">₹31,999</span>
+                            <span class="price" style="margin: 0; display: inline;">₹26,999</span>
+                        </div>
+                        <p class="timeline">25-day delivery</p>
+                        <ul class="features">
+                            <li><strong>Everything in Growth</strong></li>
+                            <li>Custom Admin Dashboard / CMS</li>
+                            <li>Advanced Video/Reels Showcase Integration</li>
+                            <li>Monthly Analytics Report</li>
+                            <li>2 months post-launch Advanced SEO</li>
+                            <li>Dedicated Testimonials Page</li>
+                            <li>3 months priority support</li>
+                        </ul>
+                        <button class="btn btn-outline">Explore Premium</button>
+                    </div>
+                </div>
+
+                <div class="fast-action-bonus"
+                    style="background: var(--sidebar-bg); border: 2px solid var(--border-light); border-radius: 12px; margin-top: 3rem; padding: 2rem;">
+                    <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem;"><i
+                            class='bx bx-time-five'></i> Fast-Action Bonus: Wedding Season Priority</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; color: var(--text-muted); line-height: 1.6;">We
+                        are taking on limited projects before the upcoming wedding season rush. If we start this week to
+                        ensure your digital infrastructure is live before the peak season, we will apply a
+                        <strong>₹5,000 launch discount</strong> and include the following at <strong>no extra
+                            charge</strong>:</p>
+                    <ul
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; list-style: none; padding: 0; font-size: 1.1rem;">
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> ₹5,000
+                            Priority Discount Applied</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Google
+                            Business Profile SEO Setup</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Digital Menu
+                            Structuring</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> 1 Year Premium Domain (~₹1,000)</li>
+                        <li><i class='bx bxs-check-circle success-text' style="margin-right: 0.5rem;"></i> Priority
+                            Delivery Before Season</li>
+                    </ul>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>Growth Intelligence Report • Mr Chef's Event • Generated June 2026</p>
+                <p class="data-sources">Data Sources: Instagram @mrchefevent (247 posts) | 44 Google Reviews | Local SEO
+                    Competitive Analysis</p>
+            </footer>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('.section-block');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active from all
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active to clicked
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+
+<h2 class="sr-only">Mr Chef's Event — Business intelligence dashboard with normalized data and AI enrichment tools</h2>
+
+<style>
+:root { --tab-active: var(--color-text-primary); }
+.tabs { display: flex; gap: 4px; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { padding: 8px 14px; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--color-text-secondary); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: var(--color-text-primary); border-bottom-color: var(--color-text-primary); font-weight: 500; }
+.tab:hover:not(.active) { color: var(--color-text-primary); background: var(--color-background-secondary); border-radius: var(--border-radius-md) var(--border-radius-md) 0 0; }
+.panel { display: none; }
+.panel.active { display: block; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; }
+.metric-label { font-size: 12px; color: var(--color-text-secondary); margin: 0 0 4px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+.metric-sub { font-size: 11px; color: var(--color-text-tertiary); margin: 2px 0 0; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); }
+.badge-green { background: #EAF3DE; color: #3B6D11; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+.badge-blue { background: #E6F1FB; color: #185FA5; }
+.badge-purple { background: #EEEDFE; color: #3C3489; }
+.badge-teal { background: #E1F5EE; color: #0F6E56; }
+.post-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
+.post-stat { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--color-text-secondary); margin-right: 16px; }
+.review-card { border-left: 3px solid #1D9E75; padding: 0.75rem 1rem; margin-bottom: 8px; background: var(--color-background-secondary); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; }
+.stars { color: #BA7517; font-size: 13px; }
+.kw-chip { display: inline-block; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 20px; padding: 4px 12px; font-size: 12px; margin: 4px; color: var(--color-text-secondary); }
+.ai-output { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.25rem; font-size: 14px; line-height: 1.7; color: var(--color-text-primary); white-space: pre-wrap; min-height: 80px; }
+.section-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 10px; }
+.progress-bar { height: 4px; background: var(--color-border-tertiary); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+.progress-fill { height: 100%; border-radius: 2px; background: #1D9E75; }
+.json-block { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; font-family: var(--font-mono); font-size: 11px; color: var(--color-text-secondary); overflow-x: auto; line-height: 1.6; max-height: 300px; overflow-y: auto; }
+</style>
+
+<div style="padding: 1rem 0;">
+
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+  <div style="width: 44px; height: 44px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; color: #0F6E56;">M</div>
+  <div>
+    <p style="font-weight: 500; font-size: 15px; margin: 0; color: var(--color-text-primary);">Mr Chef's Event & Catering</p>
+    <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;">Karuvanchal, Kannur, Kerala &nbsp;·&nbsp; <span class="badge badge-green">5.0 <i class="ti ti-star" aria-hidden="true"></i> Google</span></p>
+  </div>
+  <div style="margin-left: auto;">
+    <span class="badge badge-teal">Intelligence ready</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab" onclick="switchTab('posts')">Instagram posts</button>
+  <button class="tab" onclick="switchTab('reviews')">Reviews</button>
+  <button class="tab" onclick="switchTab('seo')">SEO keywords</button>
+  <button class="tab" onclick="switchTab('json')">Normalized JSON</button>
+  <button class="tab" onclick="switchTab('ai')">AI enrichment</button>
+</div>
+
+<div id="panel-overview" class="panel active">
+  <div class="metric-grid">
+    <div class="metric"><p class="metric-label">Google rating</p><p class="metric-value">5.0</p><p class="metric-sub">44 verified reviews</p></div>
+    <div class="metric"><p class="metric-label">Instagram followers</p><p class="metric-value">10.6K</p><p class="metric-sub">247 posts · 13 highlights</p></div>
+    <div class="metric"><p class="metric-label">Top reel views</p><p class="metric-value">69.4K</p><p class="metric-sub">4,024 likes</p></div>
+    <div class="metric"><p class="metric-label">Services mapped</p><p class="metric-value">9</p><p class="metric-sub">High to medium confidence</p></div>
+  </div>
+
+  <p class="section-title">Brand identity</p>
+  <div class="card" style="margin-bottom: 1.5rem;">
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">Tagline</p>
+    <p style="font-size: 18px; font-weight: 500; margin: 0 0 12px; color: var(--color-text-primary);">"Your Event Our Passion"</p>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <span class="badge badge-teal">Kerala hospitality</span>
+      <span class="badge badge-purple">Premium weddings</span>
+      <span class="badge badge-blue">Event management</span>
+      <span class="badge badge-amber">24h availability</span>
+    </div>
+  </div>
+
+  <p class="section-title">Services confidence map</p>
+  ${[
+    ['Wedding Catering', 95],
+    ['Event Catering', 95],
+    ['Hospitality Management', 90],
+    ['Welcome Drinks', 88],
+    ['Engagement Functions', 85],
+    ['Buffet Setup', 72],
+    ['Live Food Counters', 68],
+    ['Traditional Kerala Food', 65],
+    ['Full Event Coordination', 60],
+  ].map(([s, v]) => `<div style="margin-bottom: 10px;"><div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--color-text-primary);">${s}</span><span style="font-size:12px;color:var(--color-text-secondary);">${v}%</span></div><div class="progress-bar"><div class="progress-fill" style="width:${v}%"></div></div></div>`).join('')}
+
+  <p class="section-title" style="margin-top: 1.5rem;">Contact assets</p>
+  <div class="card">
+    <table style="width:100%;font-size:13px;border-collapse:collapse;">
+      <tr><td style="padding:6px 0;color:var(--color-text-secondary);width:140px;"><i class="ti ti-phone" aria-hidden="true"></i> Primary</td><td style="color:var(--color-text-primary);">+91 96568 63210</td></tr>
+      <tr><td style="padding:6px 0;color:var(--color-text-secondary);"><i class="ti ti-phone" aria-hidden="true"></i> Secondary</td><td style="color:var(--color-text-primary);">+91 88486 57317</td></tr>
+      <tr><td style="padding:6px 0;color:var(--color-text-secondary);"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</td><td><a href="https://wa.me/919656863210" style="color:var(--color-text-info);font-size:13px;">wa.me/919656863210</a></td></tr>
+      <tr><td style="padding:6px 0;color:var(--color-text-secondary);"><i class="ti ti-brand-instagram" aria-hidden="true"></i> Instagram</td><td><a href="https://instagram.com/mrchefevent" style="color:var(--color-text-info);font-size:13px;">@mrchefevent</a></td></tr>
+      <tr><td style="padding:6px 0;color:var(--color-text-secondary);"><i class="ti ti-map-pin" aria-hidden="true"></i> Address</td><td style="color:var(--color-text-primary);">Chanokund Rd, Karuvanchal, Kerala 670581</td></tr>
+    </table>
+  </div>
+</div>
+
+<div id="panel-posts" class="panel">
+  <p class="section-title">Latest Instagram posts (extracted)</p>
+  ${[
+    { caption: 'Your Event our passion.. 🥰\n#trendingreels #events #service #hospitality #delicious', likes: 4024, views: 69460, type: 'Reel', date: 'Jan 2026', tags: ['trendingreels','events','hospitality','delicious'] },
+    { caption: 'We create memories\n#trending #trendingreels #new #explorepage #catering', likes: 200, views: 1890, type: 'Reel', date: 'Apr 2026', tags: ['trending','catering','explorepage'] },
+    { caption: 'Tell us the date... we\'ll handle the rest 😉\n#trending #catering #trendingreels #reels', likes: 113, views: 2039, type: 'Reel', date: 'Apr 2026', tags: ['catering','reels','trending'] },
+  ].map(p => `
+  <div class="post-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <span class="badge badge-purple">${p.type}</span>
+      <span style="font-size:11px;color:var(--color-text-tertiary);">${p.date}</span>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-primary);margin:0 0 10px;line-height:1.6;">${p.caption}</p>
+    <div style="margin-bottom:8px;">
+      ${p.tags.map(t => `<span class="kw-chip">#${t}</span>`).join('')}
+    </div>
+    <div>
+      <span class="post-stat"><i class="ti ti-heart" aria-hidden="true"></i> ${p.likes.toLocaleString()} likes</span>
+      <span class="post-stat"><i class="ti ti-eye" aria-hidden="true"></i> ${p.views.toLocaleString()} views</span>
+    </div>
+  </div>`).join('')}
+  <p style="font-size:12px;color:var(--color-text-tertiary);margin-top:8px;"><i class="ti ti-info-circle" aria-hidden="true"></i> 247 total posts scraped — showing top performers only.</p>
+</div>
+
+<div id="panel-reviews" class="panel">
+  <p class="section-title">Google reviews (44 total · 5.0 avg)</p>
+  ${[
+    ['PRANAV K P', 'Exceptional quality and service! Mr Chef\'s Event is definitely the best catering service in Karuvanchal. We were thrilled with the outcome.'],
+    ['arjun krishna', 'Highly recommend for anyone seeking the best catering service in Karuvanchal. Their food was exceptional and the service was top-notch.'],
+    ['Shafi favio', 'If you\'re looking for the best catering service in Karuvanchal, look no further. They exceeded all our expectations!'],
+    ['Aswathi S Nair', 'Mr Chef\'s Event provided an amazing menu and professional staff. Best catering service in Karuvanchal, Kannur.'],
+    ['Sanath B', 'They made our family reunion perfect with their amazing food and service. Unbeatable.'],
+    ['Sidharth Prasad', 'From start to finish, Mr Chef\'s Event made our corporate event a standout success.'],
+    ['Sujith', 'We\'ve tried many caterers, but Mr Chef\'s Event is the best. Their food and service were outstanding!'],
+  ].map(([name, text]) => `
+  <div class="review-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <span style="font-size:13px;font-weight:500;color:var(--color-text-primary);">${name}</span>
+      <span class="stars">★★★★★</span>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0;line-height:1.6;">${text}</p>
+  </div>`).join('')}
+</div>
+
+<div id="panel-seo" class="panel">
+  <p class="section-title">Local SEO keywords</p>
+  <div style="margin-bottom:1.5rem;">
+    ${['catering service karuvanchal','best caterers in kannur','event catering kannur','wedding catering kerala','catering service near alakode','luxury catering kannur','kerala wedding catering'].map(k => `<span class="kw-chip" style="background:#E1F5EE;border-color:#9FE1CB;color:#0F6E56;">${k}</span>`).join('')}
+  </div>
+
+  <p class="section-title">Semantic SEO keywords</p>
+  <div style="margin-bottom:1.5rem;">
+    ${['hospitality services kerala','grand wedding catering','traditional kerala catering','event management kannur','premium buffet catering','wedding feast kerala','welcome drinks catering'].map(k => `<span class="kw-chip" style="background:#EEEDFE;border-color:#CECBF6;color:#3C3489;">${k}</span>`).join('')}
+  </div>
+
+  <p class="section-title">Sentiment keywords (from reviews + captions)</p>
+  <div>
+    ${['yummy food','highly recommended','grand wedding','hospitality','delicious','premium service','wedding hosting','event catering','kerala catering','welcoming service','exceptional','professional staff','amazing menu','top-notch','outstanding','thrilled','exceeded expectations','create memories'].map(k => `<span class="kw-chip">${k}</span>`).join('')}
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <p style="font-size:13px;font-weight:500;margin:0 0 6px;color:var(--color-text-primary);">Pages these keywords can power</p>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0;line-height:1.8;">Homepage · Wedding catering page · Event catering page · FAQ schema · Location pages (Karuvanchal, Alakode, Kannur) · Meta descriptions · AI-generated blog posts</p>
+  </div>
+</div>
+
+<div id="panel-json" class="panel">
+  <p class="section-title">Normalized JSON output</p>
+  <div class="json-block" id="json-output"></div>
+  <button onclick="copyJSON()" style="margin-top:10px;font-size:13px;"><i class="ti ti-copy" aria-hidden="true"></i> Copy JSON</button>
+</div>
+
+<div id="panel-ai" class="panel">
+  <p class="section-title">AI enrichment</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+    <button onclick="runEnrichment('testimonials')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-quote" aria-hidden="true"></i> Extract testimonial soundbites</button>
+    <button onclick="runEnrichment('homepage')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-home" aria-hidden="true"></i> Generate homepage hero copy</button>
+    <button onclick="runEnrichment('emotional')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-heart" aria-hidden="true"></i> Map emotional brand language</button>
+    <button onclick="runEnrichment('blog')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-pencil" aria-hidden="true"></i> Generate blog post ideas</button>
+    <button onclick="runEnrichment('meta')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-search" aria-hidden="true"></i> Write meta descriptions</button>
+    <button onclick="runEnrichment('classify')" style="font-size:13px;text-align:left;padding:12px 16px;"><i class="ti ti-tag" aria-hidden="true"></i> Classify event categories</button>
+  </div>
+  <div style="position:relative;">
+    <div class="ai-output" id="ai-result">Select an enrichment task above to generate AI-powered insights from the scraped data.</div>
+    <button id="copy-ai-btn" onclick="copyAI()" style="position:absolute;top:10px;right:10px;font-size:12px;padding:6px 10px;display:none;"><i class="ti ti-copy" aria-hidden="true"></i> Copy</button>
+  </div>
+  <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:8px;"><i class="ti ti-info-circle" aria-hidden="true"></i> Uses Claude Sonnet 4 — actual results may vary. Review before publishing.</p>
+</div>
+
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const panels = ['overview','posts','reviews','seo','json','ai'];
+    t.classList.toggle('active', panels[i] === name);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  if (name === 'json') renderJSON();
+}
+
+const normalizedData = {
+  brand: {
+    name: "MR CHEF'S EVENT & CATERING KARUVANCHAL",
+    tagline: "Your Event Our Passion",
+    style: "Premium Kerala wedding & event catering",
+    positioning: "Hospitality-focused catering & event management",
+    primaryAudience: ["Weddings", "Engagements", "Family events", "Premium gatherings"]
+  },
+  contact: {
+    phones: ["+919656863210", "+918848657317"],
+    whatsapp: "https://wa.me/919656863210",
+    instagram: "https://instagram.com/mrchefevent",
+    address: "Chanokund Rd, Karuvanchal, Oduvallithattu, Kerala 670581",
+    availability: "24 Hours"
+  },
+  socialProof: {
+    googleRating: 5.0,
+    googleReviews: 44,
+    instagramFollowers: 10638,
+    instagramPosts: 247,
+    instagramHighlights: 13,
+    topReelViews: 69460,
+    topReelLikes: 4024
+  },
+  services: [
+    { name: "Wedding Catering", confidence: "high" },
+    { name: "Event Catering", confidence: "high" },
+    { name: "Hospitality Management", confidence: "high" },
+    { name: "Welcome Drinks", confidence: "high" },
+    { name: "Engagement Functions", confidence: "high" },
+    { name: "Buffet Setup", confidence: "medium" },
+    { name: "Live Food Counters", confidence: "medium" },
+    { name: "Traditional Kerala Food", confidence: "medium" },
+    { name: "Full Event Coordination", confidence: "medium" }
+  ],
+  seo: {
+    localKeywords: ["catering service karuvanchal","best caterers in kannur","event catering kannur","wedding catering kerala","catering service near alakode","luxury catering kannur","kerala wedding catering"],
+    semanticKeywords: ["hospitality services kerala","grand wedding catering","traditional kerala catering","event management kannur","premium buffet catering","wedding feast kerala","welcome drinks catering"],
+    sentimentKeywords: ["yummy food","highly recommended","grand wedding","hospitality","delicious","premium service","create memories"]
+  },
+  reviews: [
+    { name: "PRANAV K P", stars: 5, text: "Exceptional quality and service! We were thrilled with the outcome." },
+    { name: "arjun krishna", stars: 5, text: "Highly recommend. Food was exceptional and service was top-notch." },
+    { name: "Aswathi S Nair", stars: 5, text: "Amazing menu and professional staff." },
+    { name: "Sanath B", stars: 5, text: "Made our family reunion perfect with amazing food and service." },
+    { name: "Sidharth Prasad", stars: 5, text: "Made our corporate event a standout success." }
+  ],
+  topPosts: [
+    { caption: "Your Event our passion", likes: 4024, views: 69460, hashtags: ["events","hospitality","delicious"] },
+    { caption: "We create memories", likes: 200, views: 1890, hashtags: ["catering","explorepage"] }
+  ]
+};
+
+function renderJSON() {
+  document.getElementById('json-output').textContent = JSON.stringify(normalizedData, null, 2);
+}
+
+function copyJSON() {
+  navigator.clipboard.writeText(JSON.stringify(normalizedData, null, 2));
+}
+
+function copyAI() {
+  navigator.clipboard.writeText(document.getElementById('ai-result').textContent);
+}
+
+const prompts = {
+  testimonials: `You are a copywriter. Extract 5 punchy testimonial soundbites from these Google reviews for use on a website. Each should be max 2 sentences. Return as a numbered list.\n\nReviews:\n- "Exceptional quality and service! We were thrilled with the outcome." — PRANAV K P\n- "Highly recommend. Food was exceptional and service was top-notch." — arjun krishna\n- "If you're looking for the best catering service in Karuvanchal, look no further. They exceeded all our expectations!" — Shafi favio\n- "Amazing menu and professional staff." — Aswathi S Nair\n- "Made our family reunion perfect with amazing food and service." — Sanath B\n- "Made our corporate event a standout success." — Sidharth Prasad`,
+  homepage: `You are a premium hospitality copywriter. Write a homepage hero section for "Mr Chef's Event & Catering" based on:\n- Tagline: "Your Event Our Passion"\n- Location: Karuvanchal, Kannur, Kerala\n- Specialty: Premium Kerala wedding & event catering\n- Trust signals: 5.0 Google rating, 44 reviews, 10K+ Instagram followers\n- Key sentiment: hospitality, delicious, create memories, welcoming\n\nWrite: Hero headline, subheadline (1-2 sentences), and a 3-word CTA button text. Make it warm and premium.`,
+  emotional: `You are a brand strategist. Analyze this data from Mr Chef's Event & Catering and identify their core emotional brand pillars. Map each pillar to specific language from their captions and reviews.\n\nCaptions: "Your Event our passion 🥰", "We create memories", "Tell us the date, we'll handle the rest"\nReview words: exceptional, thrilled, highly recommend, amazing, welcoming, hospitality, delicious, outstanding\n\nOutput 4 emotional brand pillars, each with: pillar name, 1-line description, 2 example phrases to use in marketing copy.`,
+  blog: `You are an SEO content strategist for a Kerala catering business. Generate 8 blog post ideas for Mr Chef's Event & Catering (Karuvanchal, Kannur) that target local SEO keywords.\n\nKeywords to target: wedding catering kerala, best caterers kannur, kerala hospitality, event management kannur, traditional kerala food\n\nFor each blog post: title + 1-sentence meta description. Focus on weddings, events, Kerala food culture and local searches.`,
+  meta: `Write SEO meta titles and descriptions for these 5 pages of Mr Chef's Event & Catering website. Each meta title max 60 chars, each description max 155 chars. Brand: Premium Kerala event catering in Karuvanchal, Kannur. Google rating: 5.0.\n\nPages:\n1. Homepage\n2. Wedding catering\n3. Event catering\n4. Buffet & hospitality\n5. Contact us`,
+  classify: `You are a data analyst. Classify these Instagram captions from Mr Chef's Event into event categories. For each, assign: event type, mood, service shown, and conversion potential (high/medium/low).\n\nCaptions:\n1. "Your Event our passion 🥰 #events #service #hospitality #delicious" (69K views)\n2. "We create memories #trending #catering #explorepage" (1.8K views)\n3. "Tell us the date, we'll handle the rest 😉 #trending #catering" (2K views)\n\nAlso suggest which caption style drives the highest engagement and why.`
+};
+
+async function runEnrichment(type) {
+  const el = document.getElementById('ai-result');
+  const copyBtn = document.getElementById('copy-ai-btn');
+  el.textContent = 'Generating insights...';
+  copyBtn.style.display = 'none';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompts[type] }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.find(b => b.type === 'text')?.text || 'No response received.';
+    el.textContent = text;
+    copyBtn.style.display = 'block';
+  } catch (err) {
+    el.textContent = 'Error: ' + err.message;
+  }
+}
+</script>
